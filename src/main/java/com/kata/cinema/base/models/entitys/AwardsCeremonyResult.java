@@ -17,19 +17,19 @@ public class AwardsCeremonyResult {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="person_id", nullable = false)
+    @Column(name = "person_id", nullable = false)
     private int person_id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="movie_id", nullable = false)
+    @Column(name = "movie_id", nullable = false)
     private int movie_id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="nomination_id", nullable = false)
+    @Column(name = "nomination_id", nullable = false)
     private int nomination_id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="awards_ceremony_id", nullable = false)
+    @Column(name = "awards_ceremony_id", nullable = false)
     private int awards_ceremony_id;
     @Column
     private String nomination_status;
