@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class AwardsCeremony {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Long id;
 
     @Column
@@ -23,10 +23,6 @@ public class AwardsCeremony {
 
     @Column
     private String place_event;
-
-    @Column
-    private int award_id;
-
 
     @ManyToOne
     @JoinColumn(name = "awards_id")
