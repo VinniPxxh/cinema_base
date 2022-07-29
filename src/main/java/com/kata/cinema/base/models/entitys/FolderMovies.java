@@ -6,19 +6,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity(name = "folders_movies")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class FolderMovies {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    @Enumerated
     private Category category;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    @Enumerated
     private Privacy privacy;
     private String name;
     private String description;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "folder_movies_to_movie",
+            joinColumns = @JoinColumn(name = "folder_id"),
+            inverseJoinColumns = @JoinColumn(name = "movies_id")
+    )
+    Set<Movie> movies;
 }
