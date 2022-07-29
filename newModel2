@@ -36,10 +36,6 @@ public class movies {
     @Column(name = "desciption")
     private String desciption;
 
-    enum type{
-        MOVIES, SERIALS
-    };
-
     @OneToOne(fetch = FetchType.LAZY)
     private Set<score> score;
 
@@ -96,10 +92,6 @@ public class content {
     @Column(name = "content_url")
    private String content_url;
 
-   enum type{
-       MOVIES, SERIALS, PREVIEW, FRAME, TRAILER
-   }
-
     @OneToMany(fetch = FetchType.LAZY)
     private Set<movies> movies;
 }
@@ -148,3 +140,8 @@ public class collections {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<movies> movies;
 }
+
+public enum type {
+    MOVIES, SERIALS, PREVIEW, FRAME, TRAILER
+}
+
