@@ -1,15 +1,18 @@
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Table(name="movies")
 
-public class movies {
-
-    public movies() {}
+public class Movies {
 
     @Id
     @Column(name = "id_movies", nullable = false)
@@ -37,96 +40,42 @@ public class movies {
     private String desciption;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private Set<score> score;
+    @ToString.Exclude
+    private Set<Score> score;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private Set<content> content;
+    @ToString.Exclude
+    private Set<Content> content;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Set<genres> genres;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Movies movies = (Movies) o;
+        return id != null && Objects.equals(id, movies.id);
+    }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Set<collections> collections;
-
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
 
 import lombok.*;
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-@Data
-@Table(name = "score")
-public class score {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_score", nullable = false)
-    private Long id;
-
-   @Column(name="movie_id_score")
-   Long movie_id;
-
-   @Column(name = "user_id")
-   Long user_id;
-
-   @Column(name = "score")
-   Long score;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<movies> movies;
-
-}
-
-@Entity
-@Data
-@Table(name = "content")
-
-public class content {
-    @Id
-    @Column(name = "id_content", nullable = false)
-    private Long id;
-
-    @Column(name = "movie_id_content")
-   private Long movie_id;
-
-    @Column(name = "content_url")
-   private String content_url;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<movies> movies;
-}
-
-import lombok.Data;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Objects;
 
 @Entity
-@Data
-@Table(name = "genres")
-public class genres {
-
-    @Id
-    @Column(name = "id_genres", nullable = false)
-    private Long id;
-
-    @Column(name = "genres_name")
-    private String name;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<movies> movies;
-}
-
-import lombok.Data;
-
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Table(name = "collections")
 
-public class collections {
+public class Collections {
+
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
@@ -137,11 +86,151 @@ public class collections {
     @Column(name = "enable")
     private String enable;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<movies> movies;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Collections that = (Collections) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
 
-public enum type {
-    MOVIES, SERIALS, PREVIEW, FRAME, TRAILER
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Table(name = "genres")
+public class Genres {
+
+    @Id
+    @Column(name = "id_genres", nullable = false)
+    private Long id;
+
+    @Column(name = "genres_name")
+    private String name;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Genres genres = (Genres) o;
+        return id != null && Objects.equals(id, genres.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+}
+
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Table(name = "score")
+public class Score {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_score", nullable = false)
+    private Long id;
+
+    @Column(name="movie_id_score")
+    Long movie_id;
+
+    @Column(name = "user_id")
+    Long user_id;
+
+    @Column(name = "score")
+    Long score;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Movies> movies;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Score score = (Score) o;
+        return id != null && Objects.equals(id, score.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+}
+
+
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Table(name = "content")
+
+public class Content {
+
+    @Id
+    @Column(name = "id_content", nullable = false)
+    private Long id;
+
+    @Column(name = "movie_id_content")
+    private Long movie_id;
+
+    @Column(name = "content_url")
+    private String content_url;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Movies> movies;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Content content = (Content) o;
+        return id != null && Objects.equals(id, content.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+}
+
+public enum Type {
+    MOVIES,
+    SERIALS,
+    PREVIEW,
+    FRAME,
+    TRAILER
 }
 
