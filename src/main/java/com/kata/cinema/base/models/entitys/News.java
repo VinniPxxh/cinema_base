@@ -19,7 +19,7 @@ public class News {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @NotNull
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Rubric rubric;
     @NotNull
     private Date date;

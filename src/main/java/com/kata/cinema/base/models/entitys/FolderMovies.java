@@ -18,11 +18,11 @@ public class FolderMovies {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Category category;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Privacy privacy;
     private String name;
     private String description;

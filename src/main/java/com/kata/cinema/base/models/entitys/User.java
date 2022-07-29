@@ -27,8 +27,6 @@ public class User {
     @NotNull
     private String password;
     private LocalDate birthday;
-    @NotNull
-    private Long roleId;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
