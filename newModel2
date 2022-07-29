@@ -39,14 +39,6 @@ public class Movies {
     @Column(name = "desciption")
     private String desciption;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private Set<Score> score;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private Set<Content> content;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
