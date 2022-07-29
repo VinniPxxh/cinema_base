@@ -1,0 +1,150 @@
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Data
+@Table(name="movies")
+
+public class movies {
+
+    public movies() {}
+
+    @Id
+    @Column(name = "id_movies", nullable = false)
+    private Long id;
+
+    @Column(name = "name_movie")
+    private String name;
+
+    @Column(name = "countries")
+    public String countries;
+
+    @Column(name = "date_release")
+    public Long date_release;
+
+    @Column(name = "rars")
+    private int rars;
+
+    @Column(name = "mpaa")
+    private int mpaa;
+
+    @Column(name = "time")
+    private int time;
+
+    @Column(name = "desciption")
+    private String desciption;
+
+    enum type{
+        MOVIES, SERIALS
+    };
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Set<score> score;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Set<content> content;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Set<genres> genres;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Set<collections> collections;
+
+}
+
+import lombok.*;
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Data
+@Table(name = "score")
+public class score {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_score", nullable = false)
+    private Long id;
+
+   @Column(name="movie_id_score")
+   Long movie_id;
+
+   @Column(name = "user_id")
+   Long user_id;
+
+   @Column(name = "score")
+   Long score;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<movies> movies;
+
+}
+
+@Entity
+@Data
+@Table(name = "content")
+
+public class content {
+    @Id
+    @Column(name = "id_content", nullable = false)
+    private Long id;
+
+    @Column(name = "movie_id_content")
+   private Long movie_id;
+
+    @Column(name = "content_url")
+   private String content_url;
+
+   enum type{
+       MOVIES, SERIALS, PREVIEW, FRAME, TRAILER
+   }
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<movies> movies;
+}
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Data
+@Table(name = "genres")
+public class genres {
+
+    @Id
+    @Column(name = "id_genres", nullable = false)
+    private Long id;
+
+    @Column(name = "genres_name")
+    private String name;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<movies> movies;
+}
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Data
+@Table(name = "collections")
+
+public class collections {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Column(name = "collections_name")
+    private String name;
+
+    @Column(name = "enable")
+    private String enable;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<movies> movies;
+}
