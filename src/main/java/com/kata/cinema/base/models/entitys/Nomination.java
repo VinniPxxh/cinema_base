@@ -1,6 +1,5 @@
 package com.kata.cinema.base.models.entitys;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class Nomination {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

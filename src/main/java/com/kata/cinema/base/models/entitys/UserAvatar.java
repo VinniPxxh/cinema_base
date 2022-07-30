@@ -12,8 +12,10 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 public class UserAvatar implements Serializable {
+
     @Id
     @OneToOne(fetch = FetchType.LAZY)
-    User user;
-    String avatarUrl;
+    private User user;
+
+    private String avatarUrl;
 }

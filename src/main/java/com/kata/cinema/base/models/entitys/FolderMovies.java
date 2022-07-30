@@ -18,19 +18,26 @@ public class FolderMovies {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @Enumerated(EnumType.STRING)
     private Category category;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
+
     @Enumerated(EnumType.STRING)
     private Privacy privacy;
+
     private String name;
+
     private String description;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "folder_movies_to_movie",
-            joinColumns = @JoinColumn(name = "folder_id"),
-            inverseJoinColumns = @JoinColumn(name = "movies_id")
-    )
-    Set<Movie> movies;
+
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "folder_movies_to_movie",
+//            joinColumns = @JoinColumn(name = "folder_id"),
+//            inverseJoinColumns = @JoinColumn(name = "movies_id")
+//    )
+//    Set<Movie> movies;
 }

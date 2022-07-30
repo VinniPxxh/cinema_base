@@ -1,6 +1,5 @@
 package com.kata.cinema.base.models.entitys;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

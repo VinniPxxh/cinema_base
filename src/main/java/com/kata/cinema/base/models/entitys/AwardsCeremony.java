@@ -1,6 +1,5 @@
 package com.kata.cinema.base.models.entitys;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +18,10 @@ public class AwardsCeremony {
     private Long id;
 
     @Column
-    private String date_event;
+    private String dateEvent;
 
     @Column
-    private String place_event;
+    private String placeEvent;
 
     @ManyToOne
     @JoinColumn(name = "awards_id")

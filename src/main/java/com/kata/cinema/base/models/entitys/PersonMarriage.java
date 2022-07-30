@@ -13,18 +13,19 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table(name = "persons_marriage")
 @Entity
-class PersonMarriage implements Serializable {
+public class PersonMarriage implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person_id;
+    private Person person;
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "human_id", referencedColumnName = "id")
-    private Person human_id;
-
+    private Person human;
 
     @Column(name = "marriageStatus")
     private String marriageStatus;

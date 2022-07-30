@@ -18,9 +18,9 @@ public class AwardsCeremonyResult {
     @Column(name = "id", nullable = false)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "person_id")
-//    private Persons persons;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person persons;
 
 //    @ManyToOne
 //    @JoinColumn(name = "movies_id")
@@ -34,6 +34,6 @@ public class AwardsCeremonyResult {
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
-    @Column
-    private String nomination_status;
+//    @Column
+////    private String nominationStatus;
 }

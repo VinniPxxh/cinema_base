@@ -15,24 +15,23 @@ import java.io.Serializable;
 @Table(name = "movie_person")
 public class MoviePerson implements Serializable{
 
-    @Id
-    private int movie_id;
-
+    //TODO расскоментировать после добавления сущности Movie
+//    @Id
+//    private Movie movie;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profession_id", referencedColumnName = "id")
-    private Profession profession_id;
-
+    private Profession profession;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person_id;
+    private Person person;
 
     @Enumerated(EnumType.STRING)
-    private TypeCharacter type_character;
+    private TypeCharacter typeCharacter;
 
-    private String nameRole; // нестыковки названия name_role?(выбрал с диаграммы)
+    private String nameRole;
 
 }

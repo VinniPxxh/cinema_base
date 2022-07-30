@@ -17,9 +17,10 @@ public class Profession implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
 }

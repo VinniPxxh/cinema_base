@@ -16,12 +16,17 @@ public class FolderPerson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
-    private boolean favourites;
+    private Long id;
+
+    private Boolean favourites;
+
     private int user_id;
+
     @Enumerated(EnumType.STRING)
     private Privacy privacy;
+
     private String name;
+
     private String description;
 
 }

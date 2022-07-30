@@ -10,27 +10,33 @@ import java.time.LocalDate;
 import java.util.Set;
 
 
-@Entity(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @NotNull
     private String email;
+
     @NotNull
     private String firstName;
+
     private String lastName;
+
     @NotNull
     private String password;
+
     private LocalDate birthday;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    Set<Role> roles;
+    private Set<Role> roles;
 }

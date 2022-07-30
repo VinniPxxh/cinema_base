@@ -13,15 +13,21 @@ import java.util.Date;
 @Table(name = "persons")
 public class Person {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     @NotNull
-    private String first_name;
-    private String last_name;
-    private double height;
-    private Date date_birth;
-    private String place_of_birth;
+    private String firstName;
+
+    private String lastName;
+
+    private Double height;
+
+    private Date birthday;
+
+    @Column(name = "place_birthday")
+    private String placeBirthday;
 
 }
 
