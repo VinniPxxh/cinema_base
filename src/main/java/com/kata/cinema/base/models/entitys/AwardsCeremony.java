@@ -14,13 +14,10 @@ import javax.persistence.*;
 public class AwardsCeremony {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false)
     private Long id;
 
-    @Column
     private String dateEvent;
 
-    @Column
     private String placeEvent;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -15,10 +15,8 @@ public class Nomination {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false)
     private Long id;
 
-    @Column
     private String name;
 
 }
