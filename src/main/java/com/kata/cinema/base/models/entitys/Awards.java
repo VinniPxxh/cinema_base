@@ -13,8 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Awards {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(nullable = false)
     private Long id;
 
     @Column

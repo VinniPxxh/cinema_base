@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class AwardsCeremony {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false)
     private Long id;
 
@@ -23,7 +23,8 @@ public class AwardsCeremony {
     @Column
     private String placeEvent;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "awards_id")
     private Awards awards;
 
