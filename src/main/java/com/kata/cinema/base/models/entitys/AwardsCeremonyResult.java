@@ -15,18 +15,17 @@ import javax.persistence.*;
 public class AwardsCeremonyResult {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @JoinColumn(name = "person_id")
+    private Person person;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    @JoinColumn(name = "person_id")
-//    private Persons persons;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    @JoinColumn(name = "movies_id")
-//    private Movies movies;
+//    @JoinColumn(name = "movie_id")
+//    private Movie movie;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -38,6 +37,5 @@ public class AwardsCeremonyResult {
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
-    @Column
     private String nomination_status;
 }
