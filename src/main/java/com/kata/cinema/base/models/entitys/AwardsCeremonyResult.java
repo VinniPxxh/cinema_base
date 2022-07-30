@@ -14,26 +14,30 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class AwardsCeremonyResult {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person persons;
-
-//    @ManyToOne
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    @JoinColumn(name = "person_id")
+//    private Persons persons;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 //    @JoinColumn(name = "movies_id")
 //    private Movies movies;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "nomination_id")
     private Nomination nomination;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
-//    @Column
-////    private String nominationStatus;
+    @Column
+    private String nomination_status;
 }
