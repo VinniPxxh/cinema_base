@@ -17,6 +17,6 @@ public interface AbstractDao<PK, E> {
 
     Optional<E> getById(PK id);
 
-    boolean existById(PK id);
+    boolean isExistById(PK id);
 
 }
