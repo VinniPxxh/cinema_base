@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class Nomination {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_nomination")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_nomination")
     private Long id;
 
     private String name;

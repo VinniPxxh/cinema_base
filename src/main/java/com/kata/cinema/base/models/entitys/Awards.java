@@ -13,7 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Awards {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_awards")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_awards")
     private Long id;
 
     private String name;
