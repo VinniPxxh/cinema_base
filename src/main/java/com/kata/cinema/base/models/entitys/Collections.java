@@ -16,7 +16,8 @@ import java.util.Set;
 public class Collections {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_collections")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_collections")
     @Column(name = "id", nullable = false)
     private Long id;
 

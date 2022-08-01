@@ -15,7 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_role")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_role")
     private Long id;
 
     @NotNull
