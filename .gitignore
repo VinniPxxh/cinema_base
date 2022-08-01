@@ -30,3 +30,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/.jpb/jpb-settings.xml
+/.jpb/persistence-units.xml
+/.jpb/
