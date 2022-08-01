@@ -17,7 +17,8 @@ import java.util.Set;
 public class Genres {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_genres")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_genres")
     @Column(name = "id", nullable = false)
     private Long id;
 

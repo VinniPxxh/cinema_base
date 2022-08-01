@@ -16,7 +16,8 @@ import java.io.Serializable;
 public class PersonMarriage implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_person_marriage")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_person_marriage")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -15,7 +15,8 @@ import java.util.Set;
 public class Content {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_content")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_content")
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -25,9 +26,9 @@ public class Content {
     @Column(name = "contentUrl")
     private String contentUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private Set<Movies> movies;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @ToString.Exclude
+//    private Set<Movies> movies;
 
     @Override
     public boolean equals(Object o) {

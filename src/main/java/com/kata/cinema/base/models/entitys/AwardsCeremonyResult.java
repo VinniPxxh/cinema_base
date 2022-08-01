@@ -22,9 +22,9 @@ public class AwardsCeremonyResult {
     @JoinColumn(name = "person_id")
     private Person person;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "movie_id")
-//    private Movie movie;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movies movies;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nomination_id")
