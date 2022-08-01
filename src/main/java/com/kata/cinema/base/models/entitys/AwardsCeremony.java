@@ -22,7 +22,6 @@ public class AwardsCeremony {
     private String placeEvent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "awards_id")
     private Awards awards;
 
