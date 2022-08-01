@@ -13,21 +13,21 @@ import java.util.Set;
 @ToString
 @RequiredArgsConstructor
 @Table(name="movies")
-
 public class Movies {
 
     @Id
-    @Column(name = "id_movies", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name_movie")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "countries")
     public String countries;
 
-    @Column(name = "date_release")
-    public Long date_release;
+    @Column(name = "dateRelease")
+    public Long dateRelease;
 
     @Column(name = "rars")
     private int rars;

@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,11 +17,17 @@ import java.util.Objects;
 public class Genres {
 
     @Id
-    @Column(name = "id_genres", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "genres_name")
+    @Column(name = "name")
     private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Movies> movies;
+
 
     @Override
     public boolean equals(Object o) {

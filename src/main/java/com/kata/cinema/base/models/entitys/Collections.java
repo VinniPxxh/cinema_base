@@ -5,6 +5,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -12,18 +13,22 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "collections")
-
 public class Collections {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "collections_name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "enable")
     private String enable;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Movies> movies;
 
     @Override
     public boolean equals(Object o) {

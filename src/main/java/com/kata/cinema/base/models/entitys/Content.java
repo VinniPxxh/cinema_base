@@ -1,14 +1,7 @@
 package com.kata.cinema.base.models.entitys;
-/*
-id - уникальный идентификатор
-movie_id - идентификатор фильма
-content_url - путь к контенут
-type - тип, может принимать следующие значения MOVIES, SERIALS, PREVIEW, FRAME, TRAILER
- */
 
 import lombok.*;
 import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -19,18 +12,18 @@ import java.util.Set;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "content")
-
 public class Content {
 
     @Id
-    @Column(name = "id_content", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "movie_id_content")
-    private Long movie_id;
+    @Column(name = "movieId")
+    private Long movieId;
 
-    @Column(name = "content_url")
-    private String content_url;
+    @Column(name = "contentUrl")
+    private String contentUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude

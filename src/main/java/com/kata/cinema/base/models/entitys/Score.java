@@ -16,17 +16,17 @@ import java.util.Set;
 public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_score", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="movie_id_score")
-    Long movie_id;
+    @Column(name="movieId")
+    private Long movieId;
 
-    @Column(name = "user_id")
-    Long user_id;
+    @Column(name = "userId")
+    private Long userId;
 
     @Column(name = "score")
-    Long score;
+    private Long score;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
