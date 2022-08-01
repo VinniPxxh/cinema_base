@@ -8,6 +8,10 @@
 
 ![img.png](src/main/resources/static/images/git_tutor/db_parameters.png)
 
+Для запуска Liquibase при старте проекта используется параметр: ${LIQUIBASE_ENABLED}
+
+![img.png](src/main/resources/static/images/git_tutor/liquibase_parameter.png)
+
 Их можно прописать в конфигурации проекта
 
 1 шаг  
