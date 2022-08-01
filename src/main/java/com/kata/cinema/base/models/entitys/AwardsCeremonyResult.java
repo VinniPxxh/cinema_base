@@ -19,22 +19,18 @@ public class AwardsCeremonyResult {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "person_id")
     private Person person;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 //    @JoinColumn(name = "movie_id")
 //    private Movie movie;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "nomination_id")
     private Nomination nomination;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
