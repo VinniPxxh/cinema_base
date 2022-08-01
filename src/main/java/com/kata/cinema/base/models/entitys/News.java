@@ -17,7 +17,7 @@ import java.util.Set;
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
     private Rubric rubric;
