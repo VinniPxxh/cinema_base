@@ -31,7 +31,7 @@ public class PublicistNewsRestController {
     @GetMapping
     public ResponseEntity<List<NewsResponseDto>> getNews(@RequestParam(value = "startDate", required = false) LocalDate startDate,
                                                          @RequestParam(value = "endDate", required = false) LocalDate endDate,
-                                                         @RequestParam(value = "rubric", required = false)Rubric rubric) {
+                                                         @RequestParam(value = "rubric", required = false) Rubric rubric) {
         return ResponseEntity.ok(newsResponseDtoService.getAllNews(startDate, endDate, rubric));
 
     }
