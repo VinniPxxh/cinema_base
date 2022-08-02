@@ -23,7 +23,6 @@ public class ModeratorMovieRestController {
         if (file != null) {
             File uploadDir = new File(uploadPath);
 
-
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
