@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name="movies")
+@Table(name = "movies")
 public class Movies {
 
     @Id
@@ -38,8 +38,8 @@ public class Movies {
     @Column(name = "time")
     private int time;
 
-    @Column(name = "desciption")
-    private String desciption;
+    @Column(name = "description")
+    private String description;
 
     @Override
     public boolean equals(Object o) {

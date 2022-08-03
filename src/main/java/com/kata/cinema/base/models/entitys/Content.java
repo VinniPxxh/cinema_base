@@ -4,12 +4,11 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "movies")
 @RequiredArgsConstructor
 @Table(name = "content")
 public class Content {
@@ -19,15 +18,12 @@ public class Content {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "movieId")
-    private Long movieId;
-
     @Column(name = "contentUrl")
     private String contentUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private Set<Movies> movies;
+    @JoinColumn(name = "movie_id")
+    private Movies movies;
 
     @Override
     public boolean equals(Object o) {
