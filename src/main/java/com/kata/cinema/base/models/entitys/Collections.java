@@ -27,6 +27,7 @@ public class Collections {
     private String enable;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    //TODO расписать @JoinTable
     @ToString.Exclude
     private Set<Movies> movies;
 

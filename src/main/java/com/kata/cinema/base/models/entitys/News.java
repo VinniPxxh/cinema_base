@@ -15,6 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class News {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -31,12 +32,12 @@ public class News {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "news_movie",
-//            joinColumns = @JoinColumn(name = "news_id"),
-//            inverseJoinColumns = @JoinColumn(name = "movie_id")
-//    )
-//    Set<Movie> movies;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "news_movie",
+            joinColumns = @JoinColumn(name = "news_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    Set<Movies> movies;
 
 }

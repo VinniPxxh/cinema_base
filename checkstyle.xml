@@ -2,14 +2,27 @@
 <!DOCTYPE module PUBLIC
         "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
-<module name="Checker">
-    <module name="JavadocPackage"/>
+<module name = "Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+    <property name="tabWidth" value="4"/>
+
     <module name="TreeWalker">
-        <module name="AvoidStarImport"/>
-        <module name="ConstantName"/>
-        <module name="EmptyBlock"/>
-        <module name="AbbreviationAsWordInName"/>
-        <module name="LocalFinalVariableName"/>
-        <module name="Indentation"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+        </module>
+        <module name="MemberName"/>
+        <module name="LocalVariableName"/>
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+            <property name="allowEmptyLambdas" value="true"/>
+            <property name="allowEmptyCatches" value="true"/>
+        </module>
     </module>
 </module>

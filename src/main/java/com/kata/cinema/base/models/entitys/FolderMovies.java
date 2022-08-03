@@ -33,11 +33,9 @@ public class FolderMovies {
 
     private String description;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "folder_movies_to_movie",
-//            joinColumns = @JoinColumn(name = "folder_id"),
-//            inverseJoinColumns = @JoinColumn(name = "movies_id")
-//    )
-//    Set<Movie> movies;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "folders_movies_to_movies",
+            joinColumns = @JoinColumn(name = "folders_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    private Set<Movies> movies;
 }

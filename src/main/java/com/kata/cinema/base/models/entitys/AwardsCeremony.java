@@ -12,9 +12,9 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class AwardsCeremony {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
 
     @Column
