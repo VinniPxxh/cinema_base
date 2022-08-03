@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+@RestController("/api/moderator/movie")
 public class ModeratorMovieRestController {
     @Value("${upload.path}")
     private String uploadPath;
@@ -20,7 +22,7 @@ public class ModeratorMovieRestController {
     private String filename;
 
     @PostMapping("{id}/uploadPreview")
-    public String uploadPreview(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
+    public void uploadPreview(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
         if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
 
@@ -36,6 +38,5 @@ public class ModeratorMovieRestController {
             movies.setName(resultFilename);
 
         }
-        return null;
     }
 }
