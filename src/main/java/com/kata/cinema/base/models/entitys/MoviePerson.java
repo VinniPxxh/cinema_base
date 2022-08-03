@@ -33,10 +33,10 @@ public class MoviePerson{
 @Embeddable
 class MoviePersonId implements Serializable{
 
-    //TODO расскоментировать после добавления сущности Movie
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "movie_id")
-//    private MoviePersonId movie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private MoviePerson movie;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
