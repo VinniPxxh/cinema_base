@@ -20,7 +20,10 @@ public class FolderPerson {
 
     private Boolean favourites;
 
+    //TODO сделать связь с пользователем
     private int user_id;
+
+    //TODO добавить связь ManyToMany с Person (см. схему)
 
     @Enumerated(EnumType.STRING)
     private Privacy privacy;

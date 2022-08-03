@@ -13,18 +13,18 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class AwardsCeremonyResult {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person persons;
 
-//    @ManyToOne
-//    @JoinColumn(name = "movies_id")
-//    private Movies movies;
+    @ManyToOne
+    @JoinColumn(name = "movies_id")
+    private Movies movies;
 
     @ManyToOne
     @JoinColumn(name = "nomination_id")
@@ -34,6 +34,6 @@ public class AwardsCeremonyResult {
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
-//    @Column
-////    private String nominationStatus;
+    @Column
+    private String nominationStatus;
 }
