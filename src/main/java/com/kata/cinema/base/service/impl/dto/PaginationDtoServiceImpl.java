@@ -1,11 +1,14 @@
 package com.kata.cinema.base.service.impl.dto;
 
 import com.kata.cinema.base.dao.abstracts.dto.PaginationDtoDao;
+import com.kata.cinema.base.models.dto.PageDto;
+import com.kata.cinema.base.service.abstracts.dto.PaginationDtoService;
 
-import java.util.List;
+
+import java.util.HashMap;
 import java.util.Map;
 
-public class PaginationDtoServiceImpl implements PaginationDtoDao{
+public class PaginationDtoServiceImpl<T> implements PaginationDtoService<T> {
 
     private PaginationDtoDao paginationDtoDao;
 
@@ -16,12 +19,21 @@ public class PaginationDtoServiceImpl implements PaginationDtoDao{
 
 
     @Override
-    public List getItemsDto(Integer currentPage, Integer itemsOnPage, Map parameters) {
-        return paginationDtoDao.getItemsDto(currentPage, itemsOnPage, parameters);
+    public PageDto getPageDto(Integer currentPage, Integer itemsOnPage) {
+        PageDto pageDto = new PageDto<>();
+        Map<String, Object> parameters = new HashMap<>();
+        pageDto.setCount(paginationDtoDao.getResultTotal(parameters));
+        pageDto.setEntities(paginationDtoDao.getItemsDto(currentPage, itemsOnPage, parameters));
+
+        return pageDto;
     }
 
     @Override
-    public Long getResultTotal(Map parameters) {
-        return paginationDtoDao.getResultTotal(parameters);
+    public PageDto getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map parameters) {
+        PageDto pageDto = new PageDto<>();
+        pageDto.setCount(paginationDtoDao.getResultTotal(parameters));
+        pageDto.setEntities(paginationDtoDao.getItemsDto(currentPage, itemsOnPage, parameters));
+
+        return pageDto;
     }
 }
