@@ -14,10 +14,10 @@ import javax.persistence.*;
 public class Nomination {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_nomination")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_nomination")
     private Long id;
 
-    @Column
     private String name;
 
 }

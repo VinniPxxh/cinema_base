@@ -13,27 +13,26 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class AwardsCeremonyResult {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_awards_ceremony_result")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_awards_ceremony_result")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
-    private Person persons;
+    private Person person;
 
-    @ManyToOne
-    @JoinColumn(name = "movies_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
     private Movies movies;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nomination_id")
     private Nomination nomination;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
-    @Column
-    private String nominationStatus;
+    private String nomination_status;
 }

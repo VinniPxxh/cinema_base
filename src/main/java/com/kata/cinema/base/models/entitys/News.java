@@ -17,7 +17,8 @@ import java.util.Set;
 public class News {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_news")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_news")
     private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)

@@ -17,16 +17,18 @@ import java.util.Set;
 public class Genres {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_genres")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_genres")
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    //TODO перенести связь на сторону фильма
     @ManyToMany(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Movies> movies;
+
 
     @Override
     public boolean equals(Object o) {
