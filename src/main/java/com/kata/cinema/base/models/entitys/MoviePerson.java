@@ -14,38 +14,50 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Table(name = "movie_person")
-public class MoviePerson{
+public class MoviePerson {
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @Embeddable
+    @EqualsAndHashCode
+    public static class Id implements Serializable {
+
+        @Column(name = "person_id")
+        private Long personId;
+
+        @Column(name = "movie_id")
+        private Long movieId;
+
+        @Column(name = "profession_id")
+        private Long profession_id;
+
+        public Id(Long personId, Long movieId, Long profession_id) {
+            this.personId = personId;
+            this.movieId = movieId;
+            this.profession_id = profession_id;
+        }
+    }
 
     @EmbeddedId
-    private MoviePersonId moviePersonId;
+    private Id id;
 
-    @Enumerated(EnumType.STRING)
-    private TypeCharacter typeCharacter;
-
-    private String nameRole;
-
-}
-
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@Embeddable
-class MoviePersonId implements Serializable{
-
-    //TODO расскоментировать после добавления сущности Movie
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "movie_id")
-//    private MoviePersonId movie;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "profession_id")
-    private Profession profession;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
+    @ManyToOne(targetEntity = Person.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private Person person;
 
+    @ManyToOne(targetEntity = Movies.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
+    private Movies movie;
+
+    @ManyToOne(targetEntity = Profession.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "profession_id", insertable = false, updatable = false)
+    private Profession professions;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_person")
+    private TypeCharacter type;
+
+    @Column(name = "name_role")
+    private String nameCharacter;
 }

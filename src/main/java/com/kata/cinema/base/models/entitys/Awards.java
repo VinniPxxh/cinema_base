@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class Awards {
+
     @Id
     @SequenceGenerator(name = "gen_awards")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_awards")

@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "persons_marriage")
+@Table(name = "persons_marriage", uniqueConstraints = {@UniqueConstraint(columnNames = {"person_id", "human_id"})})
 @Entity
 public class PersonMarriage implements Serializable {
 

@@ -14,6 +14,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Role {
+
     @Id
     @SequenceGenerator(name = "gen_role")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_role")
