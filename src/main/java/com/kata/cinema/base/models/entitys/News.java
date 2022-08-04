@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -23,7 +23,7 @@ public class News {
     @Enumerated(EnumType.STRING)
     private Rubric rubric;
     @NotNull
-    private Date date;
+    private LocalDate date;
     @NotNull
     private String title;
     @NotNull

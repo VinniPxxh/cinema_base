@@ -4,51 +4,47 @@ import com.kata.cinema.base.models.dto.NewsRequestDto;
 import com.kata.cinema.base.models.dto.NewsResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
-import com.kata.cinema.base.service.abstracts.dto.NewsResponseDtoService;
 import com.kata.cinema.base.service.abstracts.model.NewsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-@RestController("/api/publicist/news")
+@RestController
+@RequestMapping("/api/publicist/news")
 public class PublicistNewsRestController {
 
-    NewsService newsService;
-    NewsResponseDtoService newsResponseDtoService;
+    private final NewsService newsService;
+    private final ConversionService conversionService;
 
-    @Autowired
-    public PublicistNewsRestController(NewsService newsService, NewsResponseDtoService newsResponseDtoService) {
+    public PublicistNewsRestController(NewsService newsService, ConversionService conversionService) {
         this.newsService = newsService;
-        this.newsResponseDtoService = newsResponseDtoService;
+        this.conversionService = conversionService;
     }
 
-    @ResponseBody
     @GetMapping
-    public ResponseEntity<List<NewsResponseDto>> getNews(@RequestParam(value = "startDate", required = false) LocalDate startDate,
-                                                         @RequestParam(value = "endDate", required = false) LocalDate endDate,
-                                                         @RequestParam(value = "rubric", required = false) Rubric rubric) {
-        return ResponseEntity.ok(newsResponseDtoService.getAllNews(startDate, endDate, rubric));
-
+    @ResponseBody
+    public ResponseEntity<List<NewsResponseDto>> getNews(@RequestParam(name = "startDate", required = false)
+                                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                         @RequestParam(name = "endDate", required = false)
+                                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                         @RequestParam(name = "rubric", required = false) Rubric rubric) {
+        return ResponseEntity.ok(newsService.findByDateBetweenAndRubric(startDate, endDate, rubric));
     }
     @PostMapping
     public ResponseEntity<HttpStatus> createNews(@RequestBody NewsRequestDto newsRequestDto){
         News news = convertToNews(newsRequestDto);
+        news.setDate(LocalDate.now());
         newsService.save(news);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    private static News convertToNews(NewsRequestDto dto){
-        News news = new News();
-        news.setDate(new Date());
-        news.setRubric(dto.getRubric());
-        news.setTitle(dto.getTitle());
-        news.setHtmlBody(dto.getHtmlBody());
-        return news;
+    private News convertToNews(NewsRequestDto dto){
+        return conversionService.convert(dto, News.class);
     }
 
 }
