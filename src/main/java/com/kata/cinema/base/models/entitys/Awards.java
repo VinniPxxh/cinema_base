@@ -14,14 +14,12 @@ import javax.persistence.*;
 public class Awards {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @SequenceGenerator(name = "gen_awards")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_awards")
     private Long id;
 
-    @Column
     private String name;
 
-    @Column
     private String description;
 
 }

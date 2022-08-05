@@ -15,7 +15,8 @@ import javax.persistence.*;
 public class FolderPerson {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_folder_person")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_folder_person")
     private Long id;
 
     private Boolean favourites;

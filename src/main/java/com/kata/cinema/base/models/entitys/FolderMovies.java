@@ -16,7 +16,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class FolderMovies {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_folder_movies")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_folder_movies")
     private Long id;
 
     @Enumerated(EnumType.STRING)
