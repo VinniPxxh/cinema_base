@@ -4,7 +4,6 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -20,15 +19,13 @@ public class Content {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "movieId")
-    private Long movieId;
-
     @Column(name = "contentUrl")
     private String contentUrl;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private Set<Movies> movies;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movies movies;
+
 
     @Override
     public boolean equals(Object o) {
