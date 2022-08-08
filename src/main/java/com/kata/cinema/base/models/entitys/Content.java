@@ -26,9 +26,9 @@ public class Content {
     @Column(name = "contentUrl")
     private String contentUrl;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private Set<Movies> movies;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Movies movies;
 
     @Override
     public boolean equals(Object o) {
