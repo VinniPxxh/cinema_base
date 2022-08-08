@@ -3,16 +3,21 @@ package com.kata.cinema.base.dao.impl.dto;
 import com.kata.cinema.base.dao.abstracts.dto.FolderMovieResponsDtoDao;
 import com.kata.cinema.base.models.dto.FolderMovieResponsDto;
 import com.kata.cinema.base.models.entitys.FolderMovies;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.*;
+import javax.persistence.*;
+import java.util.Arrays;
+import java.util.List;
+
 
 @Repository
 public class FolderMovieResponsDtoDaoImpl {
 
     private final FolderMovieResponsDtoDao folderMovieResponsDtoDao;
+
+    private Session session;
+
     @PersistenceContext
     protected EntityManager entityManager;
 
@@ -22,17 +27,10 @@ public class FolderMovieResponsDtoDaoImpl {
     }
 
     public List<FolderMovieResponsDto> getAllByUserId(Long id) {
-        return folderMovieResponsDtoDao.findAll();
+        return session.createQuery("SELECT a.category, a.privacy, a.name, a.description FROM FolderMovieResponsDto a", FolderMovieResponsDto.class).getResultList();
     }
 
     public FolderMovieResponsDto getById(Long id) {
-        FolderMovieResponsDto folderMovieResponsDto = new FolderMovieResponsDto();
-        FolderMovies folderMovies = entityManager.find(FolderMovies.class, id);
-        folderMovieResponsDto.setId(folderMovies.getId());
-        folderMovieResponsDto.setCategory(folderMovies.getCategory());
-        folderMovieResponsDto.setDescription(folderMovies.getDescription());
-        folderMovieResponsDto.setName(folderMovies.getName());
-        folderMovieResponsDto.setPrivacy(folderMovies.getPrivacy());
-        return folderMovieResponsDto;
+        return (FolderMovieResponsDto) session.createQuery("SELECT e.category, e.privacy, e.name, e.description FROM FolderMovieResponsDto e where e.id in (:id)");
     }
 }
