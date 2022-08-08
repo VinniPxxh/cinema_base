@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class Movies {
     public String countries;
 
     @Column(name = "dateRelease")
-    public Long dateRelease;
+    public LocalDate dateRelease;
 
     @Column(name = "rars")
     private int rars;

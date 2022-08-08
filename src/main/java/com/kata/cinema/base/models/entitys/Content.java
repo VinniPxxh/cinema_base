@@ -1,5 +1,6 @@
 package com.kata.cinema.base.models.entitys;
 
+import com.kata.cinema.base.models.enums.Type;
 import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
@@ -29,6 +30,9 @@ public class Content {
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Movies movies;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Override
     public boolean equals(Object o) {
