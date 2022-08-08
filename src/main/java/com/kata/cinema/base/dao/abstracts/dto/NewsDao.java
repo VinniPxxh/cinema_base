@@ -8,7 +8,7 @@ import com.kata.cinema.base.models.enums.Rubric;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface NewsDao extends AbstractDao<Long, News>{
+public interface NewsDao extends AbstractDao<Long, News> {
 
     List<NewsTitleResponseDto> findLatestNews();
 

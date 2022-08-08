@@ -20,7 +20,7 @@ public class Score {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="movieId")
+    @Column(name = "movieId")
     private Long movieId;
 
     @Column(name = "userId")
