@@ -10,17 +10,17 @@ import java.util.Map;
 
 public class PaginationDtoServiceImpl<T> implements PaginationDtoService<T> {
 
-    private PaginationDtoDao paginationDtoDao;
+    private final PaginationDtoDao<T> paginationDtoDao;
 
 
-    public PaginationDtoServiceImpl(PaginationDtoDao paginationDtoDao) {
+    public PaginationDtoServiceImpl(PaginationDtoDao<T> paginationDtoDao) {
         this.paginationDtoDao = paginationDtoDao;
     }
 
 
     @Override
-    public PageDto getPageDto(Integer currentPage, Integer itemsOnPage) {
-        PageDto pageDto = new PageDto<>();
+    public PageDto<T> getPageDto(Integer currentPage, Integer itemsOnPage) {
+        PageDto<T> pageDto = new PageDto<>();
         Map<String, Object> parameters = new HashMap<>();
         pageDto.setCount(paginationDtoDao.getResultTotal(parameters));
         pageDto.setEntities(paginationDtoDao.getItemsDto(currentPage, itemsOnPage, parameters));
@@ -29,8 +29,8 @@ public class PaginationDtoServiceImpl<T> implements PaginationDtoService<T> {
     }
 
     @Override
-    public PageDto getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map parameters) {
-        PageDto pageDto = new PageDto<>();
+    public PageDto<T> getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+        PageDto<T> pageDto = new PageDto<>();
         pageDto.setCount(paginationDtoDao.getResultTotal(parameters));
         pageDto.setEntities(paginationDtoDao.getItemsDto(currentPage, itemsOnPage, parameters));
 
