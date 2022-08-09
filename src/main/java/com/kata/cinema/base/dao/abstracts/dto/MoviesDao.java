@@ -4,6 +4,6 @@ import com.kata.cinema.base.models.entitys.Movies;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MovieDao extends AbstractDao<Movies, Long> {
+public interface MoviesDao extends AbstractDao<Movies, Long> {
     Movies findMovieById(Long id);
 }

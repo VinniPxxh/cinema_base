@@ -1,8 +1,7 @@
 package com.kata.cinema.base.service.impl.entity;
 
-import com.kata.cinema.base.dao.impl.dto.AbstractDaoImpl;
 import com.kata.cinema.base.dao.impl.dto.ContentDaoImpl;
-import com.kata.cinema.base.dao.impl.dto.MovieDaoImpl;
+import com.kata.cinema.base.dao.impl.dto.MoviesDaoImpl;
 import com.kata.cinema.base.models.entitys.Content;
 import com.kata.cinema.base.service.abstracts.model.PreviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,10 @@ import java.io.IOException;
 @Service
 public class PreviewServiceImpl implements PreviewService {
     private final ContentDaoImpl contentDao;
-    private final MovieDaoImpl movieDao;
+    private final MoviesDaoImpl movieDao;
 
     @Autowired
-    public PreviewServiceImpl(ContentDaoImpl contentDao, MovieDaoImpl movieDao) {
+    public PreviewServiceImpl(ContentDaoImpl contentDao, MoviesDaoImpl movieDao) {
         this.contentDao = contentDao;
         this.movieDao = movieDao;
     }
