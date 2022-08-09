@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface ContentDao extends AbstractDao<Content, Long> {
     void saveImageWithMovieId(String URL, Long id);
 
-    Long findById(Long id);
+    void findById(Long id);
 }

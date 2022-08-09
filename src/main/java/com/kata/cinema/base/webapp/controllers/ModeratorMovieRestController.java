@@ -27,10 +27,10 @@ public class ModeratorMovieRestController extends AbstractDaoImpl<Long, Multipar
         File path = new File("D:/Java Projects/cinema_base/uploads/movies/preview");
         File conFile = new File(path + "\\" + file.getOriginalFilename());
         System.out.println(conFile.getPath());
-        FileOutputStream fos = new FileOutputStream(conFile);
-        fos.write(file.getBytes());
-        previewService.upload(id, conFile.toString());
-        fos.close();
+        try (FileOutputStream fos = new FileOutputStream(conFile)) {
+            fos.write(file.getBytes());
+            previewService.upload(id, conFile.toString());
+        }
         return conFile;
     }
 }

@@ -17,8 +17,7 @@ public class ContentDaoImpl extends AbstractDaoImpl<Content, Long> implements Co
     }
 
     @Override
-    public Long findById(Long id) {
-        entityManager.createQuery("select mi from Content mi join fetch mi.movies where mi.movies =: id");
-        return id;
+    public void findById(Long id) {
+        entityManager.persist(id);
     }
 }
