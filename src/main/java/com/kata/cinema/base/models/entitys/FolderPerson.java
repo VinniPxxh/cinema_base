@@ -21,8 +21,8 @@ public class FolderPerson {
 
     private Boolean favourites;
 
-    //TODO сделать связь с пользователем
-    private int user_id;
+    @ManyToOne
+    private User user;
 
     //TODO добавить связь ManyToMany с Person (см. схему)
 
