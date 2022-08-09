@@ -29,6 +29,5 @@ public class PreviewServiceImpl implements PreviewService {
         con.setMovies(movieDao.findMovieById(id));
         con.setContentUrl(URL);
         contentDao.save(con);
-//        contentDao.saveImageWithMovieId(URL, id);
     }
 }

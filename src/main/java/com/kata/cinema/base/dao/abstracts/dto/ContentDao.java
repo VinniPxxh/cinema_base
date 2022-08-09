@@ -8,5 +8,6 @@ public interface ContentDao extends AbstractDao<Content, Long> {
     void saveImageWithMovieId(String URL, Long id);
 
     void findById(Long id);
+
     void save(Content content);
 }
