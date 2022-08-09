@@ -20,4 +20,9 @@ public class ContentDaoImpl extends AbstractDaoImpl<Content, Long> implements Co
     public void findById(Long id) {
         entityManager.persist(id);
     }
+
+    @Override
+    public void save(Content content) {
+        entityManager.persist(content);
+    }
 }

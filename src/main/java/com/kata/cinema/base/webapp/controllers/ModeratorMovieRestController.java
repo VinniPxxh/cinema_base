@@ -24,7 +24,7 @@ public class ModeratorMovieRestController extends AbstractDaoImpl<Long, Multipar
 
     @PostMapping("/{id}/uploadPreview")
     public File uploadPreview(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
-        File path = new File("D:/Java Projects/cinema_base/uploads/movies/preview");
+        String path ="D:/Java Projects/cinema_base/uploads/movies/preview";
         File conFile = new File(path + "\\" + file.getOriginalFilename());
         System.out.println(conFile.getPath());
         try (FileOutputStream fos = new FileOutputStream(conFile)) {

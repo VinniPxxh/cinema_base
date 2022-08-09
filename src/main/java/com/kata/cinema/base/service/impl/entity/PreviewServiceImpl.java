@@ -1,5 +1,6 @@
 package com.kata.cinema.base.service.impl.entity;
 
+import com.kata.cinema.base.dao.impl.dto.AbstractDaoImpl;
 import com.kata.cinema.base.dao.impl.dto.ContentDaoImpl;
 import com.kata.cinema.base.dao.impl.dto.MovieDaoImpl;
 import com.kata.cinema.base.models.entitys.Content;
@@ -27,6 +28,8 @@ public class PreviewServiceImpl implements PreviewService {
         Content con = new Content();
         con.setContentUrl(URL);
         con.setMovies(movieDao.findMovieById(id));
-        contentDao.saveImageWithMovieId(URL, id);
+        con.setContentUrl(URL);
+        contentDao.save(con);
+//        contentDao.saveImageWithMovieId(URL, id);
     }
 }
