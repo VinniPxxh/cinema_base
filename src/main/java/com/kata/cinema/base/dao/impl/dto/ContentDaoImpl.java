@@ -9,8 +9,16 @@ import org.springframework.stereotype.Repository;
 public class ContentDaoImpl extends AbstractDaoImpl<Content, Long> implements ContentDao {
 
     @Override
-    public void saveImageWithMovieId(Content content, Long id) {
+    public void saveImageWithMovieId(String URL, Long id) {
+        Content content = new Content();
+        content.setContentUrl(URL);
         content.setMovies(entityManager.find(Movies.class, id));
         entityManager.persist(content);
+    }
+
+    @Override
+    public Long findById(Long id) {
+        entityManager.createQuery("select mi from Content mi join fetch mi.movies where mi.movies =: movies_id");
+        return id;
     }
 }
