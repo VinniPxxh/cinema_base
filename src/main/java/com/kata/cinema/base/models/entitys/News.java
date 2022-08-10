@@ -20,13 +20,17 @@ public class News {
     @SequenceGenerator(name = "gen_news")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_news")
     private Long id;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Rubric rubric;
+
     @NotNull
     private LocalDate date;
+
     @NotNull
     private String title;
+
     @NotNull
     private String htmlBody;
 
@@ -39,6 +43,6 @@ public class News {
             joinColumns = @JoinColumn(name = "news_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id")
     )
-    Set<Movies> movies;
+    private Set<Movies> movies;
 
 }
