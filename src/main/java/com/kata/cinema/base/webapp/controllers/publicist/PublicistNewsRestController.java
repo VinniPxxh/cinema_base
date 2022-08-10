@@ -36,14 +36,14 @@ public class PublicistNewsRestController {
         return ResponseEntity.ok(newsService.findByDateBetweenAndRubric(startDate, endDate, rubric));
     }
     @PostMapping
-    public ResponseEntity<HttpStatus> createNews(@RequestBody NewsRequestDto newsRequestDto) {
+    public ResponseEntity<NewsRequestDto> createNews(@RequestBody NewsRequestDto newsRequestDto){
         News news = convertToNews(newsRequestDto);
         news.setDate(LocalDate.now());
         newsService.save(news);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return new ResponseEntity<>(newsRequestDto, HttpStatus.CREATED);
     }
 
-    private News convertToNews(NewsRequestDto dto) {
+    private News convertToNews(NewsRequestDto dto){
         return conversionService.convert(dto, News.class);
     }
 
