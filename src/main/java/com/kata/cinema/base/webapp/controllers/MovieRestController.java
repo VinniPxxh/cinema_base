@@ -22,7 +22,6 @@ public class MovieRestController {
     }
 
     @GetMapping
-    @ResponseBody
     ResponseEntity<List<MovieReleaseResponseDto>> getReleaseFilms() {
         return ResponseEntity.ok(movieService.getReleaseFilms());
     }
