@@ -21,7 +21,6 @@ public class NewsRestController {
     }
 
     @GetMapping
-    @ResponseBody
     ResponseEntity<List<NewsTitleResponseDto>> getLatestNews() {
         return ResponseEntity.ok(newsService.getLatestNews());
     }
