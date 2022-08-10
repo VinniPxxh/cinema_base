@@ -6,10 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class MoviesDaoImpl extends AbstractDaoImpl<Movies, Long> implements MoviesDao {
-    @Override
-    public Movies findMovieById(Long id) {
-        return entityManager.find(Movies.class, id);
-    }
-
+public class MoviesDaoImpl extends AbstractDaoImpl<Long, Movies> implements MoviesDao {
 }

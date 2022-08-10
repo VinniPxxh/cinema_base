@@ -28,9 +28,7 @@ public class ModeratorMovieRestController extends AbstractDaoImpl<Long, Multipar
     @PostMapping("/{id}/uploadPreview")
     public File uploadPreview(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
         Path relPath = Paths.get("uploads/movies/preview/");
-        Path absPath = relPath.toAbsolutePath();
-        File conFile = new File(absPath + "\\" + file.getOriginalFilename());
-        System.out.println(conFile.getPath());
+        File conFile = new File(relPath + "\\" + file.getOriginalFilename());
         try (FileOutputStream fos = new FileOutputStream(conFile)) {
             fos.write(file.getBytes());
             previewService.upload(id, conFile.toString());
