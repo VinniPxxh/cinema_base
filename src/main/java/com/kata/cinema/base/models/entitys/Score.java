@@ -29,9 +29,9 @@ public class Score {
     @Column(name = "score")
     private Long score;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private Set<Movies> movies;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Movies movie;
 
     @Override
     public boolean equals(Object o) {
