@@ -1,7 +1,6 @@
 package com.kata.cinema.base.service.impl.entity;
-
 import com.kata.cinema.base.models.entitys.User;
-import com.kata.cinema.base.repositories.UserRepository;
+import com.kata.cinema.base.dao.abstracts.dto.UserRepositoryDto;
 import com.kata.cinema.base.service.abstracts.model.UserService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +15,22 @@ import org.springframework.transaction.annotation.Transactional;
 @NoArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private UserRepository userRepository;
+    private UserRepositoryDto userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepositoryDto userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public User findByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return (User) userRepository.findUserByEmail(email);
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findUserByEmail(email);
+        User user = (User) userRepository.findUserByEmail(email);
         if (user == null){
             throw new UsernameNotFoundException("User: " + email + " not found");
         }
