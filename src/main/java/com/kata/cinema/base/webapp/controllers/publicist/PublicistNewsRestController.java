@@ -43,7 +43,7 @@ public class PublicistNewsRestController {
         return new ResponseEntity<>(newsRequestDto, HttpStatus.CREATED);
     }
 
-    private News convertToNews(NewsRequestDto dto){
+    private News convertToNews(NewsRequestDto dto) {
         return conversionService.convert(dto, News.class);
     }
 
