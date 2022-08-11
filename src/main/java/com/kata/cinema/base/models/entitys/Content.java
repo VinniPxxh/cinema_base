@@ -20,14 +20,12 @@ public class Content {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "movieId")
-    private Long movieId;
-
-    @Column(name = "contentUrl")
+    @Column(name = "content_url")
     private String contentUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
+    @JoinColumn(name = "movie_id")
     private Movies movies;
 
     @Override
