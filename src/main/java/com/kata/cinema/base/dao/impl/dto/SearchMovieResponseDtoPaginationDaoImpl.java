@@ -1,6 +1,7 @@
 package com.kata.cinema.base.dao.impl.dto;
 
 import com.kata.cinema.base.dao.abstracts.dto.PaginationDtoDao;
+import com.kata.cinema.base.dao.abstracts.dto.SearchMovieResponseDtoPaginationDao;
 import com.kata.cinema.base.models.dto.SearchMovieResponseDto;
 import com.kata.cinema.base.models.entitys.Movies;
 import com.kata.cinema.base.models.enums.MovieSortType;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements PaginationDtoDao<SearchMovieResponseDto> {
+public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements SearchMovieResponseDtoPaginationDao {
     @Override
     public List<SearchMovieResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         List<SearchMovieResponseDto> dtos = getDtoWithParameters(parameters);
