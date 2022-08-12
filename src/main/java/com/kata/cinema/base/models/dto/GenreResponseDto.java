@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Setter
 @AllArgsConstructor
 public class GenreResponseDto {
-    @Id
     Long id;
     String name;
 }
