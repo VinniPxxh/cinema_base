@@ -23,6 +23,7 @@ public class SearchMovieResponseDto {
         this.name = name;
         this.dateRelease = dateRelease;
         this.contentUrl = contentUrl;
+        this.genres = new ArrayList<>();
     }
 
 }
