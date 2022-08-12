@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class GenresDaoImpl extends AbstractDaoImpl<Long, Genres> implements GenresDao {
-    @Override
+
     public List<Genres> getAllFetch() {
         return entityManager.createQuery("select distinct g from Genres g left join fetch g.movies", Genres.class).getResultList();
     }
