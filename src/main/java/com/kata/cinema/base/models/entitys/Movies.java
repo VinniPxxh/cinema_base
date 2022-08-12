@@ -43,6 +43,15 @@ public class Movies {
     @Column(name = "description")
     private String description;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    Set<Genres> genres;
+
+    private String originName;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
