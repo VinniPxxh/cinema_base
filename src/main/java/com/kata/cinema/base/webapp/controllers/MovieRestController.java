@@ -21,8 +21,8 @@ import java.util.Map;
 @RequestMapping("/api/movies")
 public class MovieRestController {
 
-    MovieService movieService;
-    TopMoviesResponseDtoPaginationService topMoviesResponseDtoPaginationService;
+    private final MovieService movieService;
+    private final TopMoviesResponseDtoPaginationService topMoviesResponseDtoPaginationService;
 
     public MovieRestController(MovieService movieService, TopMoviesResponseDtoPaginationService topMoviesResponseDtoPaginationService) {
         this.movieService = movieService;
@@ -34,12 +34,12 @@ public class MovieRestController {
         return ResponseEntity.ok(movieService.getReleaseFilms());
     }
 
-    @GetMapping("/top/{pageNumber}")
-    ResponseEntity<PageDto<TopMoviesResponseDto>> getTopMovies(@PathVariable(required = false) Integer pageNumber,
+    @GetMapping("/top")
+    ResponseEntity<PageDto<TopMoviesResponseDto>> getTopMovies(@RequestParam(required = false) Integer pageNumber,
                                                                      @RequestParam(required = false, defaultValue = "50") Integer itemsOnPage,
                                                                      @RequestParam(required = false, defaultValue = "250") Integer count,
                                                                      @RequestParam(required = false, defaultValue = "ORDER") TopMoviesType topMoviesType,
-                                                                     @RequestParam(required = false) List<String> genres,
+                                                                     @RequestParam(required = false, name = "genres") List<Integer> genreId,
                                                                      @RequestParam(required = false)
                                                                      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                                      @RequestParam(required = false)
@@ -47,7 +47,7 @@ public class MovieRestController {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("count", count);
         parameters.put("topMoviesType", topMoviesType);
-        parameters.put("genres", genres);
+        parameters.put("genres", genreId);
         parameters.put("startDate", startDate);
         parameters.put("endDate", endDate);
 

@@ -3,21 +3,22 @@ package com.kata.cinema.base.models.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 public class TopMoviesResponseDto {
-    Long id;
-    String name;
-    String originalName;
-    String countries;
-    List<String> genres;
-    List<String> actorsName;
-    Integer time;
-    String contentUrl;
-    Integer countScore;
-    Double avgScore;
+    private Long id;
+    private String name;
+    private String originalName;
+    private String countries;
+    private List<String> genres;
+    private List<String> actorsName;
+    private Integer time;
+    private String contentUrl;
+    private Integer countScore;
+    private Double avgScore;
 
     public TopMoviesResponseDto(Long id, String name, String originalName, String countries, Integer time, String contentUrl, Integer countScore, Double avgScore) {
         this.id = id;
@@ -28,5 +29,7 @@ public class TopMoviesResponseDto {
         this.contentUrl = contentUrl;
         this.countScore = countScore;
         this.avgScore = avgScore;
+        this.genres = new ArrayList<>();
+        this.actorsName = new ArrayList<>();
     }
 }

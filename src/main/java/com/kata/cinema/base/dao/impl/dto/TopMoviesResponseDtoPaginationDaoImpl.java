@@ -25,11 +25,11 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
         List<TopMoviesResponseDto> dtos = entityManager.createQuery("select new com.kata.cinema.base.models.dto.TopMoviesResponseDto" +
                 "(m.id, m.name, m.originName, m.countries, m.time, c.contentUrl, cast(count(s) as int) as countScore, sum(s.score)/cast(count(s) as double) as avgScore) " +
                 "from Movies m left join Content c on m.id = c.movies.id left join Score s on m.id = s.movie.id join m.genres g where " +
-                "(select count(si) from Score si where si.movie.id = m.id) > -1 and (g.name in (:genre) or :genre is null) and (c.type in (:type) or c.type is null) " +
+                "(select count(si) from Score si where si.movie.id = m.id) > 100 and (g.id in (:genreId) or :genreId is null) and (c.type in (:type) or c.type is null) " +
                 "and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) or (cast(:endDate as date) is null " +
                 "and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null )) group by m.id, c.id" + order, TopMoviesResponseDto.class)
                 .setMaxResults((Integer) parameters.get("count"))
-                .setParameter("genre", parameters.get("genre"))
+                .setParameter("genreId", parameters.get("genreId"))
                 .setParameter("startDate", parameters.get("startDate"))
                 .setParameter("endDate", parameters.get("endDate"))
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
@@ -41,11 +41,11 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
     @Override
     public Long getResultTotal(Map<String, Object> parameters) {
         return entityManager.createQuery("select distinct count(m) from Movies m left join Content c on m.id = c.movies.id left join Score s on m.id = s.movie.id join m.genres g " +
-                        "where (select count(si) from Score si where si.movie.id = m.id) > -1 and (g.name in (:genres) or :genres is null) and (c.type in (:type) or c.type is null) " +
+                        "where (select count(si) from Score si where si.movie.id = m.id) > 100 and (g.id in (:genreId) or :genreId is null) and (c.type in (:type) or c.type is null) " +
                         "and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) or (cast(:endDate as date) is null " +
-                        "and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null )) group by m.id, c.id, s.id, g.id", Long.class)
+                        "and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null ))", Long.class)
                 .setMaxResults((Integer) parameters.get("count"))
-                .setParameter("genres", parameters.get("genres"))
+                .setParameter("genreId", parameters.get("genreId"))
                 .setParameter("startDate", parameters.get("startDate"))
                 .setParameter("endDate", parameters.get("endDate"))
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
