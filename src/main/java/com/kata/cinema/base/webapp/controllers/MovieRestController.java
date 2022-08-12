@@ -38,8 +38,8 @@ public class MovieRestController {
     ResponseEntity<PageDto<TopMoviesResponseDto>> getTopMovies(@PathVariable(required = false) Integer pageNumber,
                                                                      @RequestParam(required = false, defaultValue = "50") Integer itemsOnPage,
                                                                      @RequestParam(required = false, defaultValue = "250") Integer count,
-                                                                     @RequestParam() TopMoviesType topMoviesType,
-                                                                     @RequestParam() Genres genres,
+                                                                     @RequestParam(required = false, defaultValue = "ORDER") TopMoviesType topMoviesType,
+                                                                     @RequestParam(required = false) List<String> genres,
                                                                      @RequestParam(required = false)
                                                                      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                                      @RequestParam(required = false)

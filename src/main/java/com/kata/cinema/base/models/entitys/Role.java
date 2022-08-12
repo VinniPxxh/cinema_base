@@ -9,7 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity(name = "roles")
+@Entity
+@Table(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
