@@ -1,13 +1,11 @@
 package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.dao.abstracts.dto.CollectionDao;
-import com.kata.cinema.base.dao.abstracts.dto.FolderMovies;
+import com.kata.cinema.base.dao.abstracts.dto.FolderMoviesDao;
 import com.kata.cinema.base.models.dto.CollectionRequestDto;
 import com.kata.cinema.base.models.dto.CollectionResponseDto;
 import com.kata.cinema.base.models.entitys.Collections;
 import com.kata.cinema.base.models.enums.CollectionType;
-import com.sun.xml.bind.v2.TODO;
-import org.hibernate.Hibernate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,13 +19,13 @@ import java.security.Principal;
 public class CollectionRestController {
 
     private CollectionDao collectionDao;
-    private FolderMovies folderMovies;
+    private FolderMoviesDao folderMoviesDao;
 
 
 
-    public CollectionRestController(CollectionDao collectionDao, FolderMovies folderMovies) {
+    public CollectionRestController(CollectionDao collectionDao, FolderMoviesDao folderMovies) {
         this.collectionDao = collectionDao;
-        this.folderMovies = folderMovies;
+        this.folderMoviesDao = folderMovies;
     }
 
     @GetMapping
@@ -41,8 +39,6 @@ public class CollectionRestController {
         }
 
          Collections collections = collectionDao.findCollectionByType(CollectionType.MOVIES);
-        System.out.println(collections);
-        System.out.println(collections.getMovies().size());
 //        CollectionResponseDto collectionResponseDto = new CollectionResponseDto(1L, "DOOM", "http://Url/DOOM_Movie.com", 2, 2);
         CollectionResponseDto collectionResponseDto = new CollectionResponseDto(collections.getId(), collections.getName(), collections.getCollectionUrl(), collections.getMovies().size(), null);
 
@@ -52,12 +48,17 @@ public class CollectionRestController {
 
     @PostMapping
     public void postCollectionResponseDto(CollectionRequestDto collectionRequestDto){
-
+        collectionDao.create(new Collections(collectionRequestDto.getName(), collectionRequestDto.getType()));
 
     }
 
     @PutMapping("/{id}")
-    public void deleteCollectionResponseDto(@PathVariable Long id){
+    public void deleteCollectionResponseDto(@PathVariable Long id, CollectionRequestDto collectionRequestDto){
+        Collections updateCollections = collectionDao.getById(id).orElse(null);
+        assert updateCollections != null;
+        updateCollections.setName(collectionRequestDto.getName());
+        updateCollections.setCollectionType(collectionRequestDto.getType());
+        collectionDao.update(updateCollections);
 
     }
 

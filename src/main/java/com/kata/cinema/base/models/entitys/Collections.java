@@ -42,7 +42,10 @@ public class Collections {
     @ToString.Exclude
     private Set<Movies> movies;
 
-
+    public Collections(String name, CollectionType collectionType) {
+        this.name = name;
+        this.collectionType = collectionType;
+    }
 
     @Override
     public boolean equals(Object o) {
