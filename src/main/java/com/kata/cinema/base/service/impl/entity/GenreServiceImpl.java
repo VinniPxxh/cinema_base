@@ -5,8 +5,8 @@ import com.kata.cinema.base.models.dto.GenreResponseDto;
 import com.kata.cinema.base.models.entitys.Genres;
 import com.kata.cinema.base.service.abstracts.model.GenreService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -41,7 +41,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genres getGenreById(Long id) {
-        return genresDao.getById(id).orElseThrow();
+    public void exists(Long id) {
+        genresDao.isExistById(id);
     }
 }
