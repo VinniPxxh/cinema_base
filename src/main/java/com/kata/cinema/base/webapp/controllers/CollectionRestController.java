@@ -2,6 +2,7 @@ package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.dao.abstracts.dto.CollectionDao;
 import com.kata.cinema.base.dao.abstracts.dto.FolderMovies;
+import com.kata.cinema.base.models.dto.CollectionRequestDto;
 import com.kata.cinema.base.models.dto.CollectionResponseDto;
 import com.kata.cinema.base.models.entitys.Collections;
 import com.kata.cinema.base.models.enums.CollectionType;
@@ -36,7 +37,7 @@ public class CollectionRestController {
         if(principal == null){
             countViewedMovies = null;
         }else{
-//            TODO необходимо найти пользователя в репозитиории по имени из principal
+//            TODO необходимо найти пользователя в репозитиории по имени из principal // countViewedMovies
         }
 
          Collections collections = collectionDao.findCollectionByType(CollectionType.MOVIES);
@@ -50,7 +51,8 @@ public class CollectionRestController {
     }
 
     @PostMapping
-    public void postCollectionResponseDto(){
+    public void postCollectionResponseDto(CollectionRequestDto collectionRequestDto){
+
 
     }
 
