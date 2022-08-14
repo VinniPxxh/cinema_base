@@ -1,7 +1,6 @@
 package com.kata.cinema.base.webapp.controllers.user;
 
 import org.apache.commons.httpclient.HttpStatus;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
