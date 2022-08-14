@@ -29,7 +29,7 @@ public class SearchRestController {
     }
 
     @GetMapping("/movies/page/{pageNumber}")
-    ResponseEntity<PageDto<SearchMovieResponseDto>> getMovies(@PathVariable(required = false) Integer pageNumber,
+    ResponseEntity<PageDto<List<SearchMovieResponseDto>>> getMovies(@PathVariable(required = false) Integer pageNumber,
                              @RequestParam(required = false, defaultValue = "10") Integer itemsOnPage, @RequestParam(required = false) String name,
                              @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                              @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,

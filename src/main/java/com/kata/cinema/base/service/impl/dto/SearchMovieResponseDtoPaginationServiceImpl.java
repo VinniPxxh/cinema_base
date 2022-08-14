@@ -14,24 +14,26 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class SearchMovieResponseDtoPaginationServiceImpl extends PaginationDtoServiceImpl<SearchMovieResponseDto> implements SearchMovieResponseDtoPaginationService {
+public class SearchMovieResponseDtoPaginationServiceImpl extends PaginationDtoServiceImpl<List<SearchMovieResponseDto>> implements SearchMovieResponseDtoPaginationService {
 
     GenresDao genresDao;
-    public SearchMovieResponseDtoPaginationServiceImpl(PaginationDtoDao<SearchMovieResponseDto> paginationDtoDao, GenresDao genresDao) {
+    public SearchMovieResponseDtoPaginationServiceImpl(PaginationDtoDao<List<SearchMovieResponseDto>> paginationDtoDao, GenresDao genresDao) {
         super(paginationDtoDao);
         this.genresDao = genresDao;
     }
 
     @Override
-    public PageDto<SearchMovieResponseDto> getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
-        PageDto<SearchMovieResponseDto> pageDto = super.getPageDtoWithParameters(currentPage, itemsOnPage, parameters);
+    public PageDto<List<SearchMovieResponseDto>> getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+        PageDto<List<SearchMovieResponseDto>> pageDto = super.getPageDtoWithParameters(currentPage, itemsOnPage, parameters);
         List<Genres> genresList = genresDao.getAllFetch();
         System.out.println(genresList);
         for (Genres g : genresList) {
             for (Movies m : g.getMovies()) {
-                for (SearchMovieResponseDto dto : pageDto.getEntities()) {
-                    if (dto.getId().equals(m.getId())){
-                        dto.getGenres().add(g.getName());
+                for (List<SearchMovieResponseDto> dtoList : pageDto.getEntities()) {
+                    for (SearchMovieResponseDto dto : dtoList) {
+                        if (dto.getId().equals(m.getId())){
+                            dto.getGenres().add(g.getName());
+                        }
                     }
                 }
             }

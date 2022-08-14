@@ -16,15 +16,18 @@ import java.util.Map;
 @Repository
 public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements SearchMovieResponseDtoPaginationDao {
     @Override
-    public List<SearchMovieResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+    public List<List<SearchMovieResponseDto>> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         List<SearchMovieResponseDto> dtos = getDtoWithParameters(parameters);
-        int start = (currentPage-1)*itemsOnPage;
-        int end = start+itemsOnPage;
-
-        if (dtos.size() <= itemsOnPage || dtos.size() <= end) {
-            end = dtos.size();
+        List<List<SearchMovieResponseDto>> result = new ArrayList<>();
+        for (int i = 0; i < dtos.size(); i = i + itemsOnPage) {
+            int end = i + itemsOnPage;
+            if (end > dtos.size()) {
+                result.add(dtos.subList(i, dtos.size()));
+            } else {
+                result.add(dtos.subList(i, end));
+            }
         }
-        return dtos.subList(start, end);
+        return result;
     }
 
     @Override
