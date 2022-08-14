@@ -17,39 +17,6 @@ import java.util.Map;
 public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements SearchMovieResponseDtoPaginationDao {
     @Override
     public List<List<SearchMovieResponseDto>> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
-        List<SearchMovieResponseDto> dtos = getDtoWithParameters(parameters);
-        List<List<SearchMovieResponseDto>> result = new ArrayList<>();
-        for (int i = 0; i < dtos.size(); i = i + itemsOnPage) {
-            int end = i + itemsOnPage;
-            if (end > dtos.size()) {
-                result.add(dtos.subList(i, dtos.size()));
-            } else {
-                result.add(dtos.subList(i, end));
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public Long getResultTotal(Map<String, Object> parameters) {
-        return entityManager.createQuery("select count (distinct m)" +
-                        "from Movies m join Content c on m.id = c.movies.id join m.genres g where (g.name in (:genres) or :genres is null) and (c.type in (:type) or c.type is null)" +
-                        "and (m.name = :name or :name is null) and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) " +
-                        "or (cast(:endDate as date) is null and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null ))" +
-                        "and (m.rars >= :rars or :rars is null) and (m.mpaa >= :mpaa or :mpaa is null)", Long.class)
-                .setParameter("genres", parameters.get("genres"))
-                .setParameter("type", List.of(Type.MOVIES, Type.SERIALS)) // за тип контента взяты только фильмы или сериалы.
-                //TODO Отрефакторить после изменения контента
-                .setParameter("name", parameters.get("name"))
-                .setParameter("startDate", parameters.get("startDate"))
-                .setParameter("endDate", parameters.get("endDate"))
-                .setParameter("rars", parameters.get("rars"))
-                .setParameter("mpaa", parameters.get("mpaa"))
-                .getSingleResult();
-    }
-
-
-    private List<SearchMovieResponseDto> getDtoWithParameters(Map<String, Object> parameters) {
         String sortTypeText;
         switch ((MovieSortType)parameters.get("sortType")) {
             case NAME_ASC -> sortTypeText = " order by m.name asc";
@@ -74,6 +41,39 @@ public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Lon
                 .setParameter("mpaa", parameters.get("mpaa"))
                 .getResultList();
 
-        return dtos;
+        return splitToPages(dtos, itemsOnPage);
+
+    }
+
+    @Override
+    public Long getResultTotal(Map<String, Object> parameters) {
+        return entityManager.createQuery("select count (distinct m)" +
+                        "from Movies m join Content c on m.id = c.movies.id join m.genres g where (g.name in (:genres) or :genres is null) and (c.type in (:type) or c.type is null)" +
+                        "and (m.name = :name or :name is null) and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) " +
+                        "or (cast(:endDate as date) is null and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null ))" +
+                        "and (m.rars >= :rars or :rars is null) and (m.mpaa >= :mpaa or :mpaa is null)", Long.class)
+                .setParameter("genres", parameters.get("genres"))
+                .setParameter("type", List.of(Type.MOVIES, Type.SERIALS)) // за тип контента взяты только фильмы или сериалы.
+                //TODO Отрефакторить после изменения контента
+                .setParameter("name", parameters.get("name"))
+                .setParameter("startDate", parameters.get("startDate"))
+                .setParameter("endDate", parameters.get("endDate"))
+                .setParameter("rars", parameters.get("rars"))
+                .setParameter("mpaa", parameters.get("mpaa"))
+                .getSingleResult();
+    }
+
+
+    private List<List<SearchMovieResponseDto>> splitToPages(List<SearchMovieResponseDto> dtos, int itemsOnPage) {
+        List<List<SearchMovieResponseDto>> result = new ArrayList<>();
+        for (int i = 0; i < dtos.size(); i = i + itemsOnPage) {
+            int end = i + itemsOnPage;
+            if (end > dtos.size()) {
+                result.add(dtos.subList(i, dtos.size()));
+            } else {
+                result.add(dtos.subList(i, end));
+            }
+        }
+        return result;
     }
 }
