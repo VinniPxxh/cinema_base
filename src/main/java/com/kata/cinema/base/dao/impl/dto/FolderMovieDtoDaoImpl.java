@@ -1,6 +1,7 @@
 package com.kata.cinema.base.dao.impl.dto;
 
 import com.kata.cinema.base.dao.abstracts.dto.FolderMovieDtoDao;
+import com.kata.cinema.base.models.dto.FolderMovieDto;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

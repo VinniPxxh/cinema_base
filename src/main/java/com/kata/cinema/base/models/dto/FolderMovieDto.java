@@ -2,9 +2,8 @@ package com.kata.cinema.base.models.dto;
 
 import com.kata.cinema.base.models.enums.Category;
 import com.kata.cinema.base.models.enums.Privacy;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.kata.cinema.base.models.enums.Rubric;
+import lombok.*;
 
 
 @Data
@@ -17,5 +16,4 @@ public class FolderMovieDto {
     private Privacy privacy;
     private String name;
     private String description;
-
 }
