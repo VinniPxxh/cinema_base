@@ -9,6 +9,7 @@ import com.kata.cinema.base.models.enums.Type;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,13 +18,18 @@ public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Lon
     @Override
     public List<SearchMovieResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         List<SearchMovieResponseDto> dtos = getDtoWithParameters(parameters);
+        int start = (currentPage-1)*itemsOnPage;
+        int end = start+itemsOnPage;
 
-        return dtos.subList((currentPage-1)*itemsOnPage, (currentPage-1)*itemsOnPage+itemsOnPage);
+        if (dtos.size() <= itemsOnPage || dtos.size() <= end) {
+            end = dtos.size();
+        }
+        return dtos.subList(start, end);
     }
 
     @Override
     public Long getResultTotal(Map<String, Object> parameters) {
-        return entityManager.createQuery("select distinct count (m)" +
+        return entityManager.createQuery("select count (distinct m)" +
                         "from Movies m join Content c on m.id = c.movies.id join m.genres g where (g.name in (:genres) or :genres is null) and (c.type in (:type) or c.type is null)" +
                         "and (m.name = :name or :name is null) and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) " +
                         "or (cast(:endDate as date) is null and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null ))" +

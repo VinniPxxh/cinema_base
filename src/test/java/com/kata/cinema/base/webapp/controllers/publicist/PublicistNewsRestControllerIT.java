@@ -29,10 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(value = NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class PublicistNewsRestControllerIT extends AbstractIT {
 
-    @Autowired
-    NewsDao newsDao;
-
-
     @Test
     void getNews() throws Exception {
         this.mockMvc.perform(get("/api/publicist/news"))
