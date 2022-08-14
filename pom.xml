@@ -122,7 +122,6 @@
             <version>1.42.2</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
         <dependency>
             <groupId>org.hamcrest</groupId>
