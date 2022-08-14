@@ -7,13 +7,14 @@ import com.kata.cinema.base.models.enums.TopMoviesType;
 import com.kata.cinema.base.models.enums.Type;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements TopMoviesResponseDtoPaginationDao {
     @Override
-    public List<TopMoviesResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+    public List<List<TopMoviesResponseDto>> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         String order;
         switch ((TopMoviesType) parameters.get("topMoviesType")) {
             case NAME -> order = " order by m.name";
@@ -23,7 +24,7 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
         }
 
         List<TopMoviesResponseDto> dtos = entityManager.createQuery("select new com.kata.cinema.base.models.dto.TopMoviesResponseDto" +
-                "(m.id, m.name, m.originName, m.countries, m.time, c.contentUrl, cast(count(s) as int) as countScore, sum(s.score)/cast(count(s) as double) as avgScore) " +
+                "(m.id, m.name, m.originName, m.countries, m.time, c.contentUrl, cast(count(distinct s) as int) as countScore, cast(sum(s.score) as double)/count(s) as avgScore) " +
                 "from Movies m left join Content c on m.id = c.movies.id left join Score s on m.id = s.movie.id join m.genres g where " +
                 "(select count(si) from Score si where si.movie.id = m.id) > 100 and (g.id in (:genreId) or :genreId is null) and (c.type in (:type) or c.type is null) " +
                 "and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) or (cast(:endDate as date) is null " +
@@ -35,12 +36,12 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
                 .getResultList();
 
-        return dtos.subList((currentPage-1)*itemsOnPage, (currentPage-1)*itemsOnPage+itemsOnPage);
+        return splitToPages(dtos, itemsOnPage);
     }
 
     @Override
     public Long getResultTotal(Map<String, Object> parameters) {
-        return entityManager.createQuery("select distinct count(m) from Movies m left join Content c on m.id = c.movies.id left join Score s on m.id = s.movie.id join m.genres g " +
+        return entityManager.createQuery("select count(distinct m) from Movies m left join Content c on m.id = c.movies.id left join Score s on m.id = s.movie.id join m.genres g " +
                         "where (select count(si) from Score si where si.movie.id = m.id) > 100 and (g.id in (:genreId) or :genreId is null) and (c.type in (:type) or c.type is null) " +
                         "and ((m.dateRelease between :startDate and :endDate)  or (cast(:startDate as date) is null and m.dateRelease <= :endDate) or (cast(:endDate as date) is null " +
                         "and m.dateRelease >= :startDate) or (cast(:startDate as date) is null and cast(:endDate as date) is null ))", Long.class)
@@ -51,4 +52,17 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
                 .getSingleResult();
     }
+    private List<List<TopMoviesResponseDto>> splitToPages(List<TopMoviesResponseDto> dtos, int itemsOnPage) {
+        List<List<TopMoviesResponseDto>> result = new ArrayList<>();
+        for (int i = 0; i < dtos.size(); i = i + itemsOnPage) {
+            int end = i + itemsOnPage;
+            if (end > dtos.size()) {
+                result.add(dtos.subList(i, dtos.size()));
+            } else {
+                result.add(dtos.subList(i, end));
+            }
+        }
+        return result;
+    }
+
 }

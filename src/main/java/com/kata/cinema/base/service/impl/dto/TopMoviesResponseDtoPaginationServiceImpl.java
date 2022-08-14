@@ -15,35 +15,39 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TopMoviesResponseDtoPaginationServiceImpl extends PaginationDtoServiceImpl<TopMoviesResponseDto> implements TopMoviesResponseDtoPaginationService {
+public class TopMoviesResponseDtoPaginationServiceImpl extends PaginationDtoServiceImpl<List<TopMoviesResponseDto>> implements TopMoviesResponseDtoPaginationService {
 
     private final GenresDao genresDao;
     private final MoviePersonDao moviePersonDao;
 
-    public TopMoviesResponseDtoPaginationServiceImpl(PaginationDtoDao<TopMoviesResponseDto> paginationDtoDao, GenresDao genresDao, MoviePersonDao moviePersonDao) {
+    public TopMoviesResponseDtoPaginationServiceImpl(PaginationDtoDao<List<TopMoviesResponseDto>> paginationDtoDao, GenresDao genresDao, MoviePersonDao moviePersonDao) {
         super(paginationDtoDao);
         this.genresDao = genresDao;
         this.moviePersonDao = moviePersonDao;
     }
 
     @Override
-    public PageDto<TopMoviesResponseDto> getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
-        PageDto<TopMoviesResponseDto> pageDto = super.getPageDtoWithParameters(currentPage, itemsOnPage, parameters);
+    public PageDto<List<TopMoviesResponseDto>> getPageDtoWithParameters(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+        PageDto<List<TopMoviesResponseDto>> pageDto = super.getPageDtoWithParameters(currentPage, itemsOnPage, parameters);
         List<Genres> genresList = genresDao.getAllFetch();
         for (Genres g : genresList) {
             for (Movies m : g.getMovies()) {
-                for (TopMoviesResponseDto dto : pageDto.getEntities()) {
-                    if (dto.getId().equals(m.getId())){
-                        dto.getGenres().add(g.getName());
+                for (List<TopMoviesResponseDto> dtoList : pageDto.getEntities()) {
+                    for (TopMoviesResponseDto dto : dtoList) {
+                        if (dto.getId().equals(m.getId())){
+                            dto.getGenres().add(g.getName());
+                        }
                     }
                 }
             }
         }
         List<MoviePerson> moviePersonList = moviePersonDao.getAllFetch();
         for (MoviePerson mp : moviePersonList) {
-            for (TopMoviesResponseDto dto : pageDto.getEntities()) {
-                if (mp.getMovie().getId().equals(dto.getId())) {
-                    dto.getActorsName().add(mp.getNameCharacter());
+            for (List<TopMoviesResponseDto> dtoList : pageDto.getEntities()) {
+                for (TopMoviesResponseDto dto : dtoList) {
+                    if (mp.getMovie().getId().equals(dto.getId())) {
+                        dto.getActorsName().add(mp.getNameCharacter());
+                    }
                 }
             }
         }
