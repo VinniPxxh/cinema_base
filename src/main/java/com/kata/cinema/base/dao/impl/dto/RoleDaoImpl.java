@@ -1,16 +1,16 @@
 package com.kata.cinema.base.dao.impl.dto;
-import com.kata.cinema.base.dao.abstracts.dto.RoleRepositoryDto;
+import com.kata.cinema.base.dao.abstracts.dto.RoleDao;
 import com.kata.cinema.base.models.entitys.Role;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 
 @Repository
-public class RoleRepositoryDtoImpl implements RoleRepositoryDto {
+public class RoleDaoImpl implements RoleDao {
 
 
     private EntityManager entityManager;
 
-    public RoleRepositoryDtoImpl(EntityManager entityManager) {
+    public RoleDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

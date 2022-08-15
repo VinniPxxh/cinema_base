@@ -1,7 +1,7 @@
 package com.kata.cinema.base.dao.abstracts.dto;
 
 
-public interface UserRepositoryDto<User, Long> {
+public interface UserDao<User, Long> {
 
     User findUserByEmail(String email);
 }

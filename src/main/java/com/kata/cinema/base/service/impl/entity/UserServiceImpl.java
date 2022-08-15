@@ -1,6 +1,6 @@
 package com.kata.cinema.base.service.impl.entity;
 import com.kata.cinema.base.models.entitys.User;
-import com.kata.cinema.base.dao.abstracts.dto.UserRepositoryDto;
+import com.kata.cinema.base.dao.abstracts.dto.UserDao;
 import com.kata.cinema.base.service.abstracts.model.UserService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 @NoArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private UserRepositoryDto userRepository;
+    private UserDao userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepositoryDto userRepository) {
+    public UserServiceImpl(UserDao userRepository) {
         this.userRepository = userRepository;
     }
 
