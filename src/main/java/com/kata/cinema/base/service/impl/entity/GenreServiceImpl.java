@@ -41,7 +41,8 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public void exists(Long id) {
-        genresDao.isExistById(id);
+    public boolean isExistsById(Long id) {
+        return genresDao.isExistById(id);
     }
+
 }
