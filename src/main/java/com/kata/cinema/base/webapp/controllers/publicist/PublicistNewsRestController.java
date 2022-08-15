@@ -43,6 +43,7 @@ public class PublicistNewsRestController {
         return new ResponseEntity<>(newsRequestDto, HttpStatus.CREATED);
     }
 
+    //TODO использовать ResponseEntity и MapStruct
     private News convertToNews(NewsRequestDto dto) {
         return conversionService.convert(dto, News.class);
     }

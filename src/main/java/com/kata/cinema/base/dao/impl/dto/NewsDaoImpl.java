@@ -1,13 +1,12 @@
 package com.kata.cinema.base.dao.impl.dto;
 
-import com.kata.cinema.base.dao.abstracts.dto.NewsDao;
+import com.kata.cinema.base.dao.abstracts.model.NewsDao;
 import com.kata.cinema.base.models.dto.NewsResponseDto;
 import com.kata.cinema.base.models.dto.NewsTitleResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
 
