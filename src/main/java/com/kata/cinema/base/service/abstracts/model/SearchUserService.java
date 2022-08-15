@@ -2,9 +2,9 @@ package com.kata.cinema.base.service.abstracts.model;
 
 import com.kata.cinema.base.models.dto.SearchUserResponseDto;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface SearchUserService {
 
-    Optional<SearchUserResponseDto> findSearchUserByEmail(String email);
+    List<SearchUserResponseDto> findSearchUserByEmail(String email);
 }

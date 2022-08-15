@@ -6,6 +6,7 @@ import com.kata.cinema.base.service.abstracts.model.SearchUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,7 +20,7 @@ public class SearchUserServiceImpl implements SearchUserService {
     }
 
     @Override
-    public Optional<SearchUserResponseDto> findSearchUserByEmail(String email) {
+    public List<SearchUserResponseDto> findSearchUserByEmail(String email) {
         return searchUserDao.findSearchUserByEmail(email);
     }
 }

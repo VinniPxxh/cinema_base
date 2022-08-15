@@ -7,20 +7,19 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.Valid;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
 public class SearchUserResponseDto {
 
-    @Id
-    Long id;
+    private Long id;
 
-    String email;
-    String fullName;
-    String birthday;
-    String avatarUrl;
+    private String email;
+    private String fullName;
+    private String birthday;
+    private String avatarUrl;
 
 }

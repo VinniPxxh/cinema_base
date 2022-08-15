@@ -7,7 +7,6 @@ import com.kata.cinema.base.models.enums.MovieSortType;
 import com.kata.cinema.base.service.abstracts.dto.SearchMovieResponseDtoPaginationService;
 import com.kata.cinema.base.service.abstracts.model.SearchUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +15,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/search")
