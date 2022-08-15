@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.util.Optional;
+import java.util.List;
 
 @Repository
 public class SearchUserDaoImpl extends AbstractDaoImpl<Long, User> implements SearchUserDao {
@@ -20,11 +20,16 @@ public class SearchUserDaoImpl extends AbstractDaoImpl<Long, User> implements Se
     }
 
     @Override
-    public Optional<SearchUserResponseDto> findSearchUserByEmail(String email) {
-        return Optional.ofNullable(
-                (SearchUserResponseDto) entityManager
-                        .createQuery("select SearchUserResponseDto from users user where user.email = :email")
-                        .setParameter("email", email)
-                        .getResultList().get(0));
+    public List<SearchUserResponseDto> findSearchUserByEmail(String email) {
+        return entityManager.createQuery("""
+           select new com.kata.cinema.base.models.dto.SearchUserResponseDto(user.id, user.email, user.firstName,  
+                cast(user.birthday as string) , user.avatarUrl) 
+                from users user 
+                where user.email 
+                like :email
+           """, SearchUserResponseDto.class)
+                .setParameter("email", email)
+                .getResultList();
     }
+
 }
