@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.publicist;
 
 import com.kata.cinema.base.AbstractIT;
-import com.kata.cinema.base.dao.abstracts.dto.NewsDao;
+import com.kata.cinema.base.dao.abstracts.model.NewsDao;
 import com.kata.cinema.base.models.dto.NewsRequestDto;
 import com.kata.cinema.base.models.enums.Rubric;
 import org.junit.jupiter.api.Test;

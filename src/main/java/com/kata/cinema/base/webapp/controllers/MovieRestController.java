@@ -35,7 +35,7 @@ public class MovieRestController {
     }
 
     @GetMapping("/top")
-    ResponseEntity<PageDto<List<TopMoviesResponseDto>>> getTopMovies(@RequestParam(required = false) Integer pageNumber,
+    ResponseEntity<PageDto<TopMoviesResponseDto>> getTopMovies(@RequestParam(required = false) Integer pageNumber,
                                                                      @RequestParam(required = false, defaultValue = "50") Integer itemsOnPage,
                                                                      @RequestParam(required = false, defaultValue = "250") Integer count,
                                                                      @RequestParam(required = false, defaultValue = "ORDER") TopMoviesType topMoviesType,

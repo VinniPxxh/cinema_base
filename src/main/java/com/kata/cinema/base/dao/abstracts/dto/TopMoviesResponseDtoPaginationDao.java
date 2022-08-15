@@ -4,5 +4,5 @@ import com.kata.cinema.base.models.dto.TopMoviesResponseDto;
 
 import java.util.List;
 
-public interface TopMoviesResponseDtoPaginationDao extends PaginationDtoDao<List<TopMoviesResponseDto>>{
+public interface TopMoviesResponseDtoPaginationDao extends PaginationDtoDao<TopMoviesResponseDto>{
 }

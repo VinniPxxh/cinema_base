@@ -9,9 +9,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.kata.cinema.base.AbstractIT.*;
+import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_CLEAR_SQL;
+import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_INIT_SQL;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,25 +37,25 @@ class MovieRestControllerTest extends AbstractIT {
 
     @Test
     void getTopMovies() throws Exception {
-        this.mockMvc.perform(get(URL + "/top"))
+        this.mockMvc.perform(get(URL + "/top?pageNumber=1"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.entities.[0].*", hasSize(5)));
+                .andExpect(jsonPath("$.entities.*", hasSize(5)));
     }
     @Test
     void getTopMoviesWithDateParams() throws Exception {
-        this.mockMvc.perform(get(URL + "/top?startDate=2022-08-14&endDate=2022-08-14"))
+        this.mockMvc.perform(get(URL + "/top?pageNumber=1&startDate=2022-08-14&endDate=2022-08-14"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.entities.[0].*", hasSize(1)))
-                .andExpect(jsonPath("$.entities.[0].[0].name").value("1"));
+                .andExpect(jsonPath("$.entities.*", hasSize(1)))
+                .andExpect(jsonPath("$.entities.[0].name").value("1"));
     }
     @Test
     void getTopMoviesWithTypeSortParam() throws Exception {
-        this.mockMvc.perform(get(URL + "/top?TopMoviesType=DATE_RELEASE"))
+        this.mockMvc.perform(get(URL + "/top?pageNumber=1&TopMoviesType=DATE_RELEASE"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.entities.[0].*", hasSize(5)))
-                .andExpect(jsonPath("$.entities.[0].[0].name").value("1"));
+                .andExpect(jsonPath("$.entities.*", hasSize(5)))
+                .andExpect(jsonPath("$.entities.[0].name").value("1"));
     }
 }

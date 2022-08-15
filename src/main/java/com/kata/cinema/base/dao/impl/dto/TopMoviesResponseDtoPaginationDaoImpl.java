@@ -7,14 +7,13 @@ import com.kata.cinema.base.models.enums.TopMoviesType;
 import com.kata.cinema.base.models.enums.Type;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements TopMoviesResponseDtoPaginationDao {
     @Override
-    public List<List<TopMoviesResponseDto>> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+    public List<TopMoviesResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         String order;
         switch ((TopMoviesType) parameters.get("topMoviesType")) {
             case NAME -> order = " order by m.name";
@@ -34,9 +33,11 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
                 .setParameter("startDate", parameters.get("startDate"))
                 .setParameter("endDate", parameters.get("endDate"))
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
+                .setFirstResult((currentPage-1)*itemsOnPage)
+                .setMaxResults(itemsOnPage)
                 .getResultList();
 
-        return splitToPages(dtos, itemsOnPage);
+        return dtos;
     }
 
     @Override
@@ -52,17 +53,4 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
                 .getSingleResult();
     }
-    private List<List<TopMoviesResponseDto>> splitToPages(List<TopMoviesResponseDto> dtos, int itemsOnPage) {
-        List<List<TopMoviesResponseDto>> result = new ArrayList<>();
-        for (int i = 0; i < dtos.size(); i = i + itemsOnPage) {
-            int end = i + itemsOnPage;
-            if (end > dtos.size()) {
-                result.add(dtos.subList(i, dtos.size()));
-            } else {
-                result.add(dtos.subList(i, end));
-            }
-        }
-        return result;
-    }
-
 }
