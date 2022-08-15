@@ -8,7 +8,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class CollectionRequestDto {
 
-    private  String name;
+    private String name;
     private CollectionType type;
 
 }

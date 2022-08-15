@@ -26,7 +26,7 @@ public class Collections {
     private String name;
 
     @Column(name = "enable")
-    private String enable;
+    private Boolean enable;
 
     private String collectionUrl;
 
@@ -45,6 +45,7 @@ public class Collections {
     public Collections(String name, CollectionType collectionType) {
         this.name = name;
         this.collectionType = collectionType;
+        this.enable = true;
     }
 
     @Override
