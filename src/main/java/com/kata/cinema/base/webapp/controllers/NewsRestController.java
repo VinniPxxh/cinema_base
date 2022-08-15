@@ -14,14 +14,14 @@ import java.util.List;
 @RequestMapping("/api/news/latest")
 public class NewsRestController {
 
-    NewsService newsService;
+    private final NewsService newsService;
 
     public NewsRestController(NewsService newsService) {
         this.newsService = newsService;
     }
 
     @GetMapping
-    ResponseEntity<List<NewsTitleResponseDto>> getLatestNews() {
+    public ResponseEntity<List<NewsTitleResponseDto>> getLatestNews() {
         return ResponseEntity.ok(newsService.getLatestNews());
     }
 

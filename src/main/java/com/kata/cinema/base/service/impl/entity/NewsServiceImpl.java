@@ -1,6 +1,6 @@
 package com.kata.cinema.base.service.impl.entity;
 
-import com.kata.cinema.base.dao.abstracts.dto.NewsDao;
+import com.kata.cinema.base.dao.abstracts.model.NewsDao;
 import com.kata.cinema.base.models.dto.NewsResponseDto;
 import com.kata.cinema.base.models.dto.NewsTitleResponseDto;
 import com.kata.cinema.base.models.entitys.News;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class NewsServiceImpl implements NewsService {
 
-    NewsDao newsDao;
+    private final NewsDao newsDao;
 
     public NewsServiceImpl(NewsDao newsRepository) {
         this.newsDao = newsRepository;

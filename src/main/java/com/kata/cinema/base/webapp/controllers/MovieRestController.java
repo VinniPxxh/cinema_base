@@ -15,14 +15,14 @@ import java.util.List;
 @RequestMapping("/api/movies/release")
 public class MovieRestController {
 
-    MovieService movieService;
+    private final MovieService movieService;
 
     public MovieRestController(MovieService movieService) {
         this.movieService = movieService;
     }
 
     @GetMapping
-    ResponseEntity<List<MovieReleaseResponseDto>> getReleaseFilms() {
+    public ResponseEntity<List<MovieReleaseResponseDto>> getReleaseFilms() {
         return ResponseEntity.ok(movieService.getReleaseFilms());
     }
 }

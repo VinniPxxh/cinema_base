@@ -12,8 +12,8 @@ public interface NewsService {
 
     void save(News news);
 
-    public List<NewsTitleResponseDto> getLatestNews();
+    List<NewsTitleResponseDto> getLatestNews();
 
-    public List<NewsResponseDto> findByDateBetweenAndRubric(LocalDate dateStart, LocalDate dateEnd, Rubric rubric);
+    List<NewsResponseDto> findByDateBetweenAndRubric(LocalDate dateStart, LocalDate dateEnd, Rubric rubric);
 
 }
