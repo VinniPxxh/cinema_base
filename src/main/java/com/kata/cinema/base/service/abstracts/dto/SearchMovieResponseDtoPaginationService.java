@@ -5,5 +5,5 @@ import com.kata.cinema.base.models.dto.SearchMovieResponseDto;
 
 import java.util.List;
 
-public interface SearchMovieResponseDtoPaginationService extends PaginationDtoService<List<SearchMovieResponseDto>> {
+public interface SearchMovieResponseDtoPaginationService extends PaginationDtoService<SearchMovieResponseDto> {
 }
