@@ -12,6 +12,7 @@
     </changeSet>
 
     <include file="v-1.0/db.changelog-v.1.0-cumulative.xml" relativeToChangelogFile="true"/>
+    <includeAll path="db/changelog/2022/08"/>
 
     <changeSet id="1" author="Daniil Kulikov">
         <tagDatabase tag="v.1.0"/>

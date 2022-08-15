@@ -1,5 +1,6 @@
 package com.kata.cinema.base.models.entitys;
 
+import com.kata.cinema.base.models.enums.Type;
 import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
@@ -27,6 +28,9 @@ public class Content {
     @ToString.Exclude
     @JoinColumn(name = "movie_id")
     private Movies movies;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Override
     public boolean equals(Object o) {
