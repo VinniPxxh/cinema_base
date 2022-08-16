@@ -10,5 +10,5 @@ import java.util.Map;
 public interface GenresDao extends AbstractDao<Long, Genres> {
     Map<Long, List<String>> getAllMap();
 
-    List<GenreResponseDto> getListOfGenres(Long id, String name);
+    List<GenreResponseDto> getListOfGenres();
 }

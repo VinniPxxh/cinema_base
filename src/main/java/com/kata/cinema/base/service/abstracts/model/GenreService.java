@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface GenreService {
-    List<GenreResponseDto> findGenres(Long id, String name);
+    List<GenreResponseDto> findGenres();
 
     List<Genres> findGenreList();
 

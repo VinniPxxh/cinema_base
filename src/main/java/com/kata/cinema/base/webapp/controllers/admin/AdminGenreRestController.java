@@ -21,9 +21,9 @@ public class AdminGenreRestController {
         this.genreService = genreService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<GenreResponseDto>> getGenres(@PathVariable Long id, String name) {
-        return ResponseEntity.ok(genreService.findGenres(id, name));
+    @GetMapping
+    public ResponseEntity<List<GenreResponseDto>> getGenres() {
+        return ResponseEntity.ok(genreService.findGenres());
     }
 
     @DeleteMapping("/{id}")

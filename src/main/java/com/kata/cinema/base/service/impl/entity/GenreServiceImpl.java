@@ -19,8 +19,8 @@ public class GenreServiceImpl implements GenreService {
 
 
     @Override
-    public List<GenreResponseDto> findGenres(Long id, String name) {
-        return genresDao.getListOfGenres(id, name);
+    public List<GenreResponseDto> findGenres() {
+        return genresDao.getListOfGenres();
     }
 
     @Override
