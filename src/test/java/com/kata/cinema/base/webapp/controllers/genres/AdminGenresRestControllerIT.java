@@ -1,10 +1,6 @@
 package com.kata.cinema.base.webapp.controllers.genres;
 
-import com.kata.cinema.base.AbstractITForGenres;
-import com.kata.cinema.base.dao.abstracts.dto.GenresDao;
-import com.kata.cinema.base.models.entitys.Genres;
-import com.kata.cinema.base.models.entitys.Movies;
-import com.kata.cinema.base.service.abstracts.model.GenreService;
+import com.kata.cinema.base.AbstractIT;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +11,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.HashSet;
-
-import java.util.Set;
-
-import static com.kata.cinema.base.AbstractITForGenres.*;
+import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_CLEAR_SQL;
+import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_INIT_SQL;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -27,10 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("ITGenres")
+@ActiveProfiles("IT")
 @Sql(value = GENRES_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = GENRES_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class AdminGenresRestControllerIT extends AbstractITForGenres {
+class AdminGenresRestControllerIT extends AbstractIT {
     @Autowired
     MockMvc mockMvc;
 
