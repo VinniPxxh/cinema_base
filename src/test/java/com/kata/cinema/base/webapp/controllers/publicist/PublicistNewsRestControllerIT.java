@@ -1,12 +1,10 @@
 package com.kata.cinema.base.webapp.controllers.publicist;
 
 import com.kata.cinema.base.AbstractIT;
-import com.kata.cinema.base.dao.abstracts.dto.NewsDao;
-import com.kata.cinema.base.models.dto.NewsRequestDto;
+import com.kata.cinema.base.models.dto.request.NewsRequestDto;
 import com.kata.cinema.base.models.enums.Rubric;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -28,10 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(value = NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class PublicistNewsRestControllerIT extends AbstractIT {
-
-    @Autowired
-    NewsDao newsDao;
-
 
     @Test
     void getNews() throws Exception {

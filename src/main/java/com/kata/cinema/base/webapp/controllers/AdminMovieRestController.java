@@ -1,9 +1,8 @@
 package com.kata.cinema.base.webapp.controllers;
 
-import com.kata.cinema.base.dao.impl.dto.AbstractDaoImpl;
+import com.kata.cinema.base.service.abstracts.model.PreviewService;
 import com.kata.cinema.base.service.impl.entity.PreviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,12 +14,13 @@ import java.nio.file.Paths;
 
 
 @RestController()
-@RequestMapping("/api/moderator/movie")
-public class ModeratorMovieRestController extends AbstractDaoImpl<Long, MultipartFile> {
-    private final PreviewServiceImpl previewService;
+@RequestMapping("/api/admin/movie")
+public class AdminMovieRestController {
+
+    private final PreviewService previewService;
 
     @Autowired
-    public ModeratorMovieRestController(PreviewServiceImpl previewService) {
+    public AdminMovieRestController(PreviewServiceImpl previewService) {
         this.previewService = previewService;
     }
 
