@@ -1,7 +1,9 @@
 package com.kata.cinema.base.dao.abstracts.dto;
 
 
-public interface UserDao<User, Long> {
+import com.kata.cinema.base.models.entitys.User;
+
+public interface UserDao extends AbstractDao<Long, User> {
 
     User findUserByEmail(String email);
 }

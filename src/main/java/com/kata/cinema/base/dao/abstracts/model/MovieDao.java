@@ -1,7 +1,7 @@
 package com.kata.cinema.base.dao.abstracts.model;
 
 import com.kata.cinema.base.dao.abstracts.dto.AbstractDao;
-import com.kata.cinema.base.models.dto.MovieReleaseResponseDto;
+import com.kata.cinema.base.models.dto.response.MovieReleaseResponseDto;
 import com.kata.cinema.base.models.entitys.Movies;
 
 import java.util.List;

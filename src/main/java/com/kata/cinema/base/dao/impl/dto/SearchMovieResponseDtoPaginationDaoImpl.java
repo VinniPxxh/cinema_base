@@ -1,15 +1,12 @@
 package com.kata.cinema.base.dao.impl.dto;
 
-import com.kata.cinema.base.dao.abstracts.dto.PaginationDtoDao;
 import com.kata.cinema.base.dao.abstracts.dto.SearchMovieResponseDtoPaginationDao;
-import com.kata.cinema.base.models.dto.SearchMovieResponseDto;
+import com.kata.cinema.base.models.dto.response.SearchMovieResponseDto;
 import com.kata.cinema.base.models.entitys.Movies;
 import com.kata.cinema.base.models.enums.MovieSortType;
 import com.kata.cinema.base.models.enums.Type;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

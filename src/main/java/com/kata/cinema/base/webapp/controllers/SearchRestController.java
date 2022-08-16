@@ -1,14 +1,9 @@
 package com.kata.cinema.base.webapp.controllers;
 
-import com.kata.cinema.base.dao.abstracts.dto.PaginationDtoDao;
-import com.kata.cinema.base.dao.impl.dto.SearchMovieResponseDtoPaginationDaoImpl;
 import com.kata.cinema.base.models.dto.PageDto;
-import com.kata.cinema.base.models.dto.SearchMovieResponseDto;
+import com.kata.cinema.base.models.dto.response.SearchMovieResponseDto;
 import com.kata.cinema.base.models.enums.MovieSortType;
-import com.kata.cinema.base.service.abstracts.dto.PaginationDtoService;
 import com.kata.cinema.base.service.abstracts.dto.SearchMovieResponseDtoPaginationService;
-import com.kata.cinema.base.service.abstracts.model.MovieService;
-import com.kata.cinema.base.service.impl.dto.PaginationDtoServiceImpl;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

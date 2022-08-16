@@ -1,7 +1,7 @@
 package com.kata.cinema.base.service.abstracts.model;
 
-import com.kata.cinema.base.models.dto.NewsResponseDto;
-import com.kata.cinema.base.models.dto.NewsTitleResponseDto;
+import com.kata.cinema.base.models.dto.response.NewsResponseDto;
+import com.kata.cinema.base.models.dto.response.NewsTitleResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
 

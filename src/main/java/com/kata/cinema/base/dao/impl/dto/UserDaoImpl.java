@@ -6,11 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 @Repository
-public class UserDaoImpl implements UserDao {
-
-
-
-    private EntityManager entityManager;
+public class UserDaoImpl extends AbstractDaoImpl<Long, User> implements UserDao {
 
     public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

@@ -1,6 +1,6 @@
 package com.kata.cinema.base.webapp.controllers;
-import com.kata.cinema.base.models.dto.RequestDto;
-import com.kata.cinema.base.models.dto.ResponseTokenDto;
+import com.kata.cinema.base.models.dto.request.AuthDto;
+import com.kata.cinema.base.models.dto.response.ResponseTokenDto;
 import com.kata.cinema.base.security.jwt.JwtUserProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 public class TokenController {
 
     private AuthenticationManager authenticationManager;
@@ -20,10 +20,10 @@ public class TokenController {
         this.jwtUserProvider = jwtUserProvider;
     }
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public ResponseEntity<ResponseTokenDto> getToken (RequestDto requestDto){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requestDto.getUsername(),requestDto.getPassword()));
-        ResponseTokenDto responseTokenDto = new ResponseTokenDto(jwtUserProvider.createToken(requestDto.getUsername()), requestDto.getUsername());
+    @PostMapping(value = "/token")
+    public ResponseEntity<ResponseTokenDto> getToken (AuthDto authDto){
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDto.getUsername(), authDto.getPassword()));
+        ResponseTokenDto responseTokenDto = new ResponseTokenDto(jwtUserProvider.createToken(authDto.getUsername()), authDto.getUsername());
         return ResponseEntity.ok(responseTokenDto);
     }
 

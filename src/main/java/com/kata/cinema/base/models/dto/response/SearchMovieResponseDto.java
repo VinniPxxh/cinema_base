@@ -1,4 +1,4 @@
-package com.kata.cinema.base.models.dto;
+package com.kata.cinema.base.models.dto.response;
 
 import com.kata.cinema.base.models.entitys.Genres;
 import lombok.AllArgsConstructor;

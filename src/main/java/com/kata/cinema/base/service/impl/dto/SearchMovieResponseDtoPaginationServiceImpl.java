@@ -3,7 +3,7 @@ package com.kata.cinema.base.service.impl.dto;
 import com.kata.cinema.base.dao.abstracts.dto.PaginationDtoDao;
 import com.kata.cinema.base.dao.abstracts.model.GenresDao;
 import com.kata.cinema.base.models.dto.PageDto;
-import com.kata.cinema.base.models.dto.SearchMovieResponseDto;
+import com.kata.cinema.base.models.dto.response.SearchMovieResponseDto;
 import com.kata.cinema.base.service.abstracts.dto.SearchMovieResponseDtoPaginationService;
 import org.springframework.stereotype.Service;
 

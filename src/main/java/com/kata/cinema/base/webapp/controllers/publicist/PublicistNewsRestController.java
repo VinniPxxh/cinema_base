@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.publicist;
 
-import com.kata.cinema.base.models.dto.NewsRequestDto;
-import com.kata.cinema.base.models.dto.NewsResponseDto;
+import com.kata.cinema.base.models.dto.request.NewsRequestDto;
+import com.kata.cinema.base.models.dto.response.NewsResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
 import com.kata.cinema.base.service.abstracts.model.NewsService;
