@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.publicist;
 
-import com.kata.cinema.base.models.dto.NewsRequestDto;
-import com.kata.cinema.base.models.dto.NewsResponseDto;
+import com.kata.cinema.base.models.dto.request.NewsRequestDto;
+import com.kata.cinema.base.models.dto.response.NewsResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
 import com.kata.cinema.base.service.abstracts.model.NewsService;
@@ -36,13 +36,14 @@ public class PublicistNewsRestController {
         return ResponseEntity.ok(newsService.findByDateBetweenAndRubric(startDate, endDate, rubric));
     }
     @PostMapping
-    public ResponseEntity<NewsRequestDto> createNews(@RequestBody NewsRequestDto newsRequestDto){
+    public ResponseEntity<NewsRequestDto> createNews(@RequestBody NewsRequestDto newsRequestDto) {
         News news = convertToNews(newsRequestDto);
         news.setDate(LocalDate.now());
         newsService.save(news);
         return new ResponseEntity<>(newsRequestDto, HttpStatus.CREATED);
     }
 
+    //TODO использовать ResponseEntity и MapStruct
     private News convertToNews(NewsRequestDto dto) {
         return conversionService.convert(dto, News.class);
     }
