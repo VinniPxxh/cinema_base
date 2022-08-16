@@ -31,19 +31,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(value = GENRES_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = GENRES_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class AdminGenresRestControllerIT extends AbstractITForGenres {
-
-    @Autowired
-    GenresDao genresDao;
     @Autowired
     MockMvc mockMvc;
 
-    GenreService genresService;
-
-    private Genres createTestGenres(String name) {
-        Genres genres = new Genres(name);
-        genresService.save(genres);
-        return genres;
-    }
 
     @Test
     public void getGenres() throws Exception {
