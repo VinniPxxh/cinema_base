@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Repository
 public class GenresDaoImpl extends AbstractDaoImpl<Long, Genres> implements GenresDao {
-
+    @Override
     public Map<Long, List<String>> getAllMap() {
         List<Object[]> rows = entityManager.createQuery("select m.id, g.name from Genres g left join g.movies m").getResultList();
         Map<Long, List<String>> genresMap = new HashMap<>();
