@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface GenresDao extends AbstractDao<Long, Genres> {
     List<GenreResponseDto> getListOfGenres(Long id, String name);
+
 }

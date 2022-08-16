@@ -29,6 +29,11 @@ public class Genres {
     @ToString.Exclude
     private Set<Movies> movies;
 
+    public Genres(String name) {
+        this.name = name;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

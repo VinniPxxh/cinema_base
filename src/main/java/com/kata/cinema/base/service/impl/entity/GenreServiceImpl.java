@@ -13,6 +13,7 @@ import java.util.List;
 public class GenreServiceImpl implements GenreService {
     private final GenresDao genresDao;
 
+
     public GenreServiceImpl(GenresDao genresDao) {
         this.genresDao = genresDao;
     }
@@ -20,6 +21,11 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public List<GenreResponseDto> findGenres(Long id, String name) {
         return genresDao.getListOfGenres(id, name);
+    }
+
+    @Override
+    public List<Genres> findGenreList() {
+        return genresDao.getAll();
     }
 
     @Transactional
@@ -38,6 +44,11 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public void update(Genres genres) {
         genresDao.update(genres);
+    }
+
+    @Override
+    public Genres findById(Long id) {
+        return genresDao.getById(id).orElseThrow();
     }
 
     @Override

@@ -10,11 +10,16 @@ import java.util.List;
 public interface GenreService {
     List<GenreResponseDto> findGenres(Long id, String name);
 
+    List<Genres> findGenreList();
+
     void save(Genres genres);
 
     void deleteById(Long id);
 
     void update(Genres genres);
 
+    Genres findById(Long id);
+
     boolean isExistsById(Long id);
+
 }
