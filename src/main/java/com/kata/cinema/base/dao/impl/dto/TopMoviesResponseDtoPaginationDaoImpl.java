@@ -16,10 +16,21 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
     public List<TopMoviesResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         String order;
         switch ((TopMoviesType) parameters.get("topMoviesType")) {
-            case NAME -> order = " order by m.name";
-            case COUNT_SCORE -> order = " order by countScore desc";
-            case DATE_RELEASE -> order = " order by m.dateRelease";
-            default -> order = " order by avgScore desc";
+            case NAME : {
+                order = " order by m.name";
+                break;
+            }
+            case COUNT_SCORE : {
+                order = " order by countScore desc";
+                break;
+            }
+            case DATE_RELEASE : {
+                order = " order by m.dateRelease";
+                break;
+            }
+            default : {
+                order = " order by avgScore desc";
+            }
         }
 
         List<TopMoviesResponseDto> dtos = entityManager.createQuery("select new com.kata.cinema.base.models.dto.TopMoviesResponseDto" +
@@ -33,7 +44,7 @@ public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long,
                 .setParameter("startDate", parameters.get("startDate"))
                 .setParameter("endDate", parameters.get("endDate"))
                 .setParameter("type", List.of(Type.MOVIES, Type.SERIALS))
-                .setFirstResult((currentPage-1)*itemsOnPage)
+                .setFirstResult((currentPage - 1) * itemsOnPage)
                 .setMaxResults(itemsOnPage)
                 .getResultList();
 
