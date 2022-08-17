@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class GenreResponseDto {
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 
 }

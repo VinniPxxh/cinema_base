@@ -40,14 +40,14 @@ class AdminGenresRestControllerIT extends AbstractIT {
 
     @Test
     public void updateGenres() throws Exception {
-        this.mockMvc.perform(put("/api/moderator/genres/701?name=Test3"))
+        this.mockMvc.perform(put("/api/moderator/genres/51?name=Test2"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
     public void deleteGenres() throws Exception {
-        mockMvc.perform(delete("/api/moderator/genres/702"))
+        mockMvc.perform(delete("/api/moderator/genres/101"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
