@@ -1,8 +1,8 @@
 package com.kata.cinema.base.dao.impl.dto;
 
 import com.kata.cinema.base.dao.abstracts.model.NewsDao;
-import com.kata.cinema.base.models.dto.NewsResponseDto;
-import com.kata.cinema.base.models.dto.NewsTitleResponseDto;
+import com.kata.cinema.base.models.dto.response.NewsResponseDto;
+import com.kata.cinema.base.models.dto.response.NewsTitleResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ public class NewsDaoImpl extends AbstractDaoImpl<Long, News> implements NewsDao 
 
     @Override
     public List<NewsTitleResponseDto> findLatestNews() {
-        return entityManager.createQuery("select new com.kata.cinema.base.models.dto.NewsTitleResponseDto(n.id, n.title) from News n where n.date > :curentDate " +
+        return entityManager.createQuery("select new com.kata.cinema.base.models.dto.response.NewsTitleResponseDto(n.id, n.title) from News n where n.date > :curentDate " +
                 "order by n.date", NewsTitleResponseDto.class)
                 .setParameter("curentDate", LocalDate.now())
                 .setMaxResults(10)

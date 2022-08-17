@@ -12,9 +12,9 @@ public abstract class AbstractIT {
     @Autowired
     protected ObjectMapper objectMapper;
 
-    public static final String NEWS_REST_CONTROLLER_INIT_SQL = "classpath:data/controller.publicist.sql/publicistNewsRestControllerInit.sql";
-    public static final String NEWS_REST_CONTROLLER_CLEAR_SQL = "classpath:data/controller.publicist.sql/publicistNewsRestControllerClear.sql";
-    public static final String MOVIE_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/MovieRestControllerInit.sql";
-    public static final String MOVIE_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/MovieRestControllerClear.sql";
+    public static final String NEWS_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/publicist/publicistNewsRestControllerInit.sql";
+    public static final String NEWS_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/publicist/publicistNewsRestControllerClear.sql";
+    public static final String SEARCH_REST_CONTROLLER_MOVIE_INIT_SQL = "classpath:data/sql/controller/SearchRestControllerMovieInit.sql";
+    public static final String SEARCH_REST_CONTROLLER_MOVIE_CLEAR_SQL = "classpath:data/sql/controller/SearchRestControllerMovieClear.sql";
 
 }
