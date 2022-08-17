@@ -11,20 +11,20 @@ import java.util.List;
 @RequestMapping("/api/user/foldermovies")
 public class UserFolderMovieRestController {
 
-    private final FolderMovieDtoService folderMovieResponsDtoService;
+    private final FolderMovieDtoService folderMovieDtoService;
 
-    public UserFolderMovieRestController(FolderMovieDtoService folderMovieResponsDtoService) {
-        this.folderMovieResponsDtoService = folderMovieResponsDtoService;
+    public UserFolderMovieRestController(FolderMovieDtoService folderMovieDtoService) {
+        this.folderMovieDtoService = folderMovieDtoService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneFolderMovies(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(folderMovieResponsDtoService.getById(id));
+    public ResponseEntity<FolderMovieDto> getOneFolderMovies(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(folderMovieDtoService.getById(id));
     }
 
     @GetMapping("/userId")
-    public ResponseEntity<List<FolderMovieDto>> getByUserId(Long id) {
-        return ResponseEntity.ok(folderMovieResponsDtoService.getAllByUserId(id));
+    public ResponseEntity<List<FolderMovieDto>> getByUserId(Long userId) {
+        return ResponseEntity.ok(folderMovieDtoService.getAllByUserId(userId));
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FolderMovieDtoService {
 
-    List<FolderMovieDto> getAllByUserId(Long id);
+    List<FolderMovieDto> getAllByUserId(Long userId);
 
-    Object getById(Long id);
+    FolderMovieDto getById(Long id);
 }

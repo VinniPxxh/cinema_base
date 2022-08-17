@@ -10,20 +10,20 @@ import java.util.List;
 @Service
 public class FolderMovieDtoServiceImpl implements FolderMovieDtoService {
 
-    private final FolderMovieDtoDao folderMovieResponsDtoDao;
+    private final FolderMovieDtoDao folderMovieDtoDao;
 
-    public FolderMovieDtoServiceImpl(FolderMovieDtoDao folderMovieResponsDtoDao) {
-        this.folderMovieResponsDtoDao = folderMovieResponsDtoDao;
+    public FolderMovieDtoServiceImpl(FolderMovieDtoDao folderMovieDtoDao) {
+        this.folderMovieDtoDao = folderMovieDtoDao;
     }
 
     @Override
-    public List<FolderMovieDto> getAllByUserId(Long id) {
-        return folderMovieResponsDtoDao.getAllByUserId(id);
+    public List<FolderMovieDto> getAllByUserId(Long userId) {
+        return folderMovieDtoDao.getAllByUserId(userId);
     }
 
     @Override
-    public Object getById(Long id) {
-        return folderMovieResponsDtoDao.getById(id);
+    public FolderMovieDto getById(Long id) {
+        return folderMovieDtoDao.getById(id);
     }
 
 }

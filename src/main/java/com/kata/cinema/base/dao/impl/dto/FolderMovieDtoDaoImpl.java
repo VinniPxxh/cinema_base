@@ -18,14 +18,14 @@ public class FolderMovieDtoDaoImpl implements FolderMovieDtoDao {
         this.em = em;
     }
 
-    public List getAllByUserId(Long id) {
-        Query query = em.createQuery("SELECT e.id, e.category, e.privacy, e.name, e.description FROM folders_movies e");
+    public List getAllByUserId(Long userId) {
+        Query query = em.createQuery("SELECT e.id, e.description, e.privacy, e.name, e.category FROM folders_movies e");
         return query.getResultList();
     }
 
-    public Object getById(Long id) {
-        Query query = em.createQuery("SELECT a.id, a.category, a.privacy, a.name, a.description FROM folders_movies a WHERE a.id = :id");
+    public FolderMovieDto getById(Long id) {
+        Query query = em.createQuery("SELECT new com.kata.cinema.base.models.dto.FolderMovieDto(a.id, a.category, a.privacy, a.name, a.description) FROM folders_movies a WHERE a.id = :id");
         query.setParameter("id", id);
-        return query.getSingleResult();
+        return (FolderMovieDto) query.getSingleResult();
     }
 }
