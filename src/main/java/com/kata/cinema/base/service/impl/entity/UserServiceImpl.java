@@ -33,7 +33,7 @@ public class UserServiceImpl extends AbstractServiceImpl<Long, User> implements 
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = (User) userDao.findUserByEmail(email);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("User: " + email + " not found");
         }
 

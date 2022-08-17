@@ -17,10 +17,10 @@ import java.util.Map;
 @RequestMapping("/api/search")
 public class SearchRestController {
 
-    SearchMovieResponseDtoPaginationService SearchMovieResponseDtoPaginationService;
+    SearchMovieResponseDtoPaginationService searchMovieResponseDtoPaginationService;
 
     public SearchRestController(SearchMovieResponseDtoPaginationService paginationDtoService) {
-        this.SearchMovieResponseDtoPaginationService = paginationDtoService;
+        this.searchMovieResponseDtoPaginationService = paginationDtoService;
     }
 
     @GetMapping("/movies/page/{pageNumber}")
@@ -40,7 +40,7 @@ public class SearchRestController {
         parameters.put("mpaa",mpaa);
         parameters.put("sortType",sortType);
 
-        return ResponseEntity.ok(SearchMovieResponseDtoPaginationService.getPageDtoWithParameters(pageNumber, itemsOnPage, parameters));
+        return ResponseEntity.ok(searchMovieResponseDtoPaginationService.getPageDtoWithParameters(pageNumber, itemsOnPage, parameters));
     }
 
 }

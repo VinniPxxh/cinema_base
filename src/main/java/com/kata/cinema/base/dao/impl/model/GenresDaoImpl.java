@@ -17,7 +17,7 @@ public class GenresDaoImpl extends AbstractDaoImpl<Long, Genres> implements Genr
         List<Object[]> rows = entityManager.createQuery("select m.id, g.name from Genres g left join g.movies m").getResultList();
         Map<Long, List<String>> genresMap = new HashMap<>();
         for (Object[] o : rows) {
-            if (genresMap.get(o[0]) == null){
+            if (genresMap.get(o[0]) == null) {
                 genresMap.put((Long) o[0], new ArrayList<>());
             }
             genresMap.get(o[0]).add((String) o[1]);

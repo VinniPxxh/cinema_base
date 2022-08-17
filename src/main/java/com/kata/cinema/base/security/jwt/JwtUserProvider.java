@@ -15,7 +15,7 @@ public class JwtUserProvider {
     @Value("${jwt.token.time.valid}")
     private long validityTime;
 
-    public String createToken(String username){
+    public String createToken(String username) {
 
         Date now = new Date();
         Date valid = new Date((now.getTime()) + validityTime);
