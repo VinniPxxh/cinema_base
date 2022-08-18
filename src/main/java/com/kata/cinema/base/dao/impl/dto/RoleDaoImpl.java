@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 
 @Repository
-public class RoleDaoImpl implements RoleDao {
+public class RoleDaoImpl extends AbstractDaoImpl<Long, Role> implements RoleDao {
 
 
     private EntityManager entityManager;
