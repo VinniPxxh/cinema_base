@@ -1,6 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.genres;
 
 import com.kata.cinema.base.AbstractIT;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_INIT_SQL;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -28,6 +30,28 @@ class AdminGenresRestControllerIT extends AbstractIT {
         this.mockMvc.perform(get("/api/moderator/genres"))
                 .andDo(print())
                 .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void getGenresWithAllParameters() throws Exception {
+        this.mockMvc.perform(get("/api/moderator/genres/1?name=TEST1"))
+                .andDo(print())
+                .andExpect(status().isMethodNotAllowed());
+    }
+
+    @Test
+    public void getGenreWithOnlyName() throws Exception {
+        this.mockMvc.perform(get("/api/moderator/genres?name=TEST2"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getGenreWithOnlyId() throws Exception {
+        this.mockMvc.perform(get("/api/moderator/genres/1"))
+                .andDo(print())
+                .andExpect(status().isMethodNotAllowed());
     }
 
     @Test

@@ -31,9 +31,8 @@ public class AdminGenreRestController {
         if (genreService.isExistsById(id)) {
             genreService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            throw new IdNotFoundException("There is no genre with this ID, try again.");
         }
+            throw new IdNotFoundException("There is no genre with this ID, try again.");
     }
 
     @PutMapping("/{id}")
