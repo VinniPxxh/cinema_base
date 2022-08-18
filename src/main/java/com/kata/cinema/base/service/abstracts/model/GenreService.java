@@ -7,19 +7,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface GenreService {
+public interface GenreService extends AbstractService<Long, Genres> {
     List<GenreResponseDto> findGenres();
-
-    List<Genres> findGenreList();
-
-    void save(Genres genres);
-
-    void deleteById(Long id);
-
-    void update(Genres genres);
-
-    Genres findById(Long id);
-
-    boolean isExistsById(Long id);
-
 }

@@ -1,7 +1,6 @@
 package com.kata.cinema.base.webapp.controllers.genres;
 
 import com.kata.cinema.base.AbstractIT;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,10 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_INIT_SQL;
-import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -71,8 +69,7 @@ class AdminGenresRestControllerIT extends AbstractIT {
 
     @Test
     public void deleteGenres() throws Exception {
-        mockMvc.perform(delete("/api/moderator/genres/101"))
-                .andDo(print())
-                .andExpect(status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/moderator/genres/{id}", 1L))
+                .andDo(print()).andExpect(status().isOk());
     }
 }

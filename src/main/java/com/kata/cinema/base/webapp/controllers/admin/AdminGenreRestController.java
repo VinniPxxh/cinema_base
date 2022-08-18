@@ -4,6 +4,7 @@ import com.kata.cinema.base.exceptions.IdNotFoundException;
 import com.kata.cinema.base.models.dto.GenreResponseDto;
 import com.kata.cinema.base.models.entitys.Genres;
 import com.kata.cinema.base.service.abstracts.model.GenreService;
+import com.kata.cinema.base.service.impl.entity.GenreServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,16 +29,16 @@ public class AdminGenreRestController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<GenreResponseDto> deleteGenres(@PathVariable Long id) throws IdNotFoundException {
-        if (genreService.isExistsById(id)) {
+        if (genreService.isExistById(id)) {
             genreService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-            throw new IdNotFoundException("There is no genre with this ID, try again.");
+            throw new IdNotFoundException("There is no genre with ID: " + id + " , try again.");
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<GenreResponseDto> update(@PathVariable Long id, @RequestParam String name) {
-        Genres genres = genreService.findById(id);
+        Genres genres = genreService.getById(id).orElseThrow();
         genres.setName(name);
         genreService.update(genres);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -45,7 +46,7 @@ public class AdminGenreRestController {
 
     @PostMapping()
     public ResponseEntity<GenreResponseDto> addGenre(@RequestParam String name) {
-        genreService.save(new Genres(name));
+        genreService.create(new Genres(name));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
