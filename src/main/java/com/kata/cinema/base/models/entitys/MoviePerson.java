@@ -30,12 +30,12 @@ public class MoviePerson {
         private Long movieId;
 
         @Column(name = "profession_id")
-        private Long profession_id;
+        private Long professionId;
 
-        public Id(Long personId, Long movieId, Long profession_id) {
+        public Id(Long personId, Long movieId, Long professionId) {
             this.personId = personId;
             this.movieId = movieId;
-            this.profession_id = profession_id;
+            this.professionId = professionId;
         }
     }
 

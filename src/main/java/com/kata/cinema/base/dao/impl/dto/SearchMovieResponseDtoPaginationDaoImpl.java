@@ -16,14 +16,25 @@ public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Lon
     public List<SearchMovieResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
         String sortTypeText;
         switch ((MovieSortType)parameters.get("sortType")) {
-            case NAME_ASC -> sortTypeText = " order by m.name asc";
-            case NAME_DESC -> sortTypeText = " order by m.name desc";
-            case DATE_RELEASE_DESC -> sortTypeText = " order by m.dateRelease desc";
-            default -> sortTypeText = " order by m.dateRelease asc";
+            case NAME_ASC : {
+                sortTypeText = " order by m.name asc";
+                break;
+            }
+            case NAME_DESC : {
+                sortTypeText = " order by m.name desc";
+                break;
+            }
+            case DATE_RELEASE_DESC : {
+                sortTypeText = " order by m.dateRelease desc";
+                break;
+            }
+            default : {
+                sortTypeText = " order by m.dateRelease asc";
+            }
         }
         //Получаем дтошки без жанров
         return entityManager.createQuery("select distinct " +
-                        "new com.kata.cinema.base.models.dto.SearchMovieResponseDto(m.id, m.name, m.dateRelease, c.contentUrl) " +
+                        "new com.kata.cinema.base.models.dto.response.SearchMovieResponseDto(m.id, m.name, m.dateRelease, c.contentUrl) " +
                         "from Movies m join Content c on m.id = c.movies.id join m.genres g where (g.name in (:genres) or :genres is null) " +
                         "and (c.type in (:type) or c.type is null) and m.name like :name and ((m.dateRelease between :startDate and :endDate)  " +
                         "or (cast(:startDate as date) is null and m.dateRelease <= :endDate) or (cast(:endDate as date) is null " +
@@ -37,7 +48,7 @@ public class SearchMovieResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Lon
                 .setParameter("endDate", parameters.get("endDate"))
                 .setParameter("rars", parameters.get("rars"))
                 .setParameter("mpaa", parameters.get("mpaa"))
-                .setFirstResult((currentPage-1)*itemsOnPage)
+                .setFirstResult((currentPage - 1) * itemsOnPage)
                 .setMaxResults(itemsOnPage)
                 .getResultList();
 

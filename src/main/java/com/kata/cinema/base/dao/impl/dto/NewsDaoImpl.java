@@ -24,7 +24,7 @@ public class NewsDaoImpl extends AbstractDaoImpl<Long, News> implements NewsDao 
 
     @Override
     public List<NewsResponseDto> findByDateBetweenAndRubric(LocalDate dateStart, LocalDate dateEnd, Rubric rubric) {
-        return entityManager.createQuery("select new NewsResponseDto(n.id, n.rubric, n.date, n.title, n.htmlBody) from News n " +
+        return entityManager.createQuery("select new com.kata.cinema.base.models.dto.response.NewsResponseDto(n.id, n.rubric, n.date, n.title, n.htmlBody) from News n " +
                 "where ((n.date between :dateStart and :dateEnd) or (cast(:dateStart as date) is null and n.date <= :dateEnd) " +
                 "or (cast(:dateEnd as date) is null and n.date >= :dateStart) or (cast(:dateStart as date) is null and cast(:dateEnd as date) is null ))" +
                 "and (n.rubric = :rubric or cast(:rubric as string) is null)", NewsResponseDto.class)
