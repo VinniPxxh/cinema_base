@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_INIT_SQL;
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -27,7 +28,14 @@ class AdminGenresRestControllerIT extends AbstractIT {
     public void getGenres() throws Exception {
         this.mockMvc.perform(get("/api/moderator/genres"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.*", hasSize(3)))
+                .andExpect(jsonPath("$.[0].id").value(1L))
+                .andExpect(jsonPath("$.[0].name").value("TEST1"))
+                .andExpect(jsonPath("$.[1].id").value(51L))
+                .andExpect(jsonPath("$.[1].name").value("TEST2"))
+                .andExpect(jsonPath("$.[2].id").value(101L))
+                .andExpect(jsonPath("$.[2].name").value("TEST3"));
 
     }
 
