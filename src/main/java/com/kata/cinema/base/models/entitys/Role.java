@@ -13,7 +13,8 @@ import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 
-@Entity(name = "roles")
+@Entity
+@Table(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor

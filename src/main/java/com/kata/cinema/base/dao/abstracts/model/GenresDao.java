@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface GenresDao extends AbstractDao<Long, Genres> {
-    Map<Long, List<String>> getAllMap();
+    public Map<Long, List<String>> getAllMap();
 }

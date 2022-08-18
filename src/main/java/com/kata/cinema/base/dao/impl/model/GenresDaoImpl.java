@@ -23,5 +23,7 @@ public class GenresDaoImpl extends AbstractDaoImpl<Long, Genres> implements Genr
             genresMap.get(o[0]).add((String) o[1]);
         }
         return genresMap;
+
     }
+
 }
