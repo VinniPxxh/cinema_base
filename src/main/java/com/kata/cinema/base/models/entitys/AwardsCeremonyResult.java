@@ -1,6 +1,5 @@
 package com.kata.cinema.base.models.entitys;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,5 +33,5 @@ public class AwardsCeremonyResult {
     @JoinColumn(name = "awards_ceremony_id")
     private AwardsCeremony awardsCeremony;
 
-    private String nomination_status;
+    private String nominationStatus;
 }

@@ -21,7 +21,7 @@ public class TokenController {
     }
 
     @PostMapping(value = "/token")
-    public ResponseEntity<ResponseTokenDto> getToken (AuthDto authDto){
+    public ResponseEntity<ResponseTokenDto> getToken (AuthDto authDto) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDto.getUsername(), authDto.getPassword()));
         ResponseTokenDto responseTokenDto = new ResponseTokenDto(jwtUserProvider.createToken(authDto.getUsername()), authDto.getUsername());
         return ResponseEntity.ok(responseTokenDto);

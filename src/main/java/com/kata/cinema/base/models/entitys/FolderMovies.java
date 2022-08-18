@@ -10,7 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity(name = "folders_movies")
+@Entity
+@Table(name = "folders_movies")
 @Getter
 @Setter
 @NoArgsConstructor
