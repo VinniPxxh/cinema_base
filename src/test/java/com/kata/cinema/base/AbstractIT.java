@@ -16,6 +16,7 @@ public abstract class AbstractIT {
     public static final String NEWS_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/publicist/publicistNewsRestControllerClear.sql";
     public static final String SEARCH_REST_CONTROLLER_MOVIE_INIT_SQL = "classpath:data/sql/controller/search/SearchRestControllerMovieInit.sql";
     public static final String SEARCH_REST_CONTROLLER_MOVIE_CLEAR_SQL = "classpath:data/sql/controller/search/SearchRestControllerMovieClear.sql";
-    public static final String MOVIE_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/movie/MovieRestControllerClear.sql";
     public static final String MOVIE_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/movie/MovieRestControllerInit.sql";
+    public static final String MOVIE_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/movie/MovieRestControllerClear.sql";
+
 }
