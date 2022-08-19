@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers.publicist;
+package com.kata.cinema.base.webapp.controllers.publicistNewsRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import com.kata.cinema.base.models.dto.request.NewsRequestDto;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class PublicistNewsRestControllerITTest extends AbstractIT {
+public class GetIT extends AbstractIT {
 
     @Test
     public void getNews() throws Exception {

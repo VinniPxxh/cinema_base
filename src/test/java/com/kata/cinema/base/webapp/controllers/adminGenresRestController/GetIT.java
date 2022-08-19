@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers.genres;
+package com.kata.cinema.base.webapp.controllers.adminGenresRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import org.junit.Test;
@@ -23,9 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = GENRES_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = GENRES_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class AdminGenresRestControllerIT extends AbstractIT {
+public class GetIT extends AbstractIT {
 
-    public AdminGenresRestControllerIT() {
+    public GetIT() {
     }
 
     @Test
@@ -68,44 +68,4 @@ public class AdminGenresRestControllerIT extends AbstractIT {
                 .andExpect(status().isMethodNotAllowed());
     }
 
-    @Test
-    public void createGenres() throws Exception {
-        this.mockMvc.perform(post("/api/moderator/genres?name=TEST4"))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void updateGenres() throws Exception {
-        this.mockMvc.perform(put("/api/moderator/genres/3?name=Test2"))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void updateGenresWithoutId() throws Exception {
-        this.mockMvc.perform(put("/api/moderator/genres?name=Test2"))
-                .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
-    }
-
-    @Test
-    public void updateGenresWithoutName() throws Exception {
-        this.mockMvc.perform(put("/api/moderator/genres/4"))
-                .andDo(print())
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    public void deleteGenres() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/moderator/genres/{id}", 2L))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void deleteGenreWithWrongId() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/moderator/genres/{id}", 45L))
-                .andDo(print()).andExpect(status().isNotFound());
-    }
 }

@@ -13,8 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.kata.cinema.base.AbstractIT.NEWS_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.NEWS_REST_CONTROLLER_INIT_SQL;
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
