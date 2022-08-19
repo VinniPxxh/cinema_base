@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.AbstractIT;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,11 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = MOVIE_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = MOVIE_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class MovieRestControllerTest extends AbstractIT {
+public class MovieRestControllerTest extends AbstractIT {
     private final String URL = "/api/movies";
 
+    public MovieRestControllerTest() {
+    }
+
     @Test
-    void getReleaseFilms() throws Exception {
+    public void getReleaseFilms() throws Exception {
         this.mockMvc.perform(get(URL + "/release"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -36,22 +39,24 @@ class MovieRestControllerTest extends AbstractIT {
     }
 
     @Test
-    void getTopMovies() throws Exception {
+    public void getTopMovies() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.entities.*", hasSize(5)));
     }
+
     @Test
-    void getTopMoviesWithDateParams() throws Exception {
+    public void getTopMoviesWithDateParams() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1&startDate=2022-08-14&endDate=2022-08-14"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.entities.*", hasSize(1)))
                 .andExpect(jsonPath("$.entities.[0].name").value("1"));
     }
+
     @Test
-    void getTopMoviesWithTypeSortParam() throws Exception {
+    public void getTopMoviesWithTypeSortParam() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1&TopMoviesType=DATE_RELEASE"))
                 .andDo(print())
                 .andExpect(status().isOk())
