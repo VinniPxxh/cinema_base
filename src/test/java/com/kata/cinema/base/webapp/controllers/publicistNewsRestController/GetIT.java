@@ -1,6 +1,8 @@
-package com.kata.cinema.base.webapp.controllers.publicistNewsRestController;
+package com.kata.cinema.base.webapp.controllers.publicist;
 
 import com.kata.cinema.base.AbstractIT;
+import com.kata.cinema.base.models.dto.request.NewsRequestDto;
+import com.kata.cinema.base.models.enums.Rubric;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,9 +15,9 @@ import static com.kata.cinema.base.AbstractIT.NEWS_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.NEWS_REST_CONTROLLER_INIT_SQL;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,7 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class GetIT extends AbstractIT {
+public class PublicistNewsRestControllerITTest extends AbstractIT {
+
     @Test
     public void getNews() throws Exception {
         this.mockMvc.perform(get("/api/publicist/news"))
@@ -131,4 +134,13 @@ public class GetIT extends AbstractIT {
                 .andExpect(jsonPath("$.[1].description").value("nytipobody"));
     }
 
+    @Test
+    public void createNews() throws Exception {
+        NewsRequestDto newsRequestDto = new NewsRequestDto(Rubric.NEWS, "TipoTitleTest", "TipoHtmlTest");
+        this.mockMvc.perform(post("/api/publicist/news")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(newsRequestDto)))
+                .andDo(print())
+                .andExpect(status().isCreated());
+    }
 }

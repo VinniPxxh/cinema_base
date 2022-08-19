@@ -21,11 +21,13 @@ public class SearchUserDaoImpl extends AbstractDaoImpl<Long, User> implements Se
 
     @Override
     public List<SearchUserResponseDto> findSearchUserByEmail(String email) {
-        return entityManager.createQuery("select new com.kata.cinema.base.models.dto.SearchUserResponseDto(user.id, user.email, user.firstName," +
-                        "cast(user.birthday as string) , user.avatarUrl)" +
-                        "from User user" +
-                        "where user.email" +
-                        "like :email", SearchUserResponseDto.class)
+        return entityManager.createQuery(
+                        "select new com.kata.cinema.base.models.dto.SearchUserResponseDto(user.id, user.email, user.firstName," +
+                                "cast (user.birthday as string) , user.avatarUrl))"
+                                + "from User user"
+                                + "where user.email"
+                                + "like :email",
+                        SearchUserResponseDto.class)
                 .setParameter("email", email)
                 .getResultList();
     }

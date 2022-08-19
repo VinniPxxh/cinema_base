@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers.movieRestController;
+package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.AbstractIT;
 import org.junit.Test;
@@ -7,10 +7,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.kata.cinema.base.AbstractIT.*;
+import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_CLEAR_SQL;
+import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_INIT_SQL;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -23,10 +23,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = MOVIE_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = MOVIE_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-
-public class GetIT extends AbstractIT {
-
+public class MovieRestControllerTest extends AbstractIT {
     private final String URL = "/api/movies";
+
+    public MovieRestControllerTest() {
+    }
 
     @Test
     public void getReleaseFilms() throws Exception {
@@ -44,6 +45,7 @@ public class GetIT extends AbstractIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.entities.*", hasSize(5)));
     }
+
     @Test
     public void getTopMoviesWithDateParams() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1&startDate=2022-08-14&endDate=2022-08-14"))
@@ -52,6 +54,7 @@ public class GetIT extends AbstractIT {
                 .andExpect(jsonPath("$.entities.*", hasSize(1)))
                 .andExpect(jsonPath("$.entities.[0].name").value("1"));
     }
+
     @Test
     public void getTopMoviesWithTypeSortParam() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1&TopMoviesType=DATE_RELEASE"))
