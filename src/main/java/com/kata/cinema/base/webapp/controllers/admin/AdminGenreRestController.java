@@ -33,7 +33,7 @@ public class AdminGenreRestController {
             genreService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-            throw new IdNotFoundException("There is no genre with ID: " + id + " , try again.");
+        throw new IdNotFoundException("There is no genre with ID: " + id + " , try again.");
     }
 
     @PutMapping("/{id}")

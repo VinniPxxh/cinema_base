@@ -16,13 +16,11 @@ import java.util.List;
 public class GenreServiceImpl extends AbstractServiceImpl<Long, Genres> implements GenreService {
     private final GenresDao genresDao;
 
-
     @Autowired
     public GenreServiceImpl(GenresDao genresDao) {
         super(genresDao);
         this.genresDao = genresDao;
     }
-
 
     @Override
     public List<GenreResponseDto> findGenres() {

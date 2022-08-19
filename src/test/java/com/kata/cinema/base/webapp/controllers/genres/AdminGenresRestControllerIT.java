@@ -9,6 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.GENRES_REST_CONTROLLER_INIT_SQL;
 import static org.hamcrest.Matchers.hasSize;
@@ -84,6 +85,7 @@ class AdminGenresRestControllerIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isMethodNotAllowed());
     }
+
     @Test
     public void updateGenresWithoutName() throws Exception {
         this.mockMvc.perform(put("/api/moderator/genres/4"))
@@ -97,9 +99,10 @@ class AdminGenresRestControllerIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
     @Test
     public void deleteGenreWithWrongId() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/moderator/genres/{id}",45L))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/moderator/genres/{id}", 45L))
                 .andDo(print()).andExpect(status().isNotFound());
     }
 }
