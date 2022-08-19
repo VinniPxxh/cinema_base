@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.genres;
 
 import com.kata.cinema.base.AbstractIT;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = GENRES_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = GENRES_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class AdminGenresRestControllerIT extends AbstractIT {
+public class AdminGenresRestControllerIT extends AbstractIT {
+
+    public AdminGenresRestControllerIT() {
+    }
 
     @Test
     public void getGenres() throws Exception {
@@ -66,7 +69,7 @@ class AdminGenresRestControllerIT extends AbstractIT {
     }
 
     @Test
-    void createGenres() throws Exception {
+    public void createGenres() throws Exception {
         this.mockMvc.perform(post("/api/moderator/genres?name=TEST4"))
                 .andDo(print())
                 .andExpect(status().isOk());
