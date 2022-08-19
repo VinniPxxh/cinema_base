@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers;
+package com.kata.cinema.base.webapp.controllers.movieRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import org.junit.Test;
@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_INIT_SQL;
 import static org.hamcrest.Matchers.hasSize;
@@ -23,10 +22,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = MOVIE_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = MOVIE_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class MovieRestControllerTest extends AbstractIT {
+public class GetIT extends AbstractIT {
     private final String URL = "/api/movies";
 
-    public MovieRestControllerTest() {
+    public GetIT() {
     }
 
     @Test

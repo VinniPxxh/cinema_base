@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers;
+package com.kata.cinema.base.webapp.controllers.searchRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import org.junit.Test;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = SEARCH_REST_CONTROLLER_MOVIE_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = SEARCH_REST_CONTROLLER_MOVIE_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class SearchRestControllerMovieITTest extends AbstractIT {
+public class GetIT extends AbstractIT {
 
     private final String URL = "/api/search";
 
