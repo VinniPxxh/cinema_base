@@ -1,7 +1,9 @@
 package com.kata.cinema.base.dao.abstracts.dto;
 
 
-public interface RoleDao<Role, Long> {
+import com.kata.cinema.base.models.entitys.Role;
+
+public interface RoleDao extends AbstractDao<Long, Role> {
 
     Role findByName(String name);
 }
