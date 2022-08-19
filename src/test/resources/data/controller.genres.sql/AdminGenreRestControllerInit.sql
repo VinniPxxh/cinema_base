@@ -1,8 +1,8 @@
 INSERT INTO public.genres(id, name)
-VALUES (next value for public.gen_genres, 'TEST1');
+VALUES (2, 'TEST1');
 
 INSERT INTO public.genres(id, name)
-VALUES (next value for public.gen_genres, 'TEST2');
+VALUES (3, 'TEST2');
 
 INSERT INTO public.genres(id, name)
-VALUES (next value for public.gen_genres, 'TEST3');
+VALUES (4, 'TEST3');
