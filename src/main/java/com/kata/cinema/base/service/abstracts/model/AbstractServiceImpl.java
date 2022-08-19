@@ -53,4 +53,5 @@ public abstract class AbstractServiceImpl<PK, E> implements AbstractService<PK, 
     public boolean isExistById(PK id) {
         return abstractDao.isExistById(id);
     }
+
 }
