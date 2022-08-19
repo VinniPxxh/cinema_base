@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.MOVIE_REST_CONTROLLER_INIT_SQL;
 import static org.hamcrest.Matchers.hasSize;
@@ -29,7 +30,7 @@ public class MovieRestControllerTest extends AbstractIT {
     }
 
     @Test
-    void getReleaseFilms() throws Exception {
+    public void getReleaseFilms() throws Exception {
         this.mockMvc.perform(get(URL + "/release"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -38,22 +39,24 @@ public class MovieRestControllerTest extends AbstractIT {
     }
 
     @Test
-    void getTopMovies() throws Exception {
+    public void getTopMovies() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.entities.*", hasSize(5)));
     }
+
     @Test
-    void getTopMoviesWithDateParams() throws Exception {
+    public void getTopMoviesWithDateParams() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1&startDate=2022-08-14&endDate=2022-08-14"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.entities.*", hasSize(1)))
                 .andExpect(jsonPath("$.entities.[0].name").value("1"));
     }
+
     @Test
-    void getTopMoviesWithTypeSortParam() throws Exception {
+    public void getTopMoviesWithTypeSortParam() throws Exception {
         this.mockMvc.perform(get(URL + "/top?pageNumber=1&TopMoviesType=DATE_RELEASE"))
                 .andDo(print())
                 .andExpect(status().isOk())
