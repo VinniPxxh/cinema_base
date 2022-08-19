@@ -12,11 +12,11 @@ public abstract class AbstractIT {
     @Autowired
     protected ObjectMapper objectMapper;
 
-    public static final String NEWS_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/publicist/publicistNewsRestControllerInit.sql";
-    public static final String NEWS_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/publicist/publicistNewsRestControllerClear.sql";
-    public static final String SEARCH_REST_CONTROLLER_MOVIE_INIT_SQL = "classpath:data/sql/controller/search/SearchRestControllerMovieInit.sql";
-    public static final String SEARCH_REST_CONTROLLER_MOVIE_CLEAR_SQL = "classpath:data/sql/controller/search/SearchRestControllerMovieClear.sql";
-    public static final String MOVIE_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/movie/MovieRestControllerInit.sql";
-    public static final String MOVIE_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/movie/MovieRestControllerClear.sql";
+    public static final String NEWS_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/publicistNewsRestController/NewsInit.sql";
+    public static final String NEWS_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/publicistNewsRestController/NewsClear.sql";
+    public static final String SEARCH_REST_CONTROLLER_MOVIE_INIT_SQL = "classpath:data/sql/controller/searchRestController/SearchMovieInit.sql";
+    public static final String SEARCH_REST_CONTROLLER_MOVIE_CLEAR_SQL = "classpath:data/sql/controller/searchRestController/SearchMovieClear.sql";
+    public static final String MOVIE_REST_CONTROLLER_INIT_SQL = "classpath:data/sql/controller/movieRestController/MovieInit.sql";
+    public static final String MOVIE_REST_CONTROLLER_CLEAR_SQL = "classpath:data/sql/controller/movieRestController/MovieClear.sql";
 
 }
