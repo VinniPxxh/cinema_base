@@ -36,9 +36,6 @@ public class UserNewsRestController {
     @PostMapping("/{id}/comments")
     public ResponseEntity<CommentsRequestDto> addComments(@PathVariable Long id, @RequestParam Long userId,
                                                           @RequestBody CommentsRequestDto commentsRequestDto) {
-
-        newsService.getById(id);
-        userService.getById(userId);
         Comments comments = convertToComments(commentsRequestDto);
         comments.setDate(LocalDateTime.now());
         comments.setNews(newsService.getById(id).orElseThrow());
