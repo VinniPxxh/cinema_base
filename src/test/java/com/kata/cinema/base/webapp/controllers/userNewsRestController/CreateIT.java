@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers.publicistNewsRestController;
+package com.kata.cinema.base.webapp.controllers.userNewsRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import com.kata.cinema.base.models.dto.request.CommentsRequestDto;
@@ -22,9 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("IT")
-@Sql(value = NEWS_COMMENTS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(value = NEWS_COMMENTS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CreateCommentIT extends AbstractIT {
+@Sql(value = USER_NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = USER_NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+public class CreateIT extends AbstractIT {
     @Test
     public void createComment() throws Exception {
         LocalDateTime dateTime = LocalDateTime.of(1986, Month.APRIL, 8, 12, 30);
