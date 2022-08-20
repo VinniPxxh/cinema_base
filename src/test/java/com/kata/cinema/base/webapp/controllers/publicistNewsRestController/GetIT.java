@@ -1,8 +1,6 @@
 package com.kata.cinema.base.webapp.controllers.publicistNewsRestController;
 
 import com.kata.cinema.base.AbstractIT;
-import com.kata.cinema.base.models.entitys.News;
-import com.kata.cinema.base.service.abstracts.model.NewsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

@@ -1,1 +1,2 @@
-delete from public.comments;
+delete
+from public.comments;
