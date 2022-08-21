@@ -1,9 +1,9 @@
-package com.kata.cinema.base.webapp.controllers.publicist;
+package com.kata.cinema.base.webapp.controllers.publicistNewsRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import com.kata.cinema.base.models.dto.request.NewsRequestDto;
 import com.kata.cinema.base.models.enums.Rubric;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,10 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("IT")
 @Sql(value = NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class PublicistNewsRestControllerIT extends AbstractIT {
+public class GetIT extends AbstractIT {
 
     @Test
-    void getNews() throws Exception {
+    public void getNews() throws Exception {
         this.mockMvc.perform(get("/api/publicist/news"))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -135,7 +135,7 @@ class PublicistNewsRestControllerIT extends AbstractIT {
     }
 
     @Test
-    void createNews() throws Exception {
+    public void createNews() throws Exception {
         NewsRequestDto newsRequestDto = new NewsRequestDto(Rubric.NEWS, "TipoTitleTest", "TipoHtmlTest");
         this.mockMvc.perform(post("/api/publicist/news")
                         .contentType("application/json")
