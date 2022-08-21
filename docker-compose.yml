@@ -6,13 +6,8 @@ services:
     depends_on:
       - database
     command:
-      - java -jar /usr/local/lib/cinema_base.jar
+      - java -Dspring.profiles.active=dev -jar /usr/local/lib/cinema_base.jar
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://database/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 123456789
-      SPRING_JPA_HIBERNATE_DDL-AUTO: none
-      SPRING_LIQUIBASE_ENABLED: true
       HOSTNAME: 91.241.64.80
     ports:
       - "5557:5557"
