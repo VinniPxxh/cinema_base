@@ -3,15 +3,17 @@ image: maven:3-openjdk-18-slim
 stages:
     - build
     - test
-workflow:
-    rules:
-        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - deploy
 
 build:
     stage: build
+    rules:
+        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     script: "mvn install -B"
 test:
     stage: test
+    rules:
+        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     script: "mvn test"
     coverage: '/Code coverage: \d+\.\d+/'
     artifacts:
@@ -20,3 +22,20 @@ test:
             junit:
                 - target/surefire-reports/TEST-*.xml
                 - target/failsafe-reports/TEST-*.xml
+deploy:
+    stage: deploy
+    only:
+        - master
+    before_script:
+        - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+        - eval $(ssh-agent -s)
+        - echo "$SSH_PRIVATE_KEY" | ssh-add -
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - ssh-keyscan $DEV_HOST >> ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+    script:
+        - ssh -tt $DEV_USER@$DEV_HOST "sudo rm -rf cinema_base && mkdir cinema_base"
+        - scp -r * $DEV_USER@$DEV_HOST:$DEV_APP_PATH/
+        - ssh $DEV_USER@$DEV_HOST "cd cinema_base && docker build -t cinema_base ."
+        - ssh $DEV_USER@$DEV_HOST "cd cinema_base && docker compose up -d"
