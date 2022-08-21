@@ -19,6 +19,8 @@ public interface CollectionService {
 
     public void update(Collections entity);
 
+    public boolean isExistById(Long id);
+
 
 
 }

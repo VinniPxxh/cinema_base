@@ -22,8 +22,8 @@ public class CollectionDaoImpl extends AbstractDaoImpl<Long, Collections> implem
     @Query("select m from Movies m")
     public Collections findCollectionByType(CollectionType collectionType) {
 
-        return (Collections) entityManager.createQuery("select c from Collections c where c.collectionType=:type").setParameter("type", collectionType)
-                .getSingleResult();
+        return entityManager.createQuery("select c from Collections c where c.collectionType=:type", Collections.class).setParameter("type", collectionType)
+                .getResultList().stream().findAny().orElse(null);
     }
 
 
@@ -46,5 +46,10 @@ public class CollectionDaoImpl extends AbstractDaoImpl<Long, Collections> implem
     @Override
     public void update(Collections entity) {
         super.update(entity);
+    }
+
+    @Override
+    public boolean isExistById(Long id) {
+        return super.isExistById(id);
     }
 }

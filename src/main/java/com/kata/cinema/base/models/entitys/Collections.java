@@ -48,6 +48,11 @@ public class Collections {
         this.enable = true;
     }
 
+    public Collections(String name, Boolean enable) {
+        this.name = name;
+        this.enable = enable;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

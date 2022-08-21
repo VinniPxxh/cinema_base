@@ -20,7 +20,7 @@ public class FolderMoviesDaoImpl extends AbstractDaoImpl<Long, FolderMovies> imp
     @Override
     public FolderMovies findByUserId(long id) {
 
-        return (FolderMovies) entityManager.createQuery("SELECT f from FolderMovies f where f.user.id=:id")
+        return entityManager.createQuery("SELECT f from FolderMovies f where f.user.id=:id", FolderMovies.class)
                 .setParameter("id", id).getSingleResult();
     }
 }

@@ -44,4 +44,9 @@ public class CollectionServiceImpl implements CollectionService {
         collectionDao.update(entity);
 
     }
+
+    @Override
+    public boolean isExistById(Long id) {
+        return collectionDao.isExistById(id);
+    }
 }
