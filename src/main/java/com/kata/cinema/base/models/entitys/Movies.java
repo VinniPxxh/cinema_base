@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,7 +17,8 @@ import java.util.Set;
 public class Movies {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_movies")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_movies")
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -27,7 +29,7 @@ public class Movies {
     public String countries;
 
     @Column(name = "dateRelease")
-    public Long dateRelease;
+    public LocalDate dateRelease;
 
     @Column(name = "rars")
     private int rars;
@@ -40,6 +42,15 @@ public class Movies {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    Set<Genres> genres;
+
+    private String originName;
 
     @Override
     public boolean equals(Object o) {

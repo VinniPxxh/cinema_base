@@ -17,16 +17,26 @@ import java.util.Set;
 public class Genres {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_genres")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_genres")
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    //TODO перенести связь на сторону фильма
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "movie_genre",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
     @ToString.Exclude
     private Set<Movies> movies;
+
+    public Genres(String name) {
+        this.name = name;
+    }
+
 
     @Override
     public boolean equals(Object o) {

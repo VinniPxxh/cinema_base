@@ -14,16 +14,15 @@ import javax.persistence.*;
 public class AwardsCeremony {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_awards_ceremony")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_awards_ceremony")
     private Long id;
 
-    @Column
     private String dateEvent;
 
-    @Column
     private String placeEvent;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "awards_id")
     private Awards awards;
 

@@ -15,22 +15,23 @@ import java.util.Set;
 @Table(name = "score")
 public class Score {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "gen_score")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "gen_score")
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "movieId")
-    private Long movieId;
-
-    @Column(name = "userId")
-    private Long userId;
 
     @Column(name = "score")
     private Long score;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private Movies movies;
+    @JoinColumn(name = "movie_id")
+    private Movies movie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {

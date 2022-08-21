@@ -10,13 +10,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity(name = "folders_movies")
+@Entity
+@Table(name = "folders_movies")
 @Getter
 @Setter
 @NoArgsConstructor
 public class FolderMovies {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_folder_movies")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_folder_movies")
     private Long id;
 
     @Enumerated(EnumType.STRING)

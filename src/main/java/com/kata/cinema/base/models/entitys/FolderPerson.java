@@ -15,13 +15,14 @@ import javax.persistence.*;
 public class FolderPerson {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "gen_folder_person")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_folder_person")
     private Long id;
 
     private Boolean favourites;
 
-    //TODO сделать связь с пользователем
-    private int user_id;
+    @ManyToOne
+    private User user;
 
     //TODO добавить связь ManyToMany с Person (см. схему)
 
