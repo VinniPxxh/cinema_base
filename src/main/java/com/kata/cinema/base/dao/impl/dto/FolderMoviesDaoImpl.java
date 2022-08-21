@@ -1,12 +1,13 @@
 package com.kata.cinema.base.dao.impl.dto;
 
 import com.kata.cinema.base.dao.abstracts.dto.FolderMoviesDao;
+import com.kata.cinema.base.models.entitys.FolderMovies;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 
 @Repository
-public class FolderMoviesDaoImpl extends AbstractDaoImpl<Long, FolderMoviesDao> implements FolderMoviesDao {
+public class FolderMoviesDaoImpl extends AbstractDaoImpl<Long, FolderMovies> implements FolderMoviesDao {
 
     private EntityManager entityManager;
 
@@ -15,9 +16,11 @@ public class FolderMoviesDaoImpl extends AbstractDaoImpl<Long, FolderMoviesDao> 
     }
 
 
-    @Override
-    public FolderMoviesDao findByUserId(long id) {
 
-        return (FolderMoviesDao) entityManager.createQuery("SELECT f from FolderMovies f where f.user=:id").setParameter("id", id).getSingleResult();
+    @Override
+    public FolderMovies findByUserId(long id) {
+
+        return (FolderMovies) entityManager.createQuery("SELECT f from FolderMovies f where f.user.id=:id")
+                .setParameter("id", id).getSingleResult();
     }
 }

@@ -1,6 +1,7 @@
 package com.kata.cinema.base.service.impl.entity;
 
 import com.kata.cinema.base.dao.abstracts.dto.FolderMoviesDao;
+import com.kata.cinema.base.models.entitys.FolderMovies;
 import com.kata.cinema.base.service.abstracts.model.FolderMoviesService;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class FolderMoviesServiceImpl implements FolderMoviesService {
     }
 
     @Override
-    public FolderMoviesDao findByUserId(long id) {
-        return folderMoviesDao.findByUserId(id);
+    public FolderMovies findByUserId(long id) {
+        return  folderMoviesDao.findByUserId(id);
     }
 }

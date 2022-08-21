@@ -26,6 +26,7 @@ public class CollectionDaoImpl extends AbstractDaoImpl<Long, Collections> implem
                 .getSingleResult();
     }
 
+
     @Override
     public void create(Collections entity) {
         super.create(entity);

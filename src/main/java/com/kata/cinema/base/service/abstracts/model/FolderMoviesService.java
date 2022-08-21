@@ -1,8 +1,8 @@
 package com.kata.cinema.base.service.abstracts.model;
 
-import com.kata.cinema.base.dao.abstracts.dto.FolderMoviesDao;
+import com.kata.cinema.base.models.entitys.FolderMovies;
 
 public interface FolderMoviesService {
 
-    public FolderMoviesDao findByUserId(long id);
+    public FolderMovies findByUserId(long id);
 }

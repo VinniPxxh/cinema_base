@@ -36,8 +36,8 @@ public class Collections {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "collections_movies",
-            joinColumns = @JoinColumn(name = "collection_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "collections_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "id")
     )
     @ToString.Exclude
     private Set<Movies> movies;
