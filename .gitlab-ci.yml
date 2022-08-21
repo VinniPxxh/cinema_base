@@ -9,7 +9,7 @@ build:
     stage: build
     rules:
         - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-    script: "mvn install -B"
+    script: "mvn install -B -Dmaven.test.skip"
 test:
     stage: test
     rules:
