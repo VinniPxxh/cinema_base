@@ -1,3 +1,4 @@
+id,email,first_name,last_name,password,birthday,avatar_url
 100,email100,user100,userovich100,100,2022-08-14,avatar_url_100
 101,email101,user101,userovich101,101,2022-08-14,avatar_url_101
 102,email102,user102,userovich102,102,2022-08-14,avatar_url_102
