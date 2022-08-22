@@ -7,15 +7,8 @@
         <dbms type="postgresql"/>
     </preConditions>
 
-    <changeSet id="0" author="Daniil Kulikov">
-        <tagDatabase tag="before_db_init"/>
-    </changeSet>
-
-    <include file="v-1.0/db.changelog-v.1.0-cumulative.xml" relativeToChangelogFile="true"/>
-
-    <changeSet id="1" author="Daniil Kulikov">
-        <tagDatabase tag="v.1.0"/>
-    </changeSet>
+    <include file="db/changelog/14-08-2022-init-db.sql"/>
 
 
+    <include file="testdata/db.changelog-test_data.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
