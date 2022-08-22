@@ -39,16 +39,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.authorizeRequests().anyRequest().permitAll();
-//        http.authorizeRequests()
-//                .anyRequest()
-//                .authenticated()
-//                .and().formLogin()
-//                .usernameParameter("email")
-//                .and().httpBasic();
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/publicist/**").hasRole("PUBLICIST")
+                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/").hasAnyRole("ADMIN", "USER", "PUBLICIST")
+                .anyRequest().permitAll()
+                .and().formLogin()
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .permitAll()
+                .and().httpBasic();
         http.addFilter(new TokenAuthenticationFilter(authenticationManagerBean(), jwtUserProvider));
-
     }
 
     @Bean
@@ -56,7 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
 
     @Bean

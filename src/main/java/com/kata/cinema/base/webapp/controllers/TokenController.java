@@ -26,6 +26,4 @@ public class TokenController {
         ResponseTokenDto responseTokenDto = new ResponseTokenDto(jwtUserProvider.createToken(authDto.getUsername()), authDto.getUsername());
         return ResponseEntity.ok(responseTokenDto);
     }
-
-
 }
