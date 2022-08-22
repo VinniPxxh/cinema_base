@@ -38,7 +38,7 @@ public class UserServiceImpl extends AbstractServiceImpl<Long, User> implements 
             throw new UsernameNotFoundException("User: " + email + " not found");
         }
 
-
+        //TODO а почему нельзя сразу возврощать user??
         return new User(user.getId(), user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(), user.getBirthday(), user.getAvatarUrl());
     }
 }

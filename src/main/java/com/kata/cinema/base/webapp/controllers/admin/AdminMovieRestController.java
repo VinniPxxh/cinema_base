@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers;
+package com.kata.cinema.base.webapp.controllers.admin;
 
 import com.kata.cinema.base.service.abstracts.model.PreviewService;
 import com.kata.cinema.base.service.impl.entity.PreviewServiceImpl;
