@@ -25,7 +25,7 @@ test:
 deploy:
     stage: deploy
     only:
-        - master
+        - main
     before_script:
         - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
         - eval $(ssh-agent -s)
