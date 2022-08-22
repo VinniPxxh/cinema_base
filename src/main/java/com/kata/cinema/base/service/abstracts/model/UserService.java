@@ -4,7 +4,7 @@ import com.kata.cinema.base.models.entitys.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends AbstractService<Long, User> {
 
     User findByEmail(String email);
 
