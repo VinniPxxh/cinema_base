@@ -1,6 +1,8 @@
 package com.kata.cinema.base.webapp.controllers.publicistNewsRestController;
 
 import com.kata.cinema.base.AbstractIT;
+import com.kata.cinema.base.models.dto.request.NewsRequestDto;
+import com.kata.cinema.base.models.enums.Rubric;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static com.kata.cinema.base.AbstractIT.*;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -19,8 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("IT")
-@Sql(value = NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(value = NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+@Sql(value = PUBLICIST_NEWS_REST_CONTROLLER_INIT_SQL, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = PUBLICIST_NEWS_REST_CONTROLLER_CLEAR_SQL, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class GetIT extends AbstractIT {
 
     @Test
@@ -36,7 +39,6 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$.[0].id").value(2))
                 .andExpect(jsonPath("$.[0].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-04"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 02"))
@@ -49,12 +51,10 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(2)))
-                .andExpect(jsonPath("$.[0].id").value(2))
                 .andExpect(jsonPath("$.[0].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-04"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 02"))
                 .andExpect(jsonPath("$.[0].description").value("nytipobody"))
-                .andExpect(jsonPath("$.[1].id").value(3))
                 .andExpect(jsonPath("$.[1].rubric").value("TESTS"))
                 .andExpect(jsonPath("$.[1].date").value("2022-08-05"))
                 .andExpect(jsonPath("$.[1].title").value("db test title 03"))
@@ -67,12 +67,10 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(2)))
-                .andExpect(jsonPath("$.[0].id").value(2))
                 .andExpect(jsonPath("$.[0].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-04"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 02"))
                 .andExpect(jsonPath("$.[0].description").value("nytipobody"))
-                .andExpect(jsonPath("$.[1].id").value(3))
                 .andExpect(jsonPath("$.[1].rubric").value("TESTS"))
                 .andExpect(jsonPath("$.[1].date").value("2022-08-05"))
                 .andExpect(jsonPath("$.[1].title").value("db test title 03"))
@@ -85,12 +83,10 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(2)))
-                .andExpect(jsonPath("$.[0].id").value(1))
                 .andExpect(jsonPath("$.[0].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-03"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 01"))
                 .andExpect(jsonPath("$.[0].description").value("nytipobody"))
-                .andExpect(jsonPath("$.[1].id").value(2))
                 .andExpect(jsonPath("$.[1].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[1].date").value("2022-08-04"))
                 .andExpect(jsonPath("$.[1].title").value("db test title 02"))
@@ -103,7 +99,6 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$.[0].id").value(3))
                 .andExpect(jsonPath("$.[0].rubric").value("TESTS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-05"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 03"))
@@ -116,7 +111,6 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$.[0].id").value(2))
                 .andExpect(jsonPath("$.[0].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-04"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 02"))
@@ -129,12 +123,10 @@ public class GetIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(2)))
-                .andExpect(jsonPath("$.[0].id").value(1))
                 .andExpect(jsonPath("$.[0].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[0].date").value("2022-08-03"))
                 .andExpect(jsonPath("$.[0].title").value("db test title 01"))
                 .andExpect(jsonPath("$.[0].description").value("nytipobody"))
-                .andExpect(jsonPath("$.[1].id").value(2))
                 .andExpect(jsonPath("$.[1].rubric").value("NEWS"))
                 .andExpect(jsonPath("$.[1].date").value("2022-08-04"))
                 .andExpect(jsonPath("$.[1].title").value("db test title 02"))
@@ -142,12 +134,12 @@ public class GetIT extends AbstractIT {
     }
 
     @Test
-    public void getCommentWithAllParameters() throws Exception {
-        this.mockMvc.perform(get("/api/news/1/comments"))
+    public void createNews() throws Exception {
+        NewsRequestDto newsRequestDto = new NewsRequestDto(Rubric.NEWS, "TipoTitleTest", "TipoHtmlTest");
+        this.mockMvc.perform(post("/api/publicist/news")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(newsRequestDto)))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(1)))
-                .andExpect(jsonPath("$.[0].id").value(1));
+                .andExpect(status().isCreated());
     }
-
 }

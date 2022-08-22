@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface CommentsDao extends AbstractDao<Long, Comments> {
-    List<CommentsResponseDto> getListOfComments();
+    List<CommentsResponseDto> getListOfComments(Long id);
 }

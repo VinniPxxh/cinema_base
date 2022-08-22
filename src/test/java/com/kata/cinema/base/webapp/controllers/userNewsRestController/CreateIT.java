@@ -35,4 +35,26 @@ public class CreateIT extends AbstractIT {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void createCommentWithWrongNewsId() throws Exception {
+        LocalDateTime dateTime = LocalDateTime.of(1986, Month.APRIL, 8, 12, 30);
+        CommentsRequestDto commentsRequestDto = new CommentsRequestDto("creating test", dateTime);
+        this.mockMvc.perform(post("/api/user/news/6/comments?userId=2")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(commentsRequestDto)))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void createCommentWithWrongUserId() throws Exception {
+        LocalDateTime dateTime = LocalDateTime.of(1986, Month.APRIL, 8, 12, 30);
+        CommentsRequestDto commentsRequestDto = new CommentsRequestDto("creating test", dateTime);
+        this.mockMvc.perform(post("/api/user/news/2/comments?userId=5")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(commentsRequestDto)))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
 }

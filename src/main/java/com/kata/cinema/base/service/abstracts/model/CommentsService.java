@@ -10,5 +10,5 @@ import java.util.List;
 
 @Service
 public interface CommentsService extends AbstractService<Long, Comments> {
-    List<CommentsResponseDto> getComments();
+    List<CommentsResponseDto> getComments(Long id);
 }

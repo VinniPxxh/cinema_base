@@ -1,5 +1,6 @@
 package com.kata.cinema.base.webapp.controllers.unauthorized;
 
+import com.kata.cinema.base.exceptions.IdNotFoundException;
 import com.kata.cinema.base.models.dto.response.CommentsResponseDto;
 import com.kata.cinema.base.models.dto.response.NewsTitleResponseDto;
 import com.kata.cinema.base.service.abstracts.model.CommentsService;
@@ -26,9 +27,12 @@ public class NewsRestController {
     }
 
     @GetMapping("/{id}/comments")
-    public ResponseEntity<List<CommentsResponseDto>> getListOfComments(@PathVariable Long id) {
-        newsService.getById(id);
-        return ResponseEntity.ok(commentsService.getComments());
+    public ResponseEntity<List<CommentsResponseDto>> getListOfComments(@PathVariable Long id) throws IdNotFoundException {
+        if (newsService.isExistById(id)) {
+            newsService.getById(id);
+            return ResponseEntity.ok(commentsService.getComments(id));
+        }
+        throw new IdNotFoundException("News with id: " + id + " does not exist, try looking for another");
     }
 
 }
