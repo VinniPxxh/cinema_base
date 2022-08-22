@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="add_roles" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/roles"
+                primaryKey="id"
+                quotchar="'"
+                separator=","
+                tableName="roles">
+        </loadUpdateData>
+    </changeSet>
+    <changeSet id="add_users" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/users"
+                primaryKey="id"
+                quotchar="'"
+                separator=","
+                tableName="users">
+        </loadUpdateData>
+    </changeSet>
+    <changeSet id="add_user_role" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/user_role"
+                primaryKey="user_id,role_id"
+                quotchar="'"
+                separator=","
+                tableName="user_role">
+        </loadUpdateData>
+    </changeSet>
+    <changeSet id="add_genres" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/genres"
+                primaryKey="id"
+                quotchar="'"
+                separator=","
+                tableName="genres">
+        </loadUpdateData>
+    </changeSet>
+    <changeSet id="add_movies" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/movies"
+                primaryKey="id"
+                quotchar="'"
+                separator=","
+                tableName="movies">
+        </loadUpdateData>
+    </changeSet>
+    <changeSet id="add_movies-genres" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/movies_genres"
+                primaryKey="movie_id,genre_id"
+                quotchar="'"
+                separator=","
+                tableName="movies_genres">
+        </loadUpdateData>
+    </changeSet>
+    <changeSet id="add_score" author="zaborskiy">
+        <loadUpdateData
+                file="db/changelog/testdata/scores"
+                primaryKey="id"
+                quotchar="'"
+                separator=","
+                tableName="scores">
+        </loadUpdateData>
+    </changeSet>
+</databaseChangeLog>

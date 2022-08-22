@@ -1,0 +1,61 @@
+id,country,date_release,rars,mpaa,name,original_name
+100,Slovakia,1938-05-08,SIXTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Иезавель,Jezebel
+101,Albania,1935-09-26,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,47 ронинов,47 Ronin
+
+
+102,Burkina Faso,2002-06-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и философский камень,Harry Potter and the Sorcerer Stone
+103,Burkina Faso,2002-06-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и Тайная комната,Harry Potter and the Chamber of Secrets
+104,Great Britain,2003-06-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и узник Азкабана,Harry Potter and the Prisoner of Azkaban
+105,Great Britain,2004-08-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и Кубок огня,Harry Potter and the Goblet of Fire
+106,Great Britain,2006-08-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и Орден Феникса,Harry Potter and the Order of the Phoenix
+107,Great Britain,2010-08-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и Принц-полукровка,Harry Potter and the Half-Blood Prince
+108,Great Britain,2012-08-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и Дары Смерти: Часть 1,Harry Potter and the Deathly Hallows: Part 1
+109,Great Britain,2014-08-10,TWELVE_PLUS,GENERAL_AUDIENCES,Гарри Поттер и Дары Смерти: Часть 2,Harry Potter and the Deathly Hallows: Part 2
+
+
+110,Venezuela,1925-01-24,SIX_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Исход,Exodus
+111,Bosnia and Herzegovina,2004-06-15,ZERO_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Братья Карамазовы,The Brothers Karamazov
+112,Guatemala,2000-01-20,EIGHTEEN_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Три лица Евы, The Three Faces of Eve
+113,Pakistan,1926-02-28,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Человек в сером фланелевом костюме,The Man in the Gray Flannel Suit
+114,French Guiana,2000-07-30,SIXTEEN_PLUS,GENERAL_AUDIENCES,Левая рука Бога,The Left Hand of God
+115,Guadeloupe,1916-06-30,SIXTEEN_PLUS,PARENTS_STRONGLY_CAUTIONED,Весь город говорит,The Talk of the Town
+116,Honduras,1985-08-02,EIGHTEEN_PLUS,GENERAL_AUDIENCES,Воровское шоссе,Thieves Highway
+117,Niue,2012-12-24,ZERO_PLUS,GENERAL_AUDIENCES,Бумеранг!,Boomerang
+118,Kyrgyzstan,1922-01-28,SIX_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Крик совы,The Cry of the Owl
+119,Sri Lanka,1947-11-25,ZERO_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Военная игра,The War Game
+120,Saudi Arabia,1971-02-23,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Гонщик,Driven
+121,Lebanon,2023-06-03,EIGHTEEN_PLUS,GENERAL_AUDIENCES,Анна и король Сиама,Anna and the King of Siam
+122,Wallis and Futuna,1959-12-25,ZERO_PLUS,GENERAL_AUDIENCES,Подозрение,Suspicion
+123,Tunisia,1955-04-22,TWELVE_PLUS,GENERAL_AUDIENCES,Четыре ночи мечтателя,Quatre nuits d un rêveur
+124,Mauritius,1908-09-30,SIXTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Разденься для убийцы,Nude per l assassino
+125,Cayman Islands,2006-04-10,SIX_PLUS,PARENTS_STRONGLY_CAUTIONED,Грошовая серенада,Penny Serenade
+126,Croatia,2014-04-06,SIXTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Рождественские каникулы,National Lampoon s Christmas Vacation
+127,Tanzania United Republic of,1971-08-04,TWELVE_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Тора! Тора! Тора!,Tora! Tora! Tora!
+128,New Caledonia,2023-05-03,SIXTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Ремагенский мост,The Bridge at Remagen
+129,Wallis and Futuna,1929-11-22,SIX_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Шесть шведок с бензоколонки,Sechs Schwedinnen von der Tankstelle
+130,Algeria,2023-08-09,SIX_PLUS,PARENTS_STRONGLY_CAUTIONED,Сломанное копье,Broken Lance
+131,Saint Vincent and the Grenadines,1936-12-17,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Моя любимая жена,My Favorite Wife
+132,Kuwait,1915-12-25,TWELVE_PLUS,GENERAL_AUDIENCES,Дни вина и роз,Days of Wine and Roses
+133,Panama,2023-12-15,SIX_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Чужой среди нас,They Live
+134,Ireland,1941-01-09,ZERO_PLUS,PARENTS_STRONGLY_CAUTIONED,На холостом ходу,Running on Empty
+135,Croatia,1906-02-09,SIX_PLUS,PARENTS_STRONGLY_CAUTIONED,На следующее утро,The Morning After
+136,Solomon Islands,1990-03-28,EIGHTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Смертельная ловушка,Deathtrap
+137,San Marino,2008-09-09,TWELVE_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Эквус,Equus
+138,Guatemala,1986-02-17,EIGHTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Зорро,Zorro
+139,Somalia,2016-10-08,SIXTEEN_PLUS,PARENTS_STRONGLY_CAUTIONED,Только у ангелов есть крылья,Only Angels Have Wings
+140,Oman,1906-10-25,ZERO_PLUS,PARENTS_STRONGLY_CAUTIONED,Оскорбление,L insulte
+141,Jamaica,2010-04-04,ZERO_PLUS,PARENTS_STRONGLY_CAUTIONED,Детская игра,Child s Play
+142,Antarctica,2000-09-03,SIXTEEN_PLUS,GENERAL_AUDIENCES,Свидание,Date
+143,Zambia,1943-04-30,SIX_PLUS,GENERAL_AUDIENCES,Дело самоубийцы,The Deadly Affair
+144,Burkina Faso,2007-03-14,EIGHTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Холм,The Hill
+145,Northern Mariana Islands,2023-08-22,SIX_PLUS,PARENTS_STRONGLY_CAUTIONED,Ганга Дин,Gunga Din
+146,Mozambique,2023-01-23,SIX_PLUS,NO_ONE_SEVENTEEN_AND_UNDER_ADMITTED,Ростовщик,The Pawnbroker
+147,Romania,2023-05-29,EIGHTEEN_PLUS,PARENTAL_GUIDANCE_SUGGESTED,Такая женщина,That Kind of Woman
+148,Syrian Arab Republic,1928-11-13,EIGHTEEN_PLUS,GENERAL_AUDIENCES,Моргиана,Morgiana
+
+
+149,USA,1905-10-07,SIX_PLUS,PARENTS_STRONGLY_CAUTIONED,Пираты Карибского моря: Проклятие Черной жемчужины,Pirates of the Caribbean: The Curse of the Black Pearl
+150,USA,2007-03-14,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Пираты Карибского моря: Сундук мертвеца,Pirates of the Caribbean: Dead Man s Chest
+151,USA,2010-03-14,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Пираты Карибского моря: На краю Света,Pirates of the Caribbean: At World s End
+152,USA,2013-03-14,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Пираты Карибского моря: На странных берегах,Pirates of the Caribbean: On Stranger Tides
+153,USA,2018-03-14,TWELVE_PLUS,PARENTS_STRONGLY_CAUTIONED,Пираты Карибского моря: Мертвецы не рассказывают сказки,Pirates of the Caribbean: Dead Men Tell No Tales
