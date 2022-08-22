@@ -3,10 +3,11 @@ package com.kata.cinema.base.webapp.controllers;
 import com.kata.cinema.base.models.dto.PageDto;
 import com.kata.cinema.base.models.dto.TopMoviesResponseDto;
 import com.kata.cinema.base.models.dto.response.MovieReleaseResponseDto;
-import com.kata.cinema.base.models.entitys.Genres;
 import com.kata.cinema.base.models.enums.TopMoviesType;
 import com.kata.cinema.base.service.abstracts.dto.TopMoviesResponseDtoPaginationService;
 import com.kata.cinema.base.service.abstracts.model.MovieService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/movies")
+@Api(tags = "Фильмы")
 public class MovieRestController {
 
     private final MovieService movieService;
@@ -32,11 +34,13 @@ public class MovieRestController {
     }
 
     @GetMapping("/release")
+    @ApiOperation(value = "Получение списка вышедших фильмов")
     ResponseEntity<List<MovieReleaseResponseDto>> getReleaseFilms() {
         return ResponseEntity.ok(movieService.getReleaseFilms());
     }
 
     @GetMapping("/top")
+    @ApiOperation(value = "Получение списка лучших фильмов")
     ResponseEntity<PageDto<TopMoviesResponseDto>> getTopMovies(@RequestParam(required = false) Integer pageNumber,
                                                                @RequestParam(required = false, defaultValue = "50") Integer itemsOnPage,
                                                                @RequestParam(required = false, defaultValue = "250") Integer count,

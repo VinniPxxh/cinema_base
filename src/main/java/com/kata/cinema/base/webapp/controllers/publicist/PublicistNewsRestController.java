@@ -5,6 +5,8 @@ import com.kata.cinema.base.models.dto.response.NewsResponseDto;
 import com.kata.cinema.base.models.entitys.News;
 import com.kata.cinema.base.models.enums.Rubric;
 import com.kata.cinema.base.service.abstracts.model.NewsService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/publicist/news")
+@Api(tags = "Новости")
 public class PublicistNewsRestController {
 
     private final NewsService newsService;
@@ -28,6 +31,7 @@ public class PublicistNewsRestController {
 
     @GetMapping
     @ResponseBody
+    @ApiOperation(value = "Получение списка новостей")
     public ResponseEntity<List<NewsResponseDto>> getNews(@RequestParam(name = "startDate", required = false)
                                                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                          @RequestParam(name = "endDate", required = false)
@@ -36,6 +40,7 @@ public class PublicistNewsRestController {
         return ResponseEntity.ok(newsService.findByDateBetweenAndRubric(startDate, endDate, rubric));
     }
     @PostMapping
+    @ApiOperation(value = "Создание новости")
     public ResponseEntity<NewsRequestDto> createNews(@RequestBody NewsRequestDto newsRequestDto) {
         News news = convertToNews(newsRequestDto);
         news.setDate(LocalDate.now());
