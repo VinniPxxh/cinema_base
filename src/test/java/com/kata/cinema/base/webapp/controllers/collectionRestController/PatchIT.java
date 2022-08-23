@@ -12,7 +12,6 @@ import static com.kata.cinema.base.AbstractIT.COLLECTION_REST_CONTROLLER_CLEAR_S
 import static com.kata.cinema.base.AbstractIT.COLLECTION_REST_CONTROLLER_INIT_SQL;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -28,15 +27,13 @@ public class PatchIT extends AbstractIT {
     public void deactivate() throws Exception {
         this.mockMvc.perform(patch("/api/collections/{id}/deactivate" , 1))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.enable").value(false));
+                .andExpect(status().isOk());
     }
 
     @Test
     public void activate() throws Exception {
         this.mockMvc.perform(patch("/api/collections/{id}/activate" , 1))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.enable").value(true));
+                .andExpect(status().isOk());
     }
 }

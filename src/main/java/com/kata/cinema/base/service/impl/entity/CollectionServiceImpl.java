@@ -6,6 +6,7 @@ import com.kata.cinema.base.models.enums.CollectionType;
 import com.kata.cinema.base.service.abstracts.model.CollectionService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,11 @@ public class CollectionServiceImpl implements CollectionService {
     @Override
     public Collections findCollectionByType(CollectionType collectionType) {
         return collectionDao.findCollectionByType(collectionType);
+    }
+
+    @Override
+    public List<Collections> getAll() {
+        return collectionDao.getAll();
     }
 
     @Override
@@ -43,6 +49,11 @@ public class CollectionServiceImpl implements CollectionService {
     public void update(Collections entity) {
         collectionDao.update(entity);
 
+    }
+
+    @Override
+    public void delete(Collections entity) {
+        collectionDao.delete(entity);
     }
 
     @Override

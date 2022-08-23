@@ -4,23 +4,9 @@ import com.kata.cinema.base.models.entitys.Collections;
 import com.kata.cinema.base.models.enums.CollectionType;
 
 
-import java.util.Optional;
-
-
-public interface CollectionService {
+public interface CollectionService extends AbstractService<Long, Collections> {
 
     public Collections findCollectionByType(CollectionType collectionType);
-
-    public void create(Collections entity);
-
-    public void deleteById(Long id);
-
-    public Optional<Collections> getById(Long id);
-
-    public void update(Collections entity);
-
-    public boolean isExistById(Long id);
-
 
 
 }

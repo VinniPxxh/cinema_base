@@ -1,6 +1,4 @@
 package com.kata.cinema.base.webapp.controllers.collectionRestController;
-
-
 import com.kata.cinema.base.AbstractIT;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,16 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static com.kata.cinema.base.AbstractIT.COLLECTION_REST_CONTROLLER_CLEAR_SQL;
 import static com.kata.cinema.base.AbstractIT.COLLECTION_REST_CONTROLLER_INIT_SQL;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -43,8 +38,7 @@ public class DeleteIT extends AbstractIT {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(movieIds)))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.movies.[0].id").value(2L));
+                .andExpect(status().isOk());
 
     }
 

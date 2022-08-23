@@ -35,7 +35,7 @@ public class PostIT extends AbstractIT {
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(collectionRequestDto)))
                 .andDo(print())
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
     }
 
     @Test
