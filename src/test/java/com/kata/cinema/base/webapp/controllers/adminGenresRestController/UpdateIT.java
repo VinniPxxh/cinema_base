@@ -39,13 +39,13 @@ public class UpdateIT extends AbstractIT {
     public void updateGenresWithoutId() throws Exception {
         this.mockMvc.perform(put("/api/admin/genres?name=Test2"))
                 .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
+                .andExpect(status().isInternalServerError());
     }
 
     @Test
     public void updateGenresWithoutName() throws Exception {
         this.mockMvc.perform(put("/api/admin/genres/4"))
                 .andDo(print())
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
     }
 }

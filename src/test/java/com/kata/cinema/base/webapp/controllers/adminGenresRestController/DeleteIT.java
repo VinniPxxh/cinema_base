@@ -38,6 +38,6 @@ public class DeleteIT extends AbstractIT {
     @Test
     public void deleteGenreWithWrongId() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/admin/genres/{id}", 45L))
-                .andDo(print()).andExpect(status().isNotFound());
+                .andDo(print()).andExpect(status().isInternalServerError());
     }
 }

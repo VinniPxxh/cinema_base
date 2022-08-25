@@ -48,7 +48,7 @@ public class GetIT extends AbstractIT {
     public void getGenresWithAllParameters() throws Exception {
         this.mockMvc.perform(get("/api/admin/genres/2?name=TEST1"))
                 .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
+                .andExpect(status().isInternalServerError());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class GetIT extends AbstractIT {
     public void getGenreWithOnlyId() throws Exception {
         this.mockMvc.perform(get("/api/admin/genres/3"))
                 .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
+                .andExpect(status().isInternalServerError());
     }
 
 }

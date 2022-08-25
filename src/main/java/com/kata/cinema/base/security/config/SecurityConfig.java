@@ -1,6 +1,7 @@
-package com.kata.cinema.base.security;
+package com.kata.cinema.base.security.config;
 
 import com.kata.cinema.base.security.filter.TokenAuthenticationFilter;
+import com.kata.cinema.base.security.service.JwtUserDetailService;
 import com.kata.cinema.base.security.jwt.JwtUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -19,38 +20,41 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsService userDetailsService;
+
+    private final JwtUserDetailService userDetailService;
 
     private final JwtUserProvider jwtUserProvider;
 
 
     @Autowired
-    public SecurityConfig(JwtUserProvider jwtUserProvider, UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfig(JwtUserDetailService userDetailService, JwtUserProvider jwtUserProvider) {
+        this.userDetailService = userDetailService;
         this.jwtUserProvider = jwtUserProvider;
     }
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .httpBasic().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/publicist/**").hasRole("PUBLICIST")
                 .antMatchers("/api/user/**").hasRole("USER")
-                .antMatchers("/").hasAnyRole("ADMIN", "USER", "PUBLICIST")
-                .anyRequest().permitAll()
+                .antMatchers("/token").permitAll()
+                .anyRequest().authenticated()
                 .and().formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .permitAll()
-                .and().httpBasic();
+                .permitAll();
         http.addFilter(new TokenAuthenticationFilter(authenticationManagerBean(), jwtUserProvider));
     }
 
