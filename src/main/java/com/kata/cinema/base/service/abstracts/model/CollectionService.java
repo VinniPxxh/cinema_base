@@ -6,7 +6,7 @@ import com.kata.cinema.base.models.enums.CollectionType;
 
 public interface CollectionService extends AbstractService<Long, Collections> {
 
-    public Collections findCollectionByType(CollectionType collectionType);
+    Collections findCollectionByType(CollectionType collectionType);
 
 
 }

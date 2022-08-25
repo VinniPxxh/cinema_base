@@ -8,7 +8,7 @@ import java.util.List;
 public interface MovieService {
 
 
-    public List<MovieReleaseResponseDto> getReleaseFilms();
+    List<MovieReleaseResponseDto> getReleaseFilms();
 
     Movies getById(Long id);
 
