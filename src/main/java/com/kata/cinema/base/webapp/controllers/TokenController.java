@@ -5,6 +5,8 @@ import com.kata.cinema.base.models.dto.response.ResponseTokenDto;
 import com.kata.cinema.base.security.jwt.JwtUserProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +27,14 @@ public class TokenController {
     }
 
     @PostMapping(value = "/token")
-    @ApiOperation(value = "Получение токена")
+    @ApiOperation(value = "Получение токена", response = ResponseTokenDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Успешное получение токена"),
+            @ApiResponse(code = 201, message = "Успешное создание токена"),
+            @ApiResponse(code = 401, message = "Проблема с аутентификацией или авторизацией на сайте"),
+            @ApiResponse(code = 403, message = "Недостаточно прав для создания контента"),
+            @ApiResponse(code = 404, message = "Невозможно найти.")
+    })
     public ResponseEntity<ResponseTokenDto> getToken(AuthDto authDto) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDto.getUsername(), authDto.getPassword()));
         ResponseTokenDto responseTokenDto = new ResponseTokenDto(jwtUserProvider.createToken(authDto.getUsername()), authDto.getUsername());

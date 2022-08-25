@@ -8,6 +8,8 @@ import com.kata.cinema.base.service.abstracts.dto.TopMoviesResponseDtoPagination
 import com.kata.cinema.base.service.abstracts.model.MovieService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,13 +36,25 @@ public class MovieRestController {
     }
 
     @GetMapping("/release")
-    @ApiOperation(value = "Получение списка вышедших фильмов")
+    @ApiOperation(value = "Получение списка вышедших фильмов", response = MovieRestController.class, responseContainer = "list")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Успешное получение списка вышедших фильмов"),
+            @ApiResponse(code = 401, message = "Проблема с аутентификацией или авторизацией на сайте"),
+            @ApiResponse(code = 403, message = "Недостаточно прав для просмотра контента"),
+            @ApiResponse(code = 404, message = "Невозможно найти.")
+    })
     ResponseEntity<List<MovieReleaseResponseDto>> getReleaseFilms() {
         return ResponseEntity.ok(movieService.getReleaseFilms());
     }
 
     @GetMapping("/top")
-    @ApiOperation(value = "Получение списка лучших фильмов")
+    @ApiOperation(value = "Получение списка лучших фильмов", response = TopMoviesResponseDto.class, responseContainer = "pageDto")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Успешное получение списка лучших фильмов"),
+            @ApiResponse(code = 401, message = "Проблема с аутентификацией или авторизацией на сайте"),
+            @ApiResponse(code = 403, message = "Недостаточно прав для просмотра контента"),
+            @ApiResponse(code = 404, message = "Невозможно найти.")
+    })
     ResponseEntity<PageDto<TopMoviesResponseDto>> getTopMovies(@RequestParam(required = false) Integer pageNumber,
                                                                @RequestParam(required = false, defaultValue = "50") Integer itemsOnPage,
                                                                @RequestParam(required = false, defaultValue = "250") Integer count,
