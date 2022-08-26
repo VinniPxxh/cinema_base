@@ -1,40 +1,48 @@
 package com.kata.cinema.base.webapp.controllers.user;
 
-import org.apache.commons.httpclient.HttpStatus;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@AutoConfigureMockMvc
+public class UserFolderMovieRestControllerTest {
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+    @Autowired
+    private MockMvc mockMvc;
 
+    @MockBean
+    UserFolderMovieRestController userFolderMovieRestController;
 
-class UserFolderMovieRestControllerTest {
+    public UserFolderMovieRestControllerTest() {
+    }
+
 
     @Test
-    void getOneFolderMovies() throws IOException {
-        HttpUriRequest request = new HttpGet( "http://127.0.0.1:5432/api/user/foldermovies/" + 1 );
-
-        HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
-
-        assertThat(
-                httpResponse.getStatusLine().getStatusCode(),
-                equalTo(HttpStatus.SC_OK));
+    public void getOneFolderMovies() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/user/foldermovies/1"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     @Test
-    void getByUserId() throws IOException {
-        HttpUriRequest request = new HttpGet( "http://127.0.0.1:5432/api/user/foldermovies/userId");
+    public void getByUserId() throws Exception {
 
-        HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
-
-        assertThat(
-                httpResponse.getStatusLine().getStatusCode(),
-                equalTo(HttpStatus.SC_OK));
+        this.mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/user/foldermovies/userId"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
+
+
 }
