@@ -2,7 +2,6 @@ package com.kata.cinema.base.security.jwt;
 
 import com.kata.cinema.base.security.service.JwtUserDetailService;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,18 +28,11 @@ public class JwtUserProvider {
 
 
     public String createToken(String username) {
-
-        Date now = new Date();
-        Date valid = new Date((now.getTime()) + validityTime);
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
-
-        Claims claims = Jwts.claims().setSubject(username);
         return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(valid)
-                .signWith(key)
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + validityTime))
+                .signWith(SignatureAlgorithm.HS512, "kata")
                 .compact();
     }
 

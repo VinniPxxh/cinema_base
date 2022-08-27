@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,16 +33,17 @@ public class TokenController {
     }
 
     @PostMapping(value = "/token")
-    public ResponseEntity<ResponseTokenDto> getToken(AuthDto authDto) {
+    public ResponseEntity<ResponseTokenDto> getToken(@RequestBody AuthDto authDto) {
         try {
             String username = authDto.getUsername();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authDto.getPassword()));
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authDto.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
             User user = userService.findByEmail(authDto.getUsername());
             if (user == null) {
                 throw new UsernameNotFoundException("User with email: " + username + " not found");
             }
             ResponseTokenDto responseTokenDto = new ResponseTokenDto(jwtUserProvider.createToken(authDto.getUsername()), authDto.getUsername());
-            Map<Object, Object> response = new HashMap<>();
+            Map<String, Object> response = new HashMap<>();
             response.put("username", username);
             response.put("token", responseTokenDto);
             return ResponseEntity.ok(responseTokenDto);
