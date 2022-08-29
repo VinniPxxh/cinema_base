@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.admin;
 
 import com.kata.cinema.base.exceptions.IdNotFoundException;
-import com.kata.cinema.base.models.dto.GenreResponseDto;
+import com.kata.cinema.base.models.dto.response.GenreResponseDto;
 import com.kata.cinema.base.models.entitys.Genres;
 import com.kata.cinema.base.service.abstracts.model.GenreService;
 import io.swagger.annotations.*;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/moderator/genres")
+@RequestMapping("/api/admin/genres")
 @Api(tags = "Жанры")
 public class AdminGenreRestController {
     private final GenreService genreService;
