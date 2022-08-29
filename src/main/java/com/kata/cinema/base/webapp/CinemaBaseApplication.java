@@ -17,3 +17,4 @@ public class CinemaBaseApplication {
         SpringApplication.run(CinemaBaseApplication.class, args);
     }
 }
+

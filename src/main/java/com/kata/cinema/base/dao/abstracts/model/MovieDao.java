@@ -7,5 +7,5 @@ import com.kata.cinema.base.models.entitys.Movies;
 import java.util.List;
 
 public interface MovieDao extends AbstractDao<Long, Movies> {
-    public List<MovieReleaseResponseDto> getReleaseFilms();
+    List<MovieReleaseResponseDto> getReleaseFilms();
 }
