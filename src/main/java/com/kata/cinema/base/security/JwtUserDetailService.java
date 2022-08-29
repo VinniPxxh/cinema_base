@@ -1,7 +1,6 @@
-package com.kata.cinema.base.security.service;
+package com.kata.cinema.base.security;
 
 import com.kata.cinema.base.models.entitys.User;
-import com.kata.cinema.base.security.jwt.JwtUserFactory;
 import com.kata.cinema.base.service.abstracts.model.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,7 @@ public class JwtUserDetailService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User with email: " + username + "not found");
         }
-        User jwtUser = JwtUserFactory.create(user);
         log.info("IN loadUserByUsername - user with email: {} successfully loaded", username);
-        return jwtUser;
+        return user;
     }
 }

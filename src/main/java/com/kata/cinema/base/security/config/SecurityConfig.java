@@ -2,7 +2,7 @@ package com.kata.cinema.base.security.config;
 
 import com.google.common.collect.ImmutableList;
 import com.kata.cinema.base.security.filter.TokenAuthenticationFilter;
-import com.kata.cinema.base.security.service.JwtUserDetailService;
+import com.kata.cinema.base.security.JwtUserDetailService;
 import com.kata.cinema.base.security.jwt.JwtUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -26,11 +27,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     private final JwtUserDetailService userDetailService;
 
     private final JwtUserProvider jwtUserProvider;
-
 
     @Autowired
     public SecurityConfig(JwtUserDetailService userDetailService, JwtUserProvider jwtUserProvider) {
@@ -38,12 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtUserProvider = jwtUserProvider;
     }
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
     }
 
+    @Bean
+    public TokenAuthenticationFilter jwtFilter() {
+        return new TokenAuthenticationFilter(jwtUserProvider, userDetailService);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -52,16 +54,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/publicist/**").hasRole("PUBLICIST")
-                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/api/publicist/**").hasAnyAuthority("PUBLICIST")
+                .antMatchers("/api/user/**").hasAnyAuthority("USER")
                 .antMatchers("/token").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin()
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .permitAll();
-        http.addFilter(new TokenAuthenticationFilter(authenticationManagerBean(), jwtUserProvider));
+                .anyRequest()
+                .permitAll()
+                .and()
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
