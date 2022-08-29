@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.models.dto.PageDto;
-import com.kata.cinema.base.models.dto.SearchUserResponseDto;
+import com.kata.cinema.base.models.dto.response.SearchUserResponseDto;
 import com.kata.cinema.base.models.dto.response.SearchMovieResponseDto;
 import com.kata.cinema.base.models.enums.MovieSortType;
 import com.kata.cinema.base.service.abstracts.dto.SearchMovieResponseDtoPaginationService;
@@ -29,7 +29,7 @@ public class SearchRestController {
         this.searchMovieResponseDtoPaginationService = paginationDtoService;
     }
 
-    @GetMapping
+    @GetMapping("/users")
     public ResponseEntity<List<SearchUserResponseDto>> getUserByMail(
             @RequestParam(name = "email") String email) {
         List<SearchUserResponseDto> users = searchUserService.findSearchUserByEmail(email);
