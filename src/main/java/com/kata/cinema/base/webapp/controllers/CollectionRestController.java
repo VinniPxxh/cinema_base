@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,16 +36,20 @@ public class CollectionRestController {
 
 
     @GetMapping
-    public ResponseEntity<CollectionResponseDto> getCollectionResponseDto(@RequestParam(defaultValue = "MOVIES") CollectionType type) {
+    public ResponseEntity<List<CollectionResponseDto>> getCollectionResponseDto(@RequestParam(defaultValue = "MOVIES") CollectionType type) {
 
-        //TODO доработать логику
+        //TODO доработать логику, доставать сразу dto
        // FolderMovies folderMovies =  folderMoviesService.findByUserId(user_id);
         //   Integer countViewedMovies = folderMovies.getMovies().size();
 
-        Collections collections = collectionService.findCollectionByType(type);
-        CollectionResponseDto collectionResponseDto = new CollectionResponseDto(collections.getId(), collections.getName(), collections.getCollectionUrl(), collections.getMovies().size(), 0);
+        List<Collections> collections = collectionService.findCollectionByType(type);
+        List<CollectionResponseDto> collectionsDtos = new ArrayList<>();
+        for (Collections c : collections) {
+            CollectionResponseDto collectionResponseDto = new CollectionResponseDto(c.getId(), c.getName(), c.getCollectionUrl(), 0, 0);
+            collectionsDtos.add(collectionResponseDto);
+        }
 
-        return ResponseEntity.ok(collectionResponseDto);
+        return ResponseEntity.ok(collectionsDtos);
     }
 
 
