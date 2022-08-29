@@ -1,7 +1,7 @@
 package com.kata.cinema.base.dao.impl.dto;
 
 import com.kata.cinema.base.dao.abstracts.dto.TopMoviesResponseDtoPaginationDao;
-import com.kata.cinema.base.models.dto.TopMoviesResponseDto;
+import com.kata.cinema.base.models.dto.response.TopMoviesResponseDto;
 import com.kata.cinema.base.models.entitys.Movies;
 import com.kata.cinema.base.models.enums.TopMoviesType;
 import com.kata.cinema.base.models.enums.Type;

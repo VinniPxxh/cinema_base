@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers.admin;
 
 import com.kata.cinema.base.exceptions.IdNotFoundException;
-import com.kata.cinema.base.models.dto.GenreResponseDto;
+import com.kata.cinema.base.models.dto.response.GenreResponseDto;
 import com.kata.cinema.base.models.entitys.Genres;
 import com.kata.cinema.base.service.abstracts.model.GenreService;
 import io.swagger.annotations.*;
