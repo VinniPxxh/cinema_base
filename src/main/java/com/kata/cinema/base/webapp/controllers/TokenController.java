@@ -5,6 +5,10 @@ import com.kata.cinema.base.models.dto.response.ResponseTokenDto;
 import com.kata.cinema.base.models.entitys.User;
 import com.kata.cinema.base.security.jwt.JwtUserProvider;
 import com.kata.cinema.base.service.abstracts.model.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,12 +18,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 @RestController
+@Api(tags = "Токен")
 public class TokenController {
 
     private final AuthenticationManager authenticationManager;
@@ -33,6 +40,14 @@ public class TokenController {
     }
 
     @PostMapping(value = "/token")
+    @ApiOperation(value = "Получение токена", response = ResponseTokenDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Успешное получение токена"),
+            @ApiResponse(code = 201, message = "Успешное создание токена"),
+            @ApiResponse(code = 401, message = "Проблема с аутентификацией или авторизацией на сайте"),
+            @ApiResponse(code = 403, message = "Недостаточно прав для создания контента"),
+            @ApiResponse(code = 404, message = "Невозможно найти.")
+    })
     public ResponseEntity<ResponseTokenDto> getToken(@RequestBody AuthDto authDto) {
         try {
             String username = authDto.getUsername();
