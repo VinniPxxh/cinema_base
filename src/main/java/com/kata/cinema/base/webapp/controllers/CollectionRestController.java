@@ -34,16 +34,15 @@ public class CollectionRestController {
     }
 
 
+    @GetMapping
+    public ResponseEntity<CollectionResponseDto> getCollectionResponseDto(@RequestParam(defaultValue = "MOVIES") CollectionType type) {
 
-//    TODO заменить user_id на Аутентифицированного пользователя (Principal)
-    @GetMapping("/{user_id}")
-    public ResponseEntity<CollectionResponseDto> getCollectionResponseDto(@RequestParam(defaultValue = "MOVIES") CollectionType type, @PathVariable Long user_id) {
-
-        FolderMovies folderMovies =  folderMoviesService.findByUserId(user_id);
-        Integer countViewedMovies = folderMovies.getMovies().size();
+        //TODO доработать логику
+       // FolderMovies folderMovies =  folderMoviesService.findByUserId(user_id);
+        //   Integer countViewedMovies = folderMovies.getMovies().size();
 
         Collections collections = collectionService.findCollectionByType(type);
-        CollectionResponseDto collectionResponseDto = new CollectionResponseDto(collections.getId(), collections.getName(), collections.getCollectionUrl(), collections.getMovies().size(), countViewedMovies);
+        CollectionResponseDto collectionResponseDto = new CollectionResponseDto(collections.getId(), collections.getName(), collections.getCollectionUrl(), collections.getMovies().size(), 0);
 
         return ResponseEntity.ok(collectionResponseDto);
     }
@@ -51,7 +50,7 @@ public class CollectionRestController {
 
 
     @PostMapping
-    public ResponseEntity postCollectionResponseDto(CollectionRequestDto collectionRequestDto) {
+    public ResponseEntity<Void> postCollectionResponseDto(CollectionRequestDto collectionRequestDto) {
         Collections collections = new Collections(collectionRequestDto.getName(), collectionRequestDto.getType());
         collectionService.create(collections);
 
@@ -60,7 +59,7 @@ public class CollectionRestController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity updateCollectionResponseDto(@PathVariable Long id, CollectionRequestDto collectionRequestDto) {
+    public ResponseEntity<Void> updateCollectionResponseDto(@PathVariable Long id, CollectionRequestDto collectionRequestDto) {
         Collections updateCollections = collectionService.getById(id).orElse(null);
         if (updateCollections == null) {
             throw new IdNotFoundException("There is no collection with ID: " + id + " , try again.");
@@ -73,7 +72,7 @@ public class CollectionRestController {
     }
 
     @PatchMapping("/{id}/deactivate")
-    public ResponseEntity deactivate(@PathVariable Long id) {
+    public ResponseEntity<Void> deactivate(@PathVariable Long id) {
         Collections collectionsDeactivate = collectionService.getById(id).orElse(null);
         if (collectionsDeactivate == null) {
             throw new IdNotFoundException("There is no collection with ID: " + id + " , try again.");
@@ -84,7 +83,7 @@ public class CollectionRestController {
     }
 
     @PatchMapping("/{id}/activate")
-    public ResponseEntity activate(@PathVariable Long id) {
+    public ResponseEntity<Void> activate(@PathVariable Long id) {
         Collections collectionsActive = collectionService.getById(id).orElse(null);
         if (collectionsActive == null) {
             throw new IdNotFoundException("There is no collection with ID: " + id + " , try again.");
@@ -95,7 +94,7 @@ public class CollectionRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCollections(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCollections(@PathVariable Long id) {
         if (collectionService.isExistById(id)) {
             collectionService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -104,7 +103,7 @@ public class CollectionRestController {
     }
 
     @PostMapping("/{id}/movies")
-    public ResponseEntity addMovie(@PathVariable Long id,@RequestBody List<Long> movieIds) {
+    public ResponseEntity<Void> addMovie(@PathVariable Long id,@RequestBody List<Long> movieIds) {
         Collections collectionsAddMovie = collectionService.getById(id).orElse(null);
         Set<Long> setMoviesId = new HashSet<>(movieIds);
         if (collectionsAddMovie != null) {
@@ -131,7 +130,7 @@ public class CollectionRestController {
     }
 
     @DeleteMapping("/{id}/movies")
-    public ResponseEntity deleteMovie(@PathVariable Long id,@RequestBody List<Long> movieIds) {
+    public ResponseEntity<Void> deleteMovie(@PathVariable Long id,@RequestBody List<Long> movieIds) {
 
         Collections collectionsDeleteMovie = collectionService.getById(id).orElse(null);
         Set<Long> setMoviesDeleteId = new HashSet<>(movieIds);

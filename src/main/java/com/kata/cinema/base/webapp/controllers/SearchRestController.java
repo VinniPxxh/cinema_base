@@ -2,8 +2,8 @@ package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.dao.abstracts.dto.SearchUserDao;
 import com.kata.cinema.base.models.dto.PageDto;
-import com.kata.cinema.base.models.dto.SearchUserResponseDto;
-import com.kata.cinema.base.models.dto.SearchMovieResponseDto;
+import com.kata.cinema.base.models.dto.response.SearchUserResponseDto;
+import com.kata.cinema.base.models.dto.response.SearchMovieResponseDto;
 import com.kata.cinema.base.models.enums.MovieSortType;
 import com.kata.cinema.base.service.abstracts.dto.SearchMovieResponseDtoPaginationService;
 import com.kata.cinema.base.service.abstracts.model.SearchUserService;
