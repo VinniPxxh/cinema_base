@@ -37,7 +37,7 @@ public class CollectionRestController {
     @GetMapping
     public ResponseEntity<CollectionResponseDto> getCollectionResponseDto(@RequestParam(defaultValue = "MOVIES") CollectionType type) {
 
-        //TODO доработать логику
+        //TODO доработать логику, доставать сразу dto
        // FolderMovies folderMovies =  folderMoviesService.findByUserId(user_id);
         //   Integer countViewedMovies = folderMovies.getMovies().size();
 
