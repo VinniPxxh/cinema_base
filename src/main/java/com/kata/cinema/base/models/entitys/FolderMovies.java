@@ -10,8 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity
-@Table(name = "folders_movies")
+@Entity(name = "folders_movies")
+@Table
 @Getter
 @Setter
 @NoArgsConstructor
@@ -40,4 +40,12 @@ public class FolderMovies {
             joinColumns = @JoinColumn(name = "folders_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Set<Movies> movies;
+
+    public FolderMovies(Long id, Category category, Privacy privacy, String name, String description) {
+        this.id = id;
+        this.category = category;
+        this.privacy = privacy;
+        this.name = name;
+        this.description = description;
+    }
 }
