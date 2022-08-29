@@ -10,10 +10,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity(name = "folders_movies")
-@Table
+@Entity
 @Getter
 @Setter
+@Table(name = "folders_movies")
 @NoArgsConstructor
 public class FolderMovies {
     @Id
