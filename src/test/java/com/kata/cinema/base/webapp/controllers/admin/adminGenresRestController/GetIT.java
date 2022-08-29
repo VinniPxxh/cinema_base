@@ -1,4 +1,4 @@
-package com.kata.cinema.base.webapp.controllers.adminGenresRestController;
+package com.kata.cinema.base.webapp.controllers.admin.adminGenresRestController;
 
 import com.kata.cinema.base.AbstractIT;
 import org.junit.Test;

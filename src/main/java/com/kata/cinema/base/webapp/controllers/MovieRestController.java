@@ -1,7 +1,7 @@
 package com.kata.cinema.base.webapp.controllers;
 
 import com.kata.cinema.base.models.dto.PageDto;
-import com.kata.cinema.base.models.dto.TopMoviesResponseDto;
+import com.kata.cinema.base.models.dto.response.TopMoviesResponseDto;
 import com.kata.cinema.base.models.dto.response.MovieReleaseResponseDto;
 import com.kata.cinema.base.models.enums.TopMoviesType;
 import com.kata.cinema.base.service.abstracts.dto.TopMoviesResponseDtoPaginationService;
