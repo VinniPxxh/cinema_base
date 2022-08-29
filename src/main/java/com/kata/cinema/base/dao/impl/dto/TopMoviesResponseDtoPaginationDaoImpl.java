@@ -14,6 +14,7 @@ import java.util.Map;
 public class TopMoviesResponseDtoPaginationDaoImpl extends AbstractDaoImpl<Long, Movies> implements TopMoviesResponseDtoPaginationDao {
     @Override
     public List<TopMoviesResponseDto> getItemsDto(Integer currentPage, Integer itemsOnPage, Map<String, Object> parameters) {
+        //TODO вынести в отдельный метод
         String order;
         switch ((TopMoviesType) parameters.get("topMoviesType")) {
             case NAME : {
