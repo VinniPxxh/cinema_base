@@ -10,5 +10,4 @@ public interface RoleDao extends AbstractDao<Long, Role> {
 
     Role findByName(String name);
 
-    List<Role> findRoles(Roles roles);
 }
