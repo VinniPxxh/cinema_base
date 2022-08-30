@@ -37,6 +37,6 @@ public class FolderPerson {
             joinColumns = @JoinColumn(name = "folders_persons_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id")
     )
-    Set<Person> person;
+    private Set<Person> person;
 
 }
