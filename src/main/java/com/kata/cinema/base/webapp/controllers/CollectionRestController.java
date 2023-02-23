@@ -4,10 +4,10 @@ import com.kata.cinema.base.exceptions.NotFoundByIdException;
 import com.kata.cinema.base.models.dto.CollectionRequestDto;
 import com.kata.cinema.base.models.dto.CollectionResponseDto;
 import com.kata.cinema.base.models.entitys.Collections;
+
 import com.kata.cinema.base.models.entitys.Movies;
 import com.kata.cinema.base.models.enums.CollectionType;
 import com.kata.cinema.base.service.abstracts.model.CollectionService;
-import com.kata.cinema.base.service.abstracts.model.FolderMoviesService;
 import com.kata.cinema.base.service.abstracts.model.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,9 +23,7 @@ import java.util.Set;
 @RequestMapping("/api/collections")
 @AllArgsConstructor
 public class CollectionRestController {
-
     private final CollectionService collectionService;
-    private final FolderMoviesService folderMoviesService;
     private final MovieService movieService;
 
 
@@ -33,9 +31,8 @@ public class CollectionRestController {
     public ResponseEntity<List<CollectionResponseDto>> getCollectionResponseDto(@RequestParam(defaultValue = "MOVIES") CollectionType type) {
 
         //TODO доработать логику, доставать сразу dto
-       // FolderMovies folderMovies =  folderMoviesService.findByUserId(user_id);
-        //   Integer countViewedMovies = folderMovies.getMovies().size();
-
+//        FolderMovies folderMovies =  folderMoviesService.findByUserId(user_id);
+//           Integer countViewedMovies = folderMovies.getMovies().size();
         List<Collections> collections = collectionService.findCollectionByType(type);
         List<CollectionResponseDto> collectionsDtos = new ArrayList<>();
         for (Collections c : collections) {

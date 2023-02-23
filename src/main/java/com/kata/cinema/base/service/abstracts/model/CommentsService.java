@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface CommentsService extends AbstractService<Long, Comments> {
+public interface CommentsService extends AbstractService<Long, Comments>{
     List<CommentsResponseDto> getComments(Long id);
 }

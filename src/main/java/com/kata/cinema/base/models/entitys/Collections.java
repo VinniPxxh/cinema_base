@@ -1,6 +1,7 @@
 package com.kata.cinema.base.models.entitys;
 
 import com.kata.cinema.base.models.enums.CollectionType;
+import liquibase.pro.packaged.E;
 import lombok.*;
 import org.hibernate.Hibernate;
 
